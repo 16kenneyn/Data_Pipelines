@@ -1,6 +1,15 @@
+from _utils import *
 
+""" Will use this file to run all data pipeline scripts """
 
+# cursor = sql_server_query()
+#
+# cursor.execute("""SELECT * FROM [DataMining].[dbo].[Combined_Building_Permit_Dataset]""")
+#
+# tables = cursor.fetchall()
+# # print(type(tables[0]))
+# print(tables[0])
+# print(tables[0][0])
 
-self.home_values = [
-    {
-        'All Homes (SFR, Condo/Co-op) Time Series, Smoothed, Seasonally Adjusted': 'https://files.zillowstatic.com/research/public_csvs/zhvi/Zip_zhvi_uc_sfrcondo_tier_0.33_0.67_sm_sa_month.csv?t=1698188357'},
+# for table in tables:
+#     print(table)
