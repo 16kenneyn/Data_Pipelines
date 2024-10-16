@@ -5,24 +5,9 @@ import datetime as dt
 from _utils import sql_server_query
 from _utils import sqlalchemy_engine  # engine used to connect to SQL Server, to be used in pandas read_sql_query & to_sql
 
-'''
-TO-DO:
-1. Finish up DB insert function for class
-    - Can this be dynamic?  Or do we need an individual function for each pull?
-2. Setup main run function for both home values & rental
-3. Is it possible to make the get all URL function dynamic where it can pull all states or one state?
-4. Will need to re-org directory of project
-    - Zillow --- zillow main
-5. 
-'''
-
-'''Start from the base, 1 step at a time, do just the home_values standardly filtered to MA'''
-
 """
 ****** OVERVIEW ******
 1. Anytime you need to add to the data type lookup table, do it in the create zw data type query in onedrive
-
-
 """
 
 class ZillowValues:
@@ -156,7 +141,7 @@ class ZillowValues:
         print(main_df.info())
         print(main_df.describe())
         print(main_df.head())
-        main_df.to_sql('ZW_HOME_VALUES', self.engine, if_exists='replace', index=False)
+        main_df.to_sql('ZW_HOME_VALUES', self.engine, if_exists='replace', index=False, chunksize=10000)
 
         return main_df
 
@@ -183,7 +168,7 @@ class ZillowValues:
     #     # Commit the transaction
     #     conn.commit()
     #
-    #     # Close connection
+    #     # Close connectiony
     #     cursor.close()
     #     conn.close()
 
