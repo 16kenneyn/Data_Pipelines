@@ -1,13 +1,22 @@
 import pandas as pd
 import requests
-from io import StringIO
+from io import StringIO  # Need this for requesting zillow data
 import datetime as dt
+import time
+import traceback  # Need this to return complete error message for logging except section
 from _utils import sql_server_query
 from _utils import sqlalchemy_engine  # engine used to connect to SQL Server, to be used in pandas read_sql_query & to_sql
+from _utils import DataPipelineLogger
 
 """
 ****** OVERVIEW ******
 1. Anytime you need to add to the data type lookup table, do it in the create zw data type query in onedrive
+"""
+
+"""
+****** TO DO ******
+1. Need to append the All_Home_Seasonally_Adjusted data to the main_df
+2. 
 """
 
 class ZillowValues:
@@ -35,6 +44,11 @@ class ZillowValues:
         # Create sql engine used for dataframes to connect to sql server
         self.engine = sqlalchemy_engine()
 
+        # Initialize logger
+        self.logger = DataPipelineLogger('Zillow_Values')
+
+        self.export_to_csv = False
+
         # Filters
         self.state_restriction = True
 
@@ -53,6 +67,7 @@ class ZillowValues:
             data = pd.read_csv(StringIO(response.text))
             return data
         except requests.exceptions.RequestException as e:
+            self.logger.write_to_log(f"An error occurred during the request_zillow_url function: {e}")
             print(f"An error occurred: {e}")
             return None
 
@@ -70,10 +85,13 @@ class ZillowValues:
             # Filter down dataset to MA so it is more manageable - 76k rows vs 7.5M rows
             if self.state_restriction:
                 filtered_data = temp_df.loc[temp_df['State'] == 'MA']
+                self.logger.write_to_log('Filtering data down to MA only.')
                 print('Filtering data down to MA only.')
             else:
                 filtered_data = temp_df
+                self.logger.write_to_log('Pulling all states data.')
                 print('Pulling all states data')
+            self.logger.write_to_log(f'Getting URL for model: {list(i.keys())[0]}')
             print(f'Getting URL for model: {list(i.keys())[0]}')
 
             filtered_data = filtered_data.drop(columns=['StateName', 'RegionType'])
@@ -121,9 +139,11 @@ class ZillowValues:
         # Setting up the data type lookup table
         df_zw_lkp_zip = main_df[
             ['RegionID', 'State', 'City', 'Metro', 'CountyName', 'Zip_Code']].drop_duplicates()
+        self.logger.write_to_log('Creating data type lookup table succeeded.')
 
         # Insert data into SQL Server - LKP_ZW_DATA_TYPE
         df_zw_lkp_zip.to_sql('LKP_ZW_DATA_TYPE', self.engine, if_exists='replace', index=False)
+        self.logger.write_to_log('Inserting data into LKP_ZW_DATA_TYPE succeeded.')
 
         # Drop columns from df_zq_lkp_zip as they are mainly text columns
         main_df.drop(columns=['State', 'City', 'Metro', 'CountyName', 'Zip_Code'], inplace=True)
@@ -133,6 +153,7 @@ class ZillowValues:
         df_data_type_lkp.reset_index(inplace=True)
         df_data_type_lkp.rename(columns={'index': 'LOOKUP_KEY'}, inplace=True)
         df_data_type_lkp.to_sql('LKP_ZW_DATA_TYPE', self.engine, if_exists='replace', index=False)
+        self.logger.write_to_log('Inserting data into LKP_ZW_DATA_TYPE succeeded.')
 
         # Merge the main_df with the data type lookup table to get the LOOKUP_KEY and then drop the Data_Type column and then to sql server in table ZW_HOME_VALUES
         main_df = main_df.merge(df_data_type_lkp, left_on='Data_Type', right_on='DATA_TYPE', how='left')
@@ -142,8 +163,27 @@ class ZillowValues:
         print(main_df.describe())
         print(main_df.head())
         main_df.to_sql('ZW_HOME_VALUES', self.engine, if_exists='replace', index=False, chunksize=10000)
+        self.logger.write_to_log('Inserting data into ZW_HOME_VALUES succeeded.')
 
-        return main_df
+        if self.export_to_csv:
+            main_df.to_csv('Data_Files/Home_Values.csv', index=False)
+
+    def main_run(self):
+        self.logger.write_to_log('******************************************')
+        start_time = time.time()
+        try:
+            self.get_all_urls(url_list=self.home_values)
+        except Exception as e:
+            error_trace = traceback.format_exc()
+            self.logger.write_error_to_log(f"An error occurred: {e}\n{error_trace}")
+            print(f"An error occurred: {e}")
+        finally:
+            end_time = time.time()
+            elapsed_time = end_time - start_time
+            minutes, seconds = divmod(elapsed_time, 60)
+            self.logger.write_to_log(f"Main Function took {minutes:.0f} minutes and {seconds:.2f} seconds to run.")
+            self.logger.write_to_log('******************************************')
+
 
     # def insert_homevalues_db(self, dataframe):
     #
@@ -180,15 +220,12 @@ class ZillowValues:
 #         VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
 #     """, row.RegionID, row.SizeRank, row.RegionName, row.RegionType, row.StateName, row.State, row.City, row.Metro, row.CountyName, row.Date, row.Value, row.Data_Type, row.unique_id, row.Date_Pulled)
 
-
-
 # Temp Main Function
 if __name__ == '__main__':
     # Setting universal object variable
     home_values = ZillowValues()
-    # Pulling Data
-    feed_df = home_values.get_all_urls(url_list=home_values.home_values)
-    feed_df.to_csv('temp_home_values.csv', index=False)
+    home_values.main_run()
+
 
 
 
