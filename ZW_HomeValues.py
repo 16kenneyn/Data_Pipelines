@@ -184,7 +184,6 @@ class ZillowValues:
             self.logger.write_to_log(f"Main Function took {minutes:.0f} minutes and {seconds:.2f} seconds to run.")
             self.logger.write_to_log('******************************************')
 
-
     # def insert_homevalues_db(self, dataframe):
     #
     #     cursor = sql_server_query()

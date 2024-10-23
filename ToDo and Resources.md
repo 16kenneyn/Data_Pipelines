@@ -14,3 +14,4 @@
 6. RedFin market data by zipcode
 7. Realtor.com hotness score by zipcode
 8. Realtor.com inventory data by zipcode
+9. Fred Economic Data - use the api
