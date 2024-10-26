@@ -3,7 +3,7 @@ import time
 
 class DataPipelineLogger:
     def __init__(self, log_file_name):
-        self.log_file_name = "Logging/" + log_file_name + ".log"
+        self.log_file_name = "3_Logging/" + log_file_name + ".log"
         # Configure logging
         logging.basicConfig(
             filename=self.log_file_name,

@@ -3,7 +3,7 @@ import sqlalchemy
 import pymssql
 
 logging.basicConfig(
-    filename='../../Logging/script.log',
+    filename='../../3_Logging/script.log',
     level=logging.INFO,
     format='%(asctime)s - %(levelname)s - %(message)s'
 )
