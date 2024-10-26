@@ -1,0 +1,23 @@
+2024-10-25 21:41:53,631 - INFO - ******************************************
+2024-10-25 21:42:07,756 - INFO - Filtering data down to MA only.
+2024-10-25 21:42:07,756 - INFO - Getting URL for model: All Homes (SFR, Condo/Co-op) Time Series, Smoothed, Seasonally Adjusted
+2024-10-25 21:42:22,866 - INFO - Filtering data down to MA only.
+2024-10-25 21:42:22,866 - INFO - Getting URL for model: Single-Family Homes Time Series
+2024-10-25 21:42:27,053 - INFO - Filtering data down to MA only.
+2024-10-25 21:42:27,053 - INFO - Getting URL for model: Condo/Co-op Time Series
+2024-10-25 21:42:30,366 - INFO - Filtering data down to MA only.
+2024-10-25 21:42:30,366 - INFO - Getting URL for model: 1-Bedroom Time Series
+2024-10-25 21:42:40,256 - INFO - Filtering data down to MA only.
+2024-10-25 21:42:40,256 - INFO - Getting URL for model: 2-Bedroom Time Series
+2024-10-25 21:42:51,819 - INFO - Filtering data down to MA only.
+2024-10-25 21:42:51,819 - INFO - Getting URL for model: 3-Bedroom Time Series
+2024-10-25 21:43:00,663 - INFO - Filtering data down to MA only.
+2024-10-25 21:43:00,663 - INFO - Getting URL for model: 4-Bedroom Time Series
+2024-10-25 21:43:06,304 - INFO - Filtering data down to MA only.
+2024-10-25 21:43:06,304 - INFO - Getting URL for model: 5+ Bedroom Time Series
+2024-10-25 21:43:09,038 - INFO - Creating data type lookup table succeeded.
+2024-10-25 21:43:09,819 - INFO - Inserting data into LKP_ZW_DATA_TYPE succeeded.
+2024-10-25 21:43:10,366 - INFO - Inserting data into LKP_ZW_DATA_TYPE succeeded.
+2024-10-25 21:53:43,382 - INFO - Inserting data into ZW_HOME_VALUES succeeded.
+2024-10-25 21:53:43,460 - INFO - Main Function took 11 minutes and 49.83 seconds to run.
+2024-10-25 21:53:43,460 - INFO - ******************************************

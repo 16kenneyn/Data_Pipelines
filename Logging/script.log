@@ -1,0 +1,15 @@
+
+2024-10-25 21:27:33,385 - INFO - Script started.
+2024-10-25 21:27:33,385 - ERROR - Error: division by zero
+Traceback (most recent call last):
+  File "C:\Users\nickk\PycharmProjects\Data_Pipelines\Test_Executable.py", line 16, in main
+    x = 1 / 0  # Will raise ZeroDivisionError
+        ~~^~~
+ZeroDivisionError: division by zero
+2024-10-25 21:30:36,966 - INFO - Script started.
+2024-10-25 21:30:36,966 - ERROR - Error: division by zero
+Traceback (most recent call last):
+  File "C:\Users\nickk\PycharmProjects\Data_Pipelines\Test_Executable.py", line 16, in main
+    x = 1 / 0  # Will raise ZeroDivisionError
+        ~~^~~
+ZeroDivisionError: division by zero
