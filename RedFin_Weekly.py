@@ -1,6 +1,9 @@
 import pandas as pd
 import requests
 from io import StringIO
+from _utils import DataPipelineLogger
+
+logger = DataPipelineLogger('RedFin_Weekly')
 
 # Global variables and settings
 pd.set_option('display.max_columns', None) # Don't truncate columns for dataframes

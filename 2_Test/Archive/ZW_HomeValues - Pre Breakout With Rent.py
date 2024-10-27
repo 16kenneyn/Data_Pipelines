@@ -8,8 +8,20 @@ from _utils import sql_server_query
 from _utils import sqlalchemy_engine  # engine used to connect to SQL Server, to be used in pandas read_sql_query & to_sql
 from _utils import DataPipelineLogger
 
-class ZillowHomeValues:
+"""
+****** OVERVIEW ******
+1. Anytime you need to add to the data type lookup table, do it in the create zw data type query in onedrive
+"""
+
+"""
+****** TO DO ******
+1. Need to append the All_Home_Seasonally_Adjusted data to the main_df
+2. 
+"""
+
+class ZillowValues:
     def __init__(self):
+        self.All_Homes_Seasonally_Adjusted = 'https://files.zillowstatic.com/research/public_csvs/zhvi/Zip_zhvi_uc_sfrcondo_tier_0.33_0.67_sm_sa_month.csv?t=1698188357'
         self.home_values = [
             {'All Homes (SFR, Condo/Co-op) Time Series, Smoothed, Seasonally Adjusted': 'https://files.zillowstatic.com/research/public_csvs/zhvi/Zip_zhvi_uc_sfrcondo_tier_0.33_0.67_sm_sa_month.csv?t=1698188357'},
             {'Single-Family Homes Time Series': 'https://files.zillowstatic.com/research/public_csvs/zhvi/Zip_zhvi_uc_sfr_tier_0.33_0.67_sm_sa_month.csv?t=1698188357'},
@@ -24,6 +36,10 @@ class ZillowHomeValues:
             {'All Homes (SFR, Condo/Co-op), Smoothed, Seasonally Adjusted, Mid-Tier': 'https://files.zillowstatic.com/research/public_csvs/zhvf_growth/Zip_zhvf_growth_uc_sfrcondo_tier_0.33_0.67_sm_sa_month.csv?t=1698188357'},
             {'All Homes (SFR, Condo/Co-op), Raw, Mid-Tier': 'https://files.zillowstatic.com/research/public_csvs/zhvf_growth/Zip_zhvf_growth_uc_sfrcondo_tier_0.33_0.67_month.csv?t=1698188357'}
         ]
+        self.rentals = [
+            {'Smoothed All Homes Plus Multifamily Time Series': 'https://files.zillowstatic.com/research/public_csvs/zori/Zip_zori_uc_sfrcondomfr_sm_month.csv?t=1705256896'},
+            {'Smoothed (Seasonally Adjusted) All Homes Plus Multifamily Time Series': 'https://files.zillowstatic.com/research/public_csvs/zori/Zip_zori_uc_sfrcondomfr_sm_sa_month.csv?t=1705256896'}
+        ]
 
         # Create sql engine used for dataframes to connect to sql server
         self.engine = sqlalchemy_engine()
@@ -33,7 +49,6 @@ class ZillowHomeValues:
         self.logger = DataPipelineLogger(self.logger_file_name)
 
         self.export_to_csv = False
-        self.current_date = str(dt.date.today())
 
         # Filters
         self.state_restriction = True
@@ -47,8 +62,7 @@ class ZillowHomeValues:
             data = pd.read_csv(StringIO(response.text))
             return data
         except requests.exceptions.RequestException as e:
-            error_trace = traceback.format_exc()
-            self.logger.write_to_log(f"An error occurred during the request_zillow_url function: {e}\n{error_trace}")
+            self.logger.write_to_log(f"An error occurred during the request_zillow_url function: {e}")
             print(f"An error occurred: {e}")
             return None
 
@@ -98,8 +112,8 @@ class ZillowHomeValues:
             main_df = pd.concat([main_df, melted_data], ignore_index=True)
 
         # Add and convert Date_Pulled column to current date
-
-        main_df['Date_Pulled'] = self.current_date
+        current_date = str(dt.date.today())
+        main_df['Date_Pulled'] = current_date
         main_df['Value'] = round(main_df['Value'], 0)
 
         # Cleanup null values in columns
@@ -117,22 +131,29 @@ class ZillowHomeValues:
         # Setting up the data type lookup table
         df_zw_lkp_zip = main_df[
             ['RegionID', 'State', 'City', 'Metro', 'CountyName', 'Zip_Code']].drop_duplicates()
-        # Insert data into SQL Server - LKP_ZW_DATA_TYPE
-        df_zw_lkp_zip.to_sql('LKP_ZW_ZIP_lOCATION_ARCHIVE', self.engine, if_exists='append', index=False)
-        df_zw_lkp_zip['Report_Date'] = self.current_date
-        df_zw_lkp_zip['Dataset_Type'] = "Home_Values"
-        self.logger.write_to_log('Creating LKP_ZW_ZIP_lOCATION table succeeded.')
+        self.logger.write_to_log('Creating data type lookup table succeeded.')
 
-        # Query the data type lookup table from SQL Server to merge with the main_df
-        df_data_type_lkp = pd.read_sql('LKP_ZW_DATA_TYPE', self.engine)
-        self.logger.write_to_log('Inserting append data into LKP_ZW_ZIP_lOCATION succeeded.')
+        # Insert data into SQL Server - LKP_ZW_DATA_TYPE
+        df_zw_lkp_zip.to_sql('LKP_ZW_DATA_TYPE', self.engine, if_exists='replace', index=False)
+        self.logger.write_to_log('Inserting data into LKP_ZW_DATA_TYPE succeeded.')
 
         # Drop columns from df_zq_lkp_zip as they are mainly text columns
         main_df.drop(columns=['State', 'City', 'Metro', 'CountyName', 'Zip_Code'], inplace=True)
 
+        # Create a dataframe with all unique Data_Type Values and an index column called LOOKUP_KEY and then insert dataframe into sql server table LKP_ZW_DATA_TYPE
+        df_data_type_lkp = pd.DataFrame(main_df['Data_Type'].unique(), columns=['DATA_TYPE'])
+        df_data_type_lkp.reset_index(inplace=True)
+        df_data_type_lkp.rename(columns={'index': 'LOOKUP_KEY'}, inplace=True)
+        df_data_type_lkp.to_sql('LKP_ZW_DATA_TYPE', self.engine, if_exists='replace', index=False)
+        self.logger.write_to_log('Inserting data into LKP_ZW_DATA_TYPE succeeded.')
+
         # Merge the main_df with the data type lookup table to get the LOOKUP_KEY and then drop the Data_Type column and then to sql server in table ZW_HOME_VALUES
         main_df = main_df.merge(df_data_type_lkp, left_on='Data_Type', right_on='DATA_TYPE', how='left')
-        main_df.drop(columns=['Data_Type', 'DATA_TYPE', 'DATASET_TYPE'], inplace=True)
+        main_df.drop(columns=['Data_Type', 'DATA_TYPE'], inplace=True)
+        # print("Main DF Head")
+        # print(main_df.info())
+        # print(main_df.describe())
+        # print(main_df.head())
         main_df.to_sql('ZW_HOME_VALUES', self.engine, if_exists='replace', index=False, chunksize=10000)
         self.logger.write_to_log('Inserting data into ZW_HOME_VALUES succeeded.')
 
@@ -155,18 +176,54 @@ class ZillowHomeValues:
             self.logger.write_to_log(f"Main Function took {minutes:.0f} minutes and {seconds:.2f} seconds to run.")
             self.logger.write_to_log('******************************************')
 
+
+
+    # def insert_homevalues_db(self, dataframe):
+    #
+    #     cursor = sql_server_query()
+    #     # cursor.execute("SELECT * FROM [DataMining].[dbo].[Combined_Building_Permit_Dataset]")
+    #     # tables = cursor.fetchall()
+    #     # for table in tables:
+    #     #     print(table)
+    #
+    #     # copilot write insert
+    #     # Establish connection
+    #
+    #     # Insert DataFrame to SQL Server
+    #     for index, row in df.iterrows():
+    #         cursor.execute("""
+    #             INSERT INTO ZW_home_values (RegionID, SizeRank, RegionName, RegionType, StateName, State, City, Metro, CountyName, Date, Value, Data_Type, unique_id, Date_Pulled)
+    #             VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
+    #         """, row.RegionID, row.SizeRank, row.RegionName, row.RegionType, row.StateName, row.State, row.City,
+    #                        row.Metro, row.CountyName, row.Date, row.Value, row.Data_Type, row.unique_id,
+    #                        row.Date_Pulled)
+    #
+    #     # Commit the transaction
+    #     conn.commit()
+    #
+    #     # Close connectiony
+    #     cursor.close()
+    #     conn.close()
+
+
+# Insert DataFrame to SQL Server
+# for index, row in df.iterrows():
+#     cursor.execute("""
+#         INSERT INTO ZW_home_values (RegionID, SizeRank, RegionName, RegionType, StateName, State, City, Metro, CountyName, Date, Value, Data_Type, unique_id, Date_Pulled)
+#         VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
+#     """, row.RegionID, row.SizeRank, row.RegionName, row.RegionType, row.StateName, row.State, row.City, row.Metro, row.CountyName, row.Date, row.Value, row.Data_Type, row.unique_id, row.Date_Pulled)
+
 # Temp Main Function
 if __name__ == '__main__':
     # Setting universal object variable
-    home_values = ZillowHomeValues()
+    home_values = ZillowValues()
     home_values.main_run()
 
-    # Insert DataFrame to SQL Server
-    # for index, row in df.iterrows():
-    #     cursor.execute("""
-    #         INSERT INTO ZW_home_values (RegionID, SizeRank, RegionName, RegionType, StateName, State, City, Metro, CountyName, Date, Value, Data_Type, unique_id, Date_Pulled)
-    #         VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
-    #     """, row.RegionID, row.SizeRank, row.RegionName, row.RegionType, row.StateName, row.State, row.City, row.Metro, row.CountyName, row.Date, row.Value, row.Data_Type, row.unique_id, row.Date_Pulled)
+
+
+
+
+
 
     # def run_home_values():
     #     # Setting universal object variable
