@@ -12,6 +12,22 @@ class ZillowRentValues:
     This class is used to pull in Zillow Rent Values data from the Zillow Research website.
     The data is then cleaned up and inserted into a SQL Server database.
     The ZW_Home_Values file has all URL links to the data that is needed for all datasets
+
+    Zillow Data Center Documentation:
+    https://www.zillow.com/research/data/?msockid=34c1456808f269722f9b5163090c6879
+
+    RENTALS
+    - Zillow Observed Rent Index (ZORI): A smoothed measure of the typical observed market rate rent across a given region.
+        ZORI is a repeat-rent index that is weighted to the rental housing stock to ensure representativeness across the entire market,
+        not just those homes currently listed for-rent. The index is dollar-denominated by computing the mean of listed rents
+        that fall into the 35th to 65th percentile range for all homes and apartments in a given region, which is weighted
+        to reflect the rental housing stock.
+    - ZORI is created for three different categories: All homes, Single Family Residences, and Multi-Family Residences.
+        For more detailed information, you can refer to the ZORI methodology.
+    - Zillow Observed Renter Demand Index (ZORDI): A measure of the typical observed rental market engagement across a region.
+        ZORDI tracks engagement on Zillow’s rental listings to proxy changes in rental demand. The metric is smoothed to remove volatility.
+    - ZORDI is created for different categories including All homes, Single Family Residences, Condo and Multi-Family Residences
+        at national and MSA levels.
     """
     def __init__(self):
         self.rentals = [

@@ -8,6 +8,8 @@ from _utils import sql_server_query
 from _utils import sqlalchemy_engine  # engine used to connect to SQL Server, to be used in pandas read_sql_query & to_sql
 from _utils import DataPipelineLogger
 
+conn = sqlalchemy_engine()
+
 class ZillowHomeValues:
     def __init__(self):
         self.home_values = [
@@ -86,6 +88,7 @@ class ZillowHomeValues:
 
             #  Convert month end date column to DateTime column
             melted_data['Month_End_Date'] = pd.to_datetime(melted_data['Month_End_Date'])
+
             melted_data['Zip_Code'] = melted_data['RegionName'].apply(lambda x: str(x).zfill(5))
             melted_data.drop(columns=['RegionName'], inplace=True)
 
