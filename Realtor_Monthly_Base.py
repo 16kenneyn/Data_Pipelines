@@ -43,6 +43,9 @@ def get_url(url: str):
 def dataframe_etl(dataframe):
     df = dataframe
 
+    # Filter out row with quality_flag = 1:  year-over-year figures may be impacted in month_date_yyyymm column
+    df = df[df['month_date_yyyymm'] != 'quality_flag = 1:  year-over-year figures may be impacted']
+
     #  *********** LAST YEAR COLUMNS ***********
     df['median_listing_price_ly'] = df['median_listing_price'] / (1 + df['median_listing_price_yy'])
     df['active_listing_count_ly'] = df['active_listing_count'] / (1 + df['active_listing_count_yy'])
@@ -165,7 +168,7 @@ def main_run():
     return zip_current_df
 
 if __name__ == '__main__':
-    redfin_df = get_url(zip_historical_data_url)
+    redfin_df = get_url(zip_current_month_url)
     redfin_df_v1 = dataframe_etl(redfin_df)
     redfin_df_v2 = fill_na(redfin_df_v1)
     redfin_df_v3 = columns_to_round(redfin_df_v2)
