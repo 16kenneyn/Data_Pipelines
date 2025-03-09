@@ -1,0 +1,70 @@
+2024-10-27 17:11:40,477 - INFO - ******************************************
+2024-10-27 17:11:41,690 - INFO - Pulling all states data.
+2024-10-27 17:11:41,690 - INFO - Getting URL for model: Smoothed All Homes Plus Multifamily Time Series
+2024-10-27 17:11:44,408 - INFO - Pulling all states data.
+2024-10-27 17:11:44,408 - INFO - Getting URL for model: Smoothed (Seasonally Adjusted) All Homes Plus Multifamily Time Series
+2024-10-27 17:11:50,073 - INFO - Creating LKP_ZW_ZIP_lOCATION table succeeded.
+2024-10-27 17:11:56,184 - INFO - Inserting append data into LKP_ZW_ZIP_lOCATION succeeded.
+2024-10-27 17:30:41,458 - INFO - Inserting data into ZW_RENT_VALUES succeeded.
+2024-10-27 17:30:41,690 - INFO - Main Function took 19 minutes and 1.21 seconds to run.
+2024-10-27 17:30:41,690 - INFO - ******************************************
+2024-10-27 17:51:49,198 - INFO - ******************************************
+2024-10-27 17:51:50,386 - INFO - Pulling all states data.
+2024-10-27 17:51:50,386 - INFO - Getting URL for model: Smoothed All Homes Plus Multifamily Time Series
+2024-10-27 17:51:52,948 - INFO - Pulling all states data.
+2024-10-27 17:51:52,948 - INFO - Getting URL for model: Smoothed (Seasonally Adjusted) All Homes Plus Multifamily Time Series
+2024-10-27 17:52:00,058 - INFO - Creating LKP_ZW_ZIP_lOCATION table succeeded.
+2024-10-27 17:52:06,292 - INFO - Inserting append data into LKP_ZW_ZIP_lOCATION succeeded.
+2024-10-27 18:10:39,332 - INFO - Inserting data into ZW_RENT_VALUES succeeded.
+2024-10-27 18:10:39,629 - INFO - Main Function took 18 minutes and 50.43 seconds to run.
+2024-10-27 18:10:39,629 - INFO - ******************************************
+2024-11-02 15:00:13,149 - INFO - ******************************************
+2024-11-02 15:00:14,977 - INFO - Pulling all states data.
+2024-11-02 15:00:14,977 - INFO - Getting URL for model: Smoothed All Homes Plus Multifamily Time Series
+2024-11-02 15:00:18,260 - INFO - Pulling all states data.
+2024-11-02 15:00:18,260 - INFO - Getting URL for model: Smoothed (Seasonally Adjusted) All Homes Plus Multifamily Time Series
+2024-11-02 15:00:24,875 - INFO - Creating LKP_ZW_ZIP_lOCATION table succeeded.
+2024-11-02 15:00:31,408 - INFO - Inserting append data into LKP_ZW_ZIP_lOCATION succeeded.
+2024-11-02 15:19:21,041 - INFO - Inserting data into ZW_RENT_VALUES succeeded.
+2024-11-02 15:19:21,260 - INFO - Main Function took 19 minutes and 8.11 seconds to run.
+2024-11-02 15:19:21,260 - INFO - ******************************************
+2024-12-02 15:01:34,573 - INFO - ******************************************
+2024-12-02 15:01:36,416 - INFO - Pulling all states data.
+2024-12-02 15:01:36,416 - INFO - Getting URL for model: Smoothed All Homes Plus Multifamily Time Series
+2024-12-02 15:01:39,776 - INFO - Pulling all states data.
+2024-12-02 15:01:39,776 - INFO - Getting URL for model: Smoothed (Seasonally Adjusted) All Homes Plus Multifamily Time Series
+2024-12-02 15:01:48,964 - INFO - Creating LKP_ZW_ZIP_lOCATION table succeeded.
+2024-12-02 15:01:58,761 - INFO - Inserting append data into LKP_ZW_ZIP_lOCATION succeeded.
+2024-12-02 15:18:13,852 - INFO - Inserting data into ZW_RENT_VALUES succeeded.
+2024-12-02 15:18:14,039 - INFO - Main Function took 16 minutes and 39.47 seconds to run.
+2024-12-02 15:18:14,039 - INFO - ******************************************
+2025-01-02 15:01:24,024 - INFO - ******************************************
+2025-01-02 15:01:25,790 - INFO - Pulling all states data.
+2025-01-02 15:01:25,790 - INFO - Getting URL for model: Smoothed All Homes Plus Multifamily Time Series
+2025-01-02 15:01:28,665 - INFO - Pulling all states data.
+2025-01-02 15:01:28,665 - INFO - Getting URL for model: Smoothed (Seasonally Adjusted) All Homes Plus Multifamily Time Series
+2025-01-02 15:01:33,196 - INFO - Creating LKP_ZW_ZIP_lOCATION table succeeded.
+2025-01-02 15:01:42,868 - INFO - Inserting append data into LKP_ZW_ZIP_lOCATION succeeded.
+2025-01-02 15:17:26,992 - INFO - Inserting data into ZW_RENT_VALUES succeeded.
+2025-01-02 15:17:27,180 - INFO - Main Function took 16 minutes and 3.14 seconds to run.
+2025-01-02 15:17:27,180 - INFO - ******************************************
+2025-02-02 15:00:16,300 - INFO - ******************************************
+2025-02-02 15:00:18,035 - INFO - Pulling all states data.
+2025-02-02 15:00:18,035 - INFO - Getting URL for model: Smoothed All Homes Plus Multifamily Time Series
+2025-02-02 15:00:20,488 - INFO - Pulling all states data.
+2025-02-02 15:00:20,488 - INFO - Getting URL for model: Smoothed (Seasonally Adjusted) All Homes Plus Multifamily Time Series
+2025-02-02 15:00:24,551 - INFO - Creating LKP_ZW_ZIP_lOCATION table succeeded.
+2025-02-02 15:00:30,144 - INFO - Inserting append data into LKP_ZW_ZIP_lOCATION succeeded.
+2025-02-02 15:18:00,061 - INFO - Inserting data into ZW_RENT_VALUES succeeded.
+2025-02-02 15:18:00,265 - INFO - Main Function took 17 minutes and 43.93 seconds to run.
+2025-02-02 15:18:00,265 - INFO - ******************************************
+2025-03-02 15:00:14,507 - INFO - ******************************************
+2025-03-02 15:00:16,257 - INFO - Pulling all states data.
+2025-03-02 15:00:16,257 - INFO - Getting URL for model: Smoothed All Homes Plus Multifamily Time Series
+2025-03-02 15:00:19,336 - INFO - Pulling all states data.
+2025-03-02 15:00:19,336 - INFO - Getting URL for model: Smoothed (Seasonally Adjusted) All Homes Plus Multifamily Time Series
+2025-03-02 15:00:24,274 - INFO - Creating LKP_ZW_ZIP_lOCATION table succeeded.
+2025-03-02 15:00:30,492 - INFO - Inserting append data into LKP_ZW_ZIP_lOCATION succeeded.
+2025-03-02 15:19:09,217 - INFO - Inserting data into ZW_RENT_VALUES succeeded.
+2025-03-02 15:19:09,420 - INFO - Main Function took 18 minutes and 54.91 seconds to run.
+2025-03-02 15:19:09,420 - INFO - ******************************************
