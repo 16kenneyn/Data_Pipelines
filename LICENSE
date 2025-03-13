@@ -1,21 +1,80 @@
-MIT License
+Proprietary License for Data_Pipelines
 
-Copyright (c) 2024 16kenneyn
+Copyright (c) 2025 Nicholas Kenney (16kenneyn)
 
-Permission is hereby granted, free of charge, to any person obtaining a copy
-of this software and associated documentation files (the "Software"), to deal
-in the Software without restriction, including without limitation the rights
-to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
-copies of the Software, and to permit persons to whom the Software is
-furnished to do so, subject to the following conditions:
+All rights reserved.
 
-The above copyright notice and this permission notice shall be included in all
-copies or substantial portions of the Software.
+Effective Date: March 11, 2025
 
-THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
-IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
-FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
-AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
-LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
-OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
-SOFTWARE.
+This license applies to all versions, copies, and uses of the Software on or after March 11, 2025. Any use prior to this date is governed by the terms applicable at that time, but all subsequent interactions are subject to this proprietary license.
+
+This software is proprietary and confidential. No permission is granted to use, copy, modify, merge, publish, distribute, sublicense, or sell copies of this software without explicit written consent from the copyright holder.
+
+Any unauthorized use constitutes copyright infringement and may result in legal action, including claims for damages equal to any profits derived from such use.
+
+This software is provided "as is" without any warranties, express or implied.
+1. Definitions
+    •	"Software" refers to "Data_Pipelines," including all source code, object code, binaries, documentation, configuration files, associated media, updates, upgrades, patches, and any other materials provided by the copyright holder, whether tangible or intangible.
+    •	"Use" encompasses any interaction with the Software, including accessing, executing, running, copying, reproducing, modifying, adapting, translating, merging, publishing, distributing, sublicensing, selling, leasing, renting, lending, hosting, displaying, performing, reverse engineering, decompiling, disassembling, or creating derivative works.
+    •	"Unauthorized Use" means any Use of the Software, in whole or in part, without prior, explicit, written consent from the copyright holder.
+    •	"Derivative Work" includes any work based on the Software, such as modifications, enhancements, translations, or integrations with other software or systems.
+    •	"Profits" means any financial or material gain derived directly or indirectly from Unauthorized Use, including revenue, cost savings, or competitive advantage.
+
+2. Grant of License
+    •	No license, permission, or right to Use the Software is granted, either expressly or by implication, estoppel, or otherwise, unless explicitly authorized in writing by the copyright holder. All rights not expressly granted are reserved exclusively to the copyright holder.
+
+3. Restrictions
+    •	You are strictly prohibited from any Unauthorized Use of the Software, whether intentional, accidental, or through negligence.
+    •	Prohibited actions include, but are not limited to:
+        o	Copying or reproducing the Software, in whole or in part, in any medium or format.
+        o	Modifying, adapting, enhancing, or creating Derivative Works based on the Software.
+        o	Distributing, sharing, sublicensing, selling, leasing, renting, lending, or otherwise transferring the Software to any third party.
+        o	Reverse engineering, decompiling, disassembling, or attempting to derive the source code, structure, or functionality of the Software.
+        o	Using the Software, directly or indirectly, for any commercial purpose, monetary gain, or personal benefit without authorization.
+        o	Integrating the Software into other products, services, or systems.
+        o	Circumventing any technological protection measures (e.g., encryption, access controls) embedded in the Software.
+        o	Publicly disclosing, displaying, or performing the Software or any portion thereof.
+    •	Any attempt to bypass, exploit, or test the limits of these restrictions is a violation of this license and applicable law.
+
+4. Ownership and Intellectual Property
+    •	The Software is the sole and exclusive property of the copyright holder and is protected by copyright laws, trade secret laws, and international intellectual property treaties.
+    •	No title, ownership, or interest in the Software or its intellectual property is transferred to you or any third party under this license.
+    •	Any copies of the Software, authorized or unauthorized, remain the property of the copyright holder.
+
+5. Damages and Remedies for Unauthorized Use
+    •	Any Unauthorized Use constitutes a willful infringement of the copyright holder’s rights and entitles the copyright holder to pursue all available legal remedies, including:
+        o	Injunctive relief to immediately halt further Unauthorized Use.
+        o	Monetary damages, including actual damages, statutory damages (up to the maximum allowed by law), and all Profits derived from Unauthorized Use.
+        o	Disgorgement of any and all Profits, whether direct (e.g., sales revenue) or indirect (e.g., cost savings, enhanced valuation), gained by the violator or any third party benefiting from the Unauthorized Use.
+        o	Punitive damages where permitted by law for egregious violations.
+        o	Full reimbursement of the copyright holder’s legal fees, court costs, and expenses incurred in enforcing this license.
+    •	You agree to waive any defenses based on "innocent infringement" and acknowledge that Unauthorized Use is a knowing violation of this license.
+    •	The copyright holder reserves the right to audit your systems, records, and operations to verify compliance, with all costs borne by you if a violation is found.
+
+6. No Warranty or Liability
+    •	The Software is provided "as is" without any warranties, express or implied, including merchantability, fitness for a particular purpose, noninfringement, or compatibility with any system or use case.
+    •	The copyright holder shall not be liable for any damages—direct, indirect, incidental, special, consequential, or exemplary—arising from the Use or inability to Use the Software, even if advised of the possibility of such damages.
+    •	You assume all risk related to the Software, including any unintended consequences of its operation or failure.
+
+7. Governing Law and Jurisdiction
+    •	This license is governed by and construed in accordance with the laws of Massachusetts, USA, without regard to its conflict of law principles.
+    •	Any disputes arising under this license shall be resolved exclusively in the state or federal courts located in Massachusetts, USA, and you irrevocably consent to the personal jurisdiction and venue of such courts.
+    •	If the Software is used outside Massachusetts, USA, you remain fully subject to this license and agree to indemnify the copyright holder for any additional enforcement costs arising from cross-border violations.
+
+8. Term and Termination
+    •	This license applies perpetually to all copies of the Software acquired or used on or after March 11, 2025, regardless of how or when acquired.
+    •	Any permission to Use the Software, if granted separately in writing, may be revoked at the copyright holder’s sole discretion with immediate effect, requiring you to cease all Use and destroy all copies of the Software in your possession or control.
+    •	Obligations under Sections 3 (Restrictions), 5 (Damages and Remedies), and 7 (Governing Law and Jurisdiction) survive termination indefinitely.
+
+9. Severability
+    •	If any provision of this license is deemed invalid or unenforceable by a court of competent jurisdiction, the remaining provisions shall remain in full force and effect, and the invalid provision shall be reformed to the minimum extent necessary to reflect the copyright holder’s intent.
+
+10. Entire Agreement
+    •	This license constitutes the entire agreement between you and the copyright holder regarding the Software and supersedes all prior or contemporaneous agreements, representations, or understandings, whether written or oral.
+    •	No amendment to this license is valid unless made in writing and signed by the copyright holder.
+
+11. Additional Protections
+    •	Confidentiality: The Software and all its components are confidential and proprietary. You are prohibited from disclosing any aspect of the Software (e.g., functionality, code, design) to any third party without written consent.
+    •	No Open Source Exception: Use of the Software with open-source software does not grant any rights to relicense, distribute, or modify the Software under any open-source or other license terms.
+    •	Third-Party Liability: If you enable or permit a third party to engage in Unauthorized Use, you are jointly and severally liable for all resulting damages and obligations under this license.
+    •	Modifications and Derivative Works: Any modifications or Derivative Works created from the Software, even if unauthorized, remain the property of the copyright holder and are subject to this license. You must clearly mark any such works as unauthorized and include a notice stating they are not part of the original Software (e.g., "This is an unauthorized modification of Data_Pipelines and is not endorsed by or affiliated with the original copyright holder.").
