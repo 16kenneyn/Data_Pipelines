@@ -1,0 +1,20 @@
+2025-03-12 07:23:12,721 - INFO - ******************************************
+2025-03-12 07:23:13,196 - INFO - Get Latest Yearmonth called, results for max date is 202502 for table REALTOR_MNTHLY_STATE
+2025-03-12 07:23:13,770 - INFO - Successfully requested and received data from: https://econdata.s3-us-west-2.amazonaws.com/Reports/Core/RDC_Inventory_Core_Metrics_State.csv
+2025-03-12 07:23:13,771 - INFO - Current data extract YearPeriod is already in SQL table REALTOR_MNTHLY_STATE.
+2025-03-12 07:23:13,771 - INFO - SQL table max date = 202502 ---- Current data extract max date = 202502
+2025-03-12 07:23:13,772 - INFO - Main Function took 0 minutes and 1.05 seconds to run.
+2025-03-12 07:23:13,772 - INFO - ******************************************
+2025-03-12 22:01:02,647 - INFO - ******************************************
+2025-03-12 22:01:03,100 - INFO - Get Latest Yearmonth called, results for max date is 202502 for table REALTOR_MNTHLY_STATE
+2025-03-12 22:01:03,631 - INFO - Successfully requested and received data from: https://econdata.s3-us-west-2.amazonaws.com/Reports/Core/RDC_Inventory_Core_Metrics_State.csv
+2025-03-12 22:01:03,633 - INFO - Current data extract YearPeriod is already in SQL table REALTOR_MNTHLY_STATE.
+2025-03-12 22:01:03,633 - INFO - SQL table max date = 202502 ---- Current data extract max date = 202502
+2025-03-12 22:01:03,633 - INFO - Main Function took 0 minutes and 0.98 seconds to run.
+2025-03-12 22:01:03,633 - INFO - ******************************************
+2025-03-12 22:02:10,546 - INFO - ******************************************
+2025-03-12 22:02:10,939 - INFO - Get Latest Yearmonth called, results for max date is None for table REALTOR_MNTHLY_STATE
+2025-03-12 22:02:12,099 - INFO - Successfully requested and received data from: https://econdata.s3-us-west-2.amazonaws.com/Reports/Core/RDC_Inventory_Core_Metrics_State_History.csv
+2025-03-12 22:02:12,156 - INFO - Writing historical data to REALTOR_MNTHLY_STATE.
+2025-03-12 22:02:36,348 - INFO - Main Function took 0 minutes and 25.80 seconds to run.
+2025-03-12 22:02:36,348 - INFO - ******************************************

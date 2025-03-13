@@ -11,7 +11,7 @@ current_date = str(dt.date.today())
 
 # Global variables and settings
 entire_dataset_link = 'https://redfin-public-data.s3.us-west-2.amazonaws.com/redfin_covid19/weekly_housing_market_data_most_recent.tsv000'
-                       https://econdata.s3-us-west-2.amazonaws.com/Reports/Core/RDC_Inventory_Core_Metrics_Zip.csv
+                       # https://econdata.s3-us-west-2.amazonaws.com/Reports/Core/RDC_Inventory_Core_Metrics_Zip.csv
 test_path = '2_Test/Data_Files/weekly_housing_market_data_most_recent.tsv000'
 
 def get_url(url: str):
