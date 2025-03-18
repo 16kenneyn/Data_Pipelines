@@ -17,12 +17,12 @@ state_history_month_url = 'https://econdata.s3-us-west-2.amazonaws.com/Reports/C
 metro_current_month_url = 'https://econdata.s3-us-west-2.amazonaws.com/Reports/Core/RDC_Inventory_Core_Metrics_Metro.csv'
 metro_historical_month_url = 'https://econdata.s3-us-west-2.amazonaws.com/Reports/Core/RDC_Inventory_Core_Metrics_Metro_History.csv'
 county_current_month_url = 'https://econdata.s3-us-west-2.amazonaws.com/Reports/Core/RDC_Inventory_Core_Metrics_County.csv'
-count_historical_month_url = 'https://econdata.s3-us-west-2.amazonaws.com/Reports/Core/RDC_Inventory_Core_Metrics_County_History.csv'
+county_historical_month_url = 'https://econdata.s3-us-west-2.amazonaws.com/Reports/Core/RDC_Inventory_Core_Metrics_County_History.csv'
 zip_current_month_url = 'https://econdata.s3-us-west-2.amazonaws.com/Reports/Core/RDC_Inventory_Core_Metrics_Zip.csv'
 zip_historical_data_url = 'https://econdata.s3-us-west-2.amazonaws.com/Reports/Core/RDC_Inventory_Core_Metrics_Zip_History.csv'
 
 """ ****** INITIALIZE GLOBAL VARIABLES ****** """
-logger = DataPipelineLogger("Realtor_Monthly_Metro")
+logger = DataPipelineLogger("Realtor_Monthly_County")
 
 def get_url(url: str):
     try:
@@ -160,10 +160,10 @@ def columns_to_round(dataframe):
 
 def main_run():
     conn = sqlalchemy_engine()  # Connecting to SQL Server
-    sql_table_name = 'REALTOR_MNTHLY_METRO'
+    sql_table_name = 'REALTOR_MNTHLY_COUNTY'
     sql_table_max_date = get_latest_yearmonth(sql_table_name)
     if sql_table_max_date: # Determining if max date is not None, if it is, the else statement will kick off the history pull.
-        redfin_df = get_url(metro_current_month_url)
+        redfin_df = get_url(county_current_month_url)
         redfin_df_max_date = max(redfin_df['month_date_yyyymm']) # Extract max date from current extract.
         if redfin_df_max_date > sql_table_max_date: # Determining if current extract is newer data than we already have in SQL table.
 
@@ -171,11 +171,10 @@ def main_run():
             redfin_df_v1 = dataframe_etl(redfin_df)
             redfin_df_v2 = fill_na(redfin_df_v1)
             redfin_df_v3 = columns_to_round(redfin_df_v2)
-            redfin_df_v3['Update_Date'] = dt.today().strftime("%Y-%m-%d %H:%M:%S")
 
             # Ensuring correct column orders
             sql_columns = [
-                'month_date_yyyymm', 'cbsa_code', 'cbsa_title', 'HouseholdRank', 'median_listing_price',
+                'month_date_yyyymm', 'county_fips', 'county_name', 'median_listing_price',
                 'active_listing_count', 'median_days_on_market', 'new_listing_count', 'price_increased_count',
                 'price_reduced_count', 'pending_listing_count', 'median_listing_price_per_square_foot',
                 'median_square_feet', 'average_listing_price', 'total_listing_count', 'pending_ratio',
@@ -189,13 +188,11 @@ def main_run():
                 'average_listing_price_lm', 'total_listing_count_lm', 'pending_ratio_lm', 'Update_Date'
             ]
 
-            # After all ETL steps (redfin_df_v3 is ready)
             # Align columns and types
             redfin_df_v3 = redfin_df_v3[sql_columns]
             redfin_df_v3['month_date_yyyymm'] = redfin_df_v3['month_date_yyyymm'].astype(int)
-            redfin_df_v3['cbsa_code'] = redfin_df_v3['cbsa_code'].astype(int)
-            redfin_df_v3['cbsa_title'] = redfin_df_v3['cbsa_title'].astype(str)
-            redfin_df_v3['HouseholdRank'] = redfin_df_v3['HouseholdRank'].astype(int)
+            redfin_df_v3['county_fips'] = redfin_df_v3['county_fips'].astype(int)
+            redfin_df_v3['county_name'] = redfin_df_v3['county_name'].astype(str)
             redfin_df_v3['median_listing_price'] = redfin_df_v3['median_listing_price'].astype(int)
             # Add other type conversions as needed
 
@@ -212,7 +209,7 @@ def main_run():
             logger.write_to_log(f"SQL table max date = {str(sql_table_max_date)} ---- Current data extract max date = {str(redfin_df_max_date)}")
 
     else: # None was returned
-        redfin_df = get_url(metro_historical_month_url) # Use history load url since no data was returned from sql tale.
+        redfin_df = get_url(county_historical_month_url) # Use history load url since no data was returned from sql tale.
 
         # Base ETL Transformations
         redfin_df_v1 = dataframe_etl(redfin_df)
@@ -222,7 +219,7 @@ def main_run():
 
         # Ensuring correct column orders
         sql_columns = [
-            'month_date_yyyymm', 'cbsa_code', 'cbsa_title', 'HouseholdRank', 'median_listing_price',
+            'month_date_yyyymm', 'county_fips', 'county_name', 'median_listing_price',
             'active_listing_count', 'median_days_on_market', 'new_listing_count', 'price_increased_count',
             'price_reduced_count', 'pending_listing_count', 'median_listing_price_per_square_foot',
             'median_square_feet', 'average_listing_price', 'total_listing_count', 'pending_ratio',
@@ -236,13 +233,11 @@ def main_run():
             'average_listing_price_lm', 'total_listing_count_lm', 'pending_ratio_lm', 'Update_Date'
         ]
 
-        # After all ETL steps (redfin_df_v3 is ready)
         # Align columns and types
         redfin_df_v3 = redfin_df_v3[sql_columns]
         redfin_df_v3['month_date_yyyymm'] = redfin_df_v3['month_date_yyyymm'].astype(int)
-        redfin_df_v3['cbsa_code'] = redfin_df_v3['cbsa_code'].astype(int)
-        redfin_df_v3['cbsa_title'] = redfin_df_v3['cbsa_title'].astype(str)
-        redfin_df_v3['HouseholdRank'] = redfin_df_v3['HouseholdRank'].astype(int)
+        redfin_df_v3['county_fips'] = redfin_df_v3['county_fips'].astype(int)
+        redfin_df_v3['county_name'] = redfin_df_v3['county_name'].astype(str)
         redfin_df_v3['median_listing_price'] = redfin_df_v3['median_listing_price'].astype(int)
         # Add other type conversions as needed
 
@@ -282,16 +277,13 @@ if __name__ == '__main__':
         logger.write_to_log('******************************************')
 
     """" *********** ERROR HANDLING AND QA NON PRODUCTION *********** """
-    # redfin_df = get_url(metro_current_month_url)
-
-    # Error handling checking if max date from current file is greater than the one already in the table
-
-    # redfin_df_v1 = dataframe_etl(redfin_df)
-    # redfin_df_v2 = fill_na(redfin_df_v1)
-    # redfin_df_v3 = columns_to_round(redfin_df_v2)
-    # redfin_df_v3['Update_Date'] = dt.today().strftime("%Y-%m-%d %H:%M:%S")
-    # # Adding the date time stamp
-    #
-    # print(redfin_df_v3.info())
-    # redfin_df_v3.to_excel('C:/Users/nickk/PycharmProjects/Data_Pipelines/2_Test/Data_Files/Realtor_Inventory/metro_current_test.xlsx', index=False)
- 
+ #    redfin_df = get_url(county_current_month_url)
+ #
+ #    redfin_df_v1 = dataframe_etl(redfin_df)
+ #    redfin_df_v2 = fill_na(redfin_df_v1)
+ #    redfin_df_v3 = columns_to_round(redfin_df_v2)
+ #
+ #    # Adding the date time stamp
+ #
+ #    redfin_df_v3.to_excel('C:/Users/nickk/PycharmProjects/Data_Pipelines/2_Test/Data_Files/Realtor_Inventory/county_current_test.xlsx', index=False)
+ #

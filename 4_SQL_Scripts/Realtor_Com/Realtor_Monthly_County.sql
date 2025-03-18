@@ -1,11 +1,10 @@
 -- ********** CREATE REALTOR MONTHLY INVENTORY & BASE DATA **********
-DROP TABLE dbo.REALTOR_MNTHLY_STATE;
+-- DROP TABLE dbo.REALTOR_MNTHLY_METRO;
 
-CREATE TABLE dbo.REALTOR_MNTHLY_STATE (
+CREATE TABLE dbo.REALTOR_MNTHLY_COUNTY (
     month_date_yyyymm INT,
-    --zip_name VARCHAR(50),
-	state VARCHAR(25),
-	state_id VARCHAR(5),
+	county_fips INT,
+	county_name VARCHAR(75),
     median_listing_price INT,
     active_listing_count INT,
     median_days_on_market INT,
@@ -43,7 +42,7 @@ CREATE TABLE dbo.REALTOR_MNTHLY_STATE (
     average_listing_price_lm INT,
     total_listing_count_lm INT,
     pending_ratio_lm FLOAT,
-
-    --zip_code VARCHAR(5),
-	--state VARCHAR(5)
+	Update_Date DATETIME
 );
+
+-- EXEC sp_columns 'REALTOR_MNTHLY_METRO';

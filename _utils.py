@@ -30,8 +30,8 @@ def sqlalchemy_engine():
     password = 'Masters11'
     database = 'DataMining'  # Use master database to list all databases
 
-    # Create an engine
-    engine = create_engine(f'mssql+pymssql://{user}:{password}@{server}/{database}')
+    # Create an engine - Used to be pyodbc
+    engine = create_engine(f'mssql+pymssql://{user}:{password}@{server}/{database}') # pymssql or pyodbc
     return engine
 
 class DataPipelineLogger:
