@@ -1,0 +1,53 @@
+2025-03-16 22:22:52,613 - INFO - Successfully requested and received data from: https://econdata.s3-us-west-2.amazonaws.com/Reports/Core/RDC_Inventory_Core_Metrics_County.csv
+2025-03-17 21:32:38,371 - INFO - Successfully requested and received data from: https://econdata.s3-us-west-2.amazonaws.com/Reports/Core/RDC_Inventory_Core_Metrics_County.csv
+2025-03-17 21:35:52,225 - INFO - ******************************************
+2025-03-17 21:35:52,548 - INFO - Get Latest Yearmonth called, results for max date is None for table REALTOR_MNTHLY_COUNTY
+2025-03-17 21:36:13,316 - INFO - Successfully requested and received data from: https://econdata.s3-us-west-2.amazonaws.com/Reports/Core/RDC_Inventory_Core_Metrics_County_History.csv
+2025-03-17 21:36:14,386 - ERROR - An error occurred: invalid literal for int() with base 10: 'northwest hills planning region, ct'
+Traceback (most recent call last):
+  File "C:\Users\nickk\PycharmProjects\Data_Pipelines\Realtor_Monthly_Inventory_County.py", line 267, in <module>
+    main_run()
+  File "C:\Users\nickk\PycharmProjects\Data_Pipelines\Realtor_Monthly_Inventory_County.py", line 240, in main_run
+    redfin_df_v3['county_name'] = redfin_df_v3['county_name'].astype(int)
+                                  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\nickk\PycharmProjects\Data_Pipelines\venv\Lib\site-packages\pandas\core\generic.py", line 6643, in astype
+    new_data = self._mgr.astype(dtype=dtype, copy=copy, errors=errors)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\nickk\PycharmProjects\Data_Pipelines\venv\Lib\site-packages\pandas\core\internals\managers.py", line 430, in astype
+    return self.apply(
+           ^^^^^^^^^^^
+  File "C:\Users\nickk\PycharmProjects\Data_Pipelines\venv\Lib\site-packages\pandas\core\internals\managers.py", line 363, in apply
+    applied = getattr(b, f)(**kwargs)
+              ^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\nickk\PycharmProjects\Data_Pipelines\venv\Lib\site-packages\pandas\core\internals\blocks.py", line 758, in astype
+    new_values = astype_array_safe(values, dtype, copy=copy, errors=errors)
+                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\nickk\PycharmProjects\Data_Pipelines\venv\Lib\site-packages\pandas\core\dtypes\astype.py", line 237, in astype_array_safe
+    new_values = astype_array(values, dtype, copy=copy)
+                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\nickk\PycharmProjects\Data_Pipelines\venv\Lib\site-packages\pandas\core\dtypes\astype.py", line 182, in astype_array
+    values = _astype_nansafe(values, dtype, copy=copy)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\nickk\PycharmProjects\Data_Pipelines\venv\Lib\site-packages\pandas\core\dtypes\astype.py", line 133, in _astype_nansafe
+    return arr.astype(dtype, copy=True)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+ValueError: invalid literal for int() with base 10: 'northwest hills planning region, ct'
+
+2025-03-17 21:36:14,429 - INFO - Main Function took 0 minutes and 22.20 seconds to run.
+2025-03-17 21:36:14,429 - INFO - ******************************************
+2025-03-17 21:37:45,019 - INFO - ******************************************
+2025-03-17 21:37:45,371 - INFO - Get Latest Yearmonth called, results for max date is None for table REALTOR_MNTHLY_COUNTY
+2025-03-17 21:38:03,105 - INFO - Successfully requested and received data from: https://econdata.s3-us-west-2.amazonaws.com/Reports/Core/RDC_Inventory_Core_Metrics_County_History.csv
+2025-03-17 21:38:03,875 - INFO - DataFrame head:
+   month_date_yyyymm  county_fips                          county_name  median_listing_price  active_listing_count  median_days_on_market  new_listing_count  price_increased_count  price_reduced_count  pending_listing_count  median_listing_price_per_square_foot  median_square_feet  average_listing_price  total_listing_count  pending_ratio  quality_flag  median_listing_price_ly  active_listing_count_ly  median_days_on_market_ly  new_listing_count_ly  price_increased_count_ly  price_reduced_count_ly  pending_listing_count_ly  median_listing_price_per_square_foot_ly  median_square_feet_ly  average_listing_price_ly  total_listing_count_ly  pending_ratio_ly  median_listing_price_lm  active_listing_count_lm  median_days_on_market_lm  new_listing_count_lm  price_increased_count_lm  price_reduced_count_lm  pending_listing_count_lm  median_listing_price_per_square_foot_lm  median_square_feet_lm  average_listing_price_lm  total_listing_count_lm  pending_ratio_lm          Update_Date
+0             202502         9160  northwest hills planning region, ct                662450                 200.0                   93.0               90.0                    2.0                 30.0                  147.0                                 297.0              2206.0              1288737.0                347.0         0.7343           0.0                 673222.0                    205.0                      86.0                  92.0                       0.0                    38.0                     156.0                                    304.0                 2369.0                 1123278.0                   364.0               1.0                 684986.0                    209.0                     104.0                  72.0                       0.0                    26.0                     134.0                                    305.0                 2238.0                 1380691.0                   342.0          0.671207  2025-03-17 21:38:03
+1             202502        26121                         muskegon, mi                259900                 318.0                   66.0              122.0                    4.0                118.0                  226.0                                 166.0              1484.0               358380.0                543.0         0.7102           0.0                 249400.0                    322.0                      68.0                 172.0                       4.0                    88.0                     236.0                                    164.0                 1484.0                  335908.0                   560.0               1.0                 247406.0                    369.0                      65.0                 142.0                       4.0                    96.0                     190.0                                    160.0                 1478.0                  350083.0                   557.0          0.594857  2025-03-17 21:38:03
+2             202502        50015                         lamoille, vt                580000                 109.0                  117.0               24.0                    2.0                 18.0                   49.0                                 322.0              2445.0              1386875.0                158.0         0.4450           0.0                 576025.0                     87.0                      99.0                  26.0                       0.0                    22.0                      20.0                                    333.0                 2492.0                 1679229.0                   107.0               0.0                 559738.0                    120.0                     106.0                  22.0                       0.0                    18.0                      42.0                                    317.0                 2474.0                 1348575.0                   162.0          0.405874  2025-03-17 21:38:03
+3             202502        27047                         freeborn, mn                244550                  65.0                   79.0               22.0                    0.0                 14.0                   37.0                                 134.0              1799.0               301326.0                101.0         0.5736           0.0                 219959.0                     39.0                      76.0                  20.0                       0.0                     6.0                      29.0                                    127.0                 1638.0                  243535.0                    67.0               1.0                 230555.0                     75.0                      68.0                  10.0                       0.0                    20.0                      20.0                                    129.0                 1779.0                  278413.0                    94.0          0.437829  2025-03-17 21:38:03
+4             202502        48311                         mcmullen, tx                699000                   1.0                  118.0                0.0                    0.0                  0.0                    2.0                                 276.0              2533.0               699000.0                  3.0         2.0000           1.0                 319003.0                      2.0                     103.0                   0.0                       0.0                     0.0                       2.0                                    263.0                 1212.0                  319003.0                     2.0               1.0                 319003.0                      3.0                      90.0                   0.0                       0.0                     0.0                       0.0                                    263.0                 1212.0                  442321.0                     3.0          0.000000  2025-03-17 21:38:03
+2025-03-17 21:38:03,875 - INFO - Writing historical data to REALTOR_MNTHLY_COUNTY.
+2025-03-17 21:55:33,102 - INFO - Main Function took 17 minutes and 48.08 seconds to run.
+2025-03-17 21:55:33,102 - INFO - ******************************************
+2025-03-17 22:14:21,791 - INFO - Successfully requested and received data from: https://econdata.s3-us-west-2.amazonaws.com/Reports/Core/RDC_Inventory_Core_Metrics_Zip.csv
+2025-03-17 22:17:09,506 - INFO - Successfully requested and received data from: https://econdata.s3-us-west-2.amazonaws.com/Reports/Core/RDC_Inventory_Core_Metrics_Zip.csv
+2025-03-17 22:17:41,963 - INFO - Successfully requested and received data from: https://econdata.s3-us-west-2.amazonaws.com/Reports/Core/RDC_Inventory_Core_Metrics_Zip.csv

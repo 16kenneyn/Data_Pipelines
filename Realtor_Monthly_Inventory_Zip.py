@@ -3,42 +3,26 @@ from datetime import datetime as dt
 import requests
 from io import StringIO
 # from pandas.conftest import index
+import traceback  # Need this to return complete error message for logging except section
+import time
 from _utils import DataPipelineLogger
 import numpy as np
 from _utils import sqlalchemy_engine  # engine used to connect to SQL Server, to be used in pandas read_sql_query & to_sql
 pd.set_option('display.max_columns', None) # Don't truncate columns for dataframes
 from sqlalchemy import text # Need this for get_latest_yearmonth
 
-""" ****** INITIALIZE GLOBAL VARIABLES ****** """
-conn = sqlalchemy_engine() # Connecting to SQL Server
-logger = DataPipelineLogger("Realtor_Monthly_Zip")
-
-"""****** CREATE CONTROL PANEL 
-Will use this to determine which level of location to run --- IE County, Metro, Zip, etc.
-******"""
-
+# Links to data extracts
 state_current_month_url = 'https://econdata.s3-us-west-2.amazonaws.com/Reports/Core/RDC_Inventory_Core_Metrics_State.csv'
 state_history_month_url = 'https://econdata.s3-us-west-2.amazonaws.com/Reports/Core/RDC_Inventory_Core_Metrics_State_History.csv'
-metro_current_month_url = 'https://econdata.s3-us-west-2.amazonaws.com/Reports/Core/RDC_Inventory_Core_Metrics_Metro_History.csv'
-metro_historical_month_url = 'https://econdata.s3-us-west-2.amazonaws.com/Reports/Core/RDC_Inventory_Core_Metrics_Metro.csv'
+metro_current_month_url = 'https://econdata.s3-us-west-2.amazonaws.com/Reports/Core/RDC_Inventory_Core_Metrics_Metro.csv'
+metro_historical_month_url = 'https://econdata.s3-us-west-2.amazonaws.com/Reports/Core/RDC_Inventory_Core_Metrics_Metro_History.csv'
 county_current_month_url = 'https://econdata.s3-us-west-2.amazonaws.com/Reports/Core/RDC_Inventory_Core_Metrics_County.csv'
-count_historical_month_url = 'https://econdata.s3-us-west-2.amazonaws.com/Reports/Core/RDC_Inventory_Core_Metrics_County_History.csv'
+county_historical_month_url = 'https://econdata.s3-us-west-2.amazonaws.com/Reports/Core/RDC_Inventory_Core_Metrics_County_History.csv'
 zip_current_month_url = 'https://econdata.s3-us-west-2.amazonaws.com/Reports/Core/RDC_Inventory_Core_Metrics_Zip.csv'
 zip_historical_data_url = 'https://econdata.s3-us-west-2.amazonaws.com/Reports/Core/RDC_Inventory_Core_Metrics_Zip_History.csv'
 
-current_month_filter = True
-
-"""Overview
-1. Get the current month data for zip codes
-    a. Have a switch to only update current data and append to sql server
-2. Get the historical data for zip codes
-    a. Have a switch to replace sql server with historical data
-    b. Basically have a switch for only append current month, or replace with historical and 
-3. ETL the data
-4. Upload the data to SQL Server
-5. Take out pending ratio - don't need it.
-
-"""
+""" ****** INITIALIZE GLOBAL VARIABLES ****** """
+logger = DataPipelineLogger("Realtor_Monthly_Zip")
 
 def get_url(url: str):
     try:
@@ -47,24 +31,33 @@ def get_url(url: str):
         # Read the content of the response into a pandas DataFrame
         data = pd.read_csv(StringIO(response.text), encoding='utf-8-sig')  # encoding='utf-8-sig' is used to handle csv format declaration in first column name. Ex. Ã¯Â»Â¿month_date_yyyymm
         data.rename(columns=lambda x: x.strip().replace("ï»¿", ""), inplace=True)
+        logger.write_to_log(f"Successfully requested and received data from: {url}")
         return data
     except requests.exceptions.RequestException as e:
+        error_trace = traceback.format_exc()
+        logger.write_to_log(f"An error occurred during the request realtor monthly inventory state file.: {e}\n{error_trace}")
         print(f"An error occurred: {e}")
         return None
 
-def get_latest_yearmonth():
-    # Define the SQL query using text() ----------- ToDo: UPDATE THIS QUERY ONCE THE FINAL TABLE IS CREATED
-    get_max_date = text("""
-    SELECT MAX(month_date_yyyymm) FROM [DataMining].[dbo].[REALTOR_MNTHLY_ZIP]
+def get_latest_yearmonth(table_name:str):
+    # Define the SQL query using text()
+    get_max_date = text(f"""
+    SELECT MAX(month_date_yyyymm) FROM [DataMining].[dbo].[{table_name}]
     """)
 
     # Use a context manager to handle the connection
-    with conn as connection:
+    with sqlalchemy_engine().connect() as connection:
         result = connection.execute(get_max_date)
         max_date = result.scalar()  # Fetch the single value
-        max_date = int(max_date)
-        print(max_date)
+        if max_date: # Error handling to determine if None is returned or a string
+            max_date = int(max_date)
+        else:
+            print(max_date)
+        connection.close() # Close the connection after execution to avoid timeout issues.
+    logger.write_to_log(f"Get Latest Yearmonth called, results for max date is {max_date} for table {table_name}")
+    print(f"Get Latest Yearmonth called, results for max date is {max_date} for table {table_name}")
 
+    return max_date
 
 def dataframe_etl(dataframe):
     df = dataframe
@@ -166,98 +159,146 @@ def columns_to_round(dataframe):
     return dataframe
 
 def main_run():
+    conn = sqlalchemy_engine()  # Connecting to SQL Server
+    sql_table_name = 'REALTOR_MNTHLY_ZIP'
+    sql_table_max_date = get_latest_yearmonth(sql_table_name)
+    if sql_table_max_date: # Determining if max date is not None, if it is, the else statement will kick off the history pull.
+        redfin_df = get_url(zip_current_month_url)
+        redfin_df_max_date = max(redfin_df['month_date_yyyymm']) # Extract max date from current extract.
+        if redfin_df_max_date > sql_table_max_date: # Determining if current extract is newer data than we already have in SQL table.
 
+            # Base ETL Transformations
+            redfin_df_v1 = dataframe_etl(redfin_df)
+            redfin_df_v2 = fill_na(redfin_df_v1)
+            redfin_df_v3 = columns_to_round(redfin_df_v2)
 
+            # Ensuring correct column orders
+            sql_columns = [
+                'month_date_yyyymm', 'zip_code', 'state', 'median_listing_price',
+                'active_listing_count', 'median_days_on_market', 'new_listing_count', 'price_increased_count',
+                'price_reduced_count', 'pending_listing_count', 'median_listing_price_per_square_foot',
+                'median_square_feet', 'average_listing_price', 'total_listing_count', 'pending_ratio',
+                'quality_flag', 'median_listing_price_ly', 'active_listing_count_ly', 'median_days_on_market_ly',
+                'new_listing_count_ly', 'price_increased_count_ly', 'price_reduced_count_ly',
+                'pending_listing_count_ly', 'median_listing_price_per_square_foot_ly', 'median_square_feet_ly',
+                'average_listing_price_ly', 'total_listing_count_ly', 'pending_ratio_ly',
+                'median_listing_price_lm', 'active_listing_count_lm', 'median_days_on_market_lm',
+                'new_listing_count_lm', 'price_increased_count_lm', 'price_reduced_count_lm',
+                'pending_listing_count_lm', 'median_listing_price_per_square_foot_lm', 'median_square_feet_lm',
+                'average_listing_price_lm', 'total_listing_count_lm', 'pending_ratio_lm', 'Update_Date'
+            ]
 
-    # Get the current month data for zip codes
-    zip_current_df = get_url(zip_current_month_url)
-    zip_current_df = dataframe_etl(zip_current_df)
-    print(zip_current_df.head(1000))
-    print(zip_current_df.columns)
+            # Align columns and types
+            redfin_df_v3 = redfin_df_v3[sql_columns]
+            redfin_df_v3['month_date_yyyymm'] = redfin_df_v3['month_date_yyyymm'].astype(int)
+            redfin_df_v3['zip_code'] = redfin_df_v3['zip_code'].astype(int)
+            redfin_df_v3['state'] = redfin_df_v3['state'].astype(str)
+            redfin_df_v3['median_listing_price'] = redfin_df_v3['median_listing_price'].astype(int)
+            # Add other type conversions as needed
 
-    # Get the historical data for zip codes
-    # zip_history_df = get_url(zip_historical_data_url)
-    # zip_history_df = dataframe_etl(zip_history_df)
-    # print(zip_history_df.head(1000))
-    # print(zip_history_df.columns)
-    #
-    # # Append the current month data to the historical data
-    # zip_history_df = pd.concat([zip_history_df, zip_current_df], ignore_index=True)
-    # print(zip_history_df.head(1000))
-    # print(zip_history_df.columns)
-    #
-    # # Upload the data to SQL Server
-    # zip_history_df.to_sql('realtor_zip_data', con=sqlalchemy_engine, if_exists='replace', index=False)
-    #
-    # # Check if the data was uploaded
-    # check_df = pd.read_sql_query('SELECT * FROM realtor_zip_data', con=sqlalchemy_engine)
-    # print(check_df.head(1000))
-    # print(check_df.columns)
+            logger.write_to_log(f"DataFrame head:\n{redfin_df_v3.head().to_string()}")
 
-    return zip_current_df
+            # Writing data to SQL table as append
+            print(f"Writing current month data to {sql_table_name}.")
+            redfin_df_v3.to_sql(sql_table_name, con=conn, if_exists='append', index=False)
+
+        else:
+            print(f"Current data extract YearPeriod is already in SQL table {sql_table_name}.")
+            print(f"SQL table max date = {str(sql_table_max_date)} ---- Current data extract max date = {str(redfin_df_max_date)}")
+            logger.write_to_log(f"Current data extract YearPeriod is already in SQL table {sql_table_name}.")
+            logger.write_to_log(f"SQL table max date = {str(sql_table_max_date)} ---- Current data extract max date = {str(redfin_df_max_date)}")
+
+    else: # None was returned
+        redfin_df = get_url(zip_historical_data_url) # Use history load url since no data was returned from sql tale.
+
+        # Base ETL Transformations
+        redfin_df_v1 = dataframe_etl(redfin_df)
+        redfin_df_v2 = fill_na(redfin_df_v1)
+        redfin_df_v3 = columns_to_round(redfin_df_v2)
+        redfin_df_v3['Update_Date'] = dt.today().strftime("%Y-%m-%d %H:%M:%S")
+
+        # Ensuring correct column orders
+        sql_columns = [
+            'month_date_yyyymm', 'zip_code', 'state', 'median_listing_price',
+            'active_listing_count', 'median_days_on_market', 'new_listing_count', 'price_increased_count',
+            'price_reduced_count', 'pending_listing_count', 'median_listing_price_per_square_foot',
+            'median_square_feet', 'average_listing_price', 'total_listing_count', 'pending_ratio',
+            'quality_flag', 'median_listing_price_ly', 'active_listing_count_ly', 'median_days_on_market_ly',
+            'new_listing_count_ly', 'price_increased_count_ly', 'price_reduced_count_ly',
+            'pending_listing_count_ly', 'median_listing_price_per_square_foot_ly', 'median_square_feet_ly',
+            'average_listing_price_ly', 'total_listing_count_ly', 'pending_ratio_ly',
+            'median_listing_price_lm', 'active_listing_count_lm', 'median_days_on_market_lm',
+            'new_listing_count_lm', 'price_increased_count_lm', 'price_reduced_count_lm',
+            'pending_listing_count_lm', 'median_listing_price_per_square_foot_lm', 'median_square_feet_lm',
+            'average_listing_price_lm', 'total_listing_count_lm', 'pending_ratio_lm', 'Update_Date'
+        ]
+
+        # Align columns and types
+        redfin_df_v3 = redfin_df_v3[sql_columns]
+        redfin_df_v3['month_date_yyyymm'] = redfin_df_v3['month_date_yyyymm'].astype(int)
+        redfin_df_v3['zip_code'] = redfin_df_v3['zip_code'].astype(str)
+        redfin_df_v3['state'] = redfin_df_v3['state'].astype(str)
+        redfin_df_v3['median_listing_price'] = redfin_df_v3['median_listing_price'].astype(int)
+        # Add other type conversions as needed
+
+        logger.write_to_log(f"DataFrame head:\n{redfin_df_v3.head().to_string()}")
+
+        print(f"Writing historical data to {sql_table_name}.")
+        # Writing data to SQL table as replace
+        logger.write_to_log(f"Writing historical data to {sql_table_name}.")
+        with conn.connect() as connection:
+            # Drop the table if it exists
+            connection.execute(text(f"DROP TABLE IF EXISTS {sql_table_name}"))
+            # Insert data into a new table
+            redfin_df_v3.to_sql(sql_table_name, con=connection, if_exists='fail', index=False)
+            connection.commit()  # Explicitly commit the transaction
 
 if __name__ == '__main__':
 
-    redfin_df = get_url(zip_historical_data_url)
+    logger.write_to_log('******************************************')
+    start_time = time.time()
 
-    # Error handling checking if max date from current file is greater than the one already in the table
+    try:
+        main_run()
+    except Exception as e:
+        error_trace = traceback.format_exc()
+        logger.write_error_to_log(f"An error occurred: {e}\n{error_trace}")
+        print(f"An error occurred: {e}")
+    finally:
+        end_time = time.time()
+        elapsed_time = end_time - start_time
+        minutes, seconds = divmod(elapsed_time, 60)
+        logger.write_to_log(f"Main Function took {minutes:.0f} minutes and {seconds:.2f} seconds to run.")
+        logger.write_to_log('******************************************')
 
-    redfin_df_v1 = dataframe_etl(redfin_df)
-    redfin_df_v2 = fill_na(redfin_df_v1)
-    redfin_df_v3 = columns_to_round(redfin_df_v2)
+    """" *********** ERROR HANDLING AND QA NON PRODUCTION *********** """
+    # redfin_df = get_url(zip_current_month_url)
+    #
+    # redfin_df_v1 = dataframe_etl(redfin_df)
+    # redfin_df_v2 = fill_na(redfin_df_v1)
+    # redfin_df_v3 = columns_to_round(redfin_df_v2)
+    #
+    # redfin_df_v3['Update_Date'] = dt.today().strftime("%Y-%m-%d %H:%M:%S")
+    #
+    # # Ensuring correct column orders
+    # sql_columns = [
+    #     'month_date_yyyymm', 'zip_code', 'state', 'median_listing_price',
+    #     'active_listing_count', 'median_days_on_market', 'new_listing_count', 'price_increased_count',
+    #     'price_reduced_count', 'pending_listing_count', 'median_listing_price_per_square_foot',
+    #     'median_square_feet', 'average_listing_price', 'total_listing_count', 'pending_ratio',
+    #     'quality_flag', 'median_listing_price_ly', 'active_listing_count_ly', 'median_days_on_market_ly',
+    #     'new_listing_count_ly', 'price_increased_count_ly', 'price_reduced_count_ly',
+    #     'pending_listing_count_ly', 'median_listing_price_per_square_foot_ly', 'median_square_feet_ly',
+    #     'average_listing_price_ly', 'total_listing_count_ly', 'pending_ratio_ly',
+    #     'median_listing_price_lm', 'active_listing_count_lm', 'median_days_on_market_lm',
+    #     'new_listing_count_lm', 'price_increased_count_lm', 'price_reduced_count_lm',
+    #     'pending_listing_count_lm', 'median_listing_price_per_square_foot_lm', 'median_square_feet_lm',
+    #     'average_listing_price_lm', 'total_listing_count_lm', 'pending_ratio_lm', 'Update_Date'
+    # ]
+    #
+    # # Align columns and types
+    # redfin_df_v3 = redfin_df_v3[sql_columns]
+    #
+    # # Adding the date time stamp
+    #
     # redfin_df_v3.to_excel('C:/Users/nickk/PycharmProjects/Data_Pipelines/2_Test/Data_Files/Realtor_Inventory/zip_current_test.xlsx', index=False)
-
-    if current_month_filter:
-        redfin_df_v3.to_sql('REALTOR_MNTHLY_ZIP', con=conn, if_exists='replace', index=False)
-    else:
-        redfin_df_v3.to_sql('REALTOR_MNTHLY_ZIP', con=conn, if_exists='replace', index=False)
-
-    # redfin_df_v3 = redfin_df_v3.astype({
-    #     'month_date_yyyymm': 'int',
-    #     'zip_name': 'str',
-    #     'median_listing_price': 'float',
-    #     'active_listing_count': 'int',
-    #     'median_days_on_market': 'int',
-    #     'new_listing_count': 'int',
-    #     'price_increased_count': 'int',
-    #     'price_reduced_count': 'int',
-    #     'pending_listing_count': 'int',
-    #     'median_listing_price_per_square_foot': 'float',
-    #     'median_square_feet': 'int',
-    #     'average_listing_price': 'float',
-    #     'total_listing_count': 'int',
-    #     'pending_ratio': 'float',
-    #     'quality_flag': 'int',
-    #     'median_listing_price_ly': 'float',
-    #     'active_listing_count_ly': 'int',
-    #     'median_days_on_market_ly': 'int',
-    #     'new_listing_count_ly': 'int',
-    #     'price_increased_count_ly': 'int',
-    #     'price_reduced_count_ly': 'int',
-    #     'pending_listing_count_ly': 'int',
-    #     'median_listing_price_per_square_foot_ly': 'float',
-    #     'median_square_feet_ly': 'int',
-    #     'average_listing_price_ly': 'float',
-    #     'total_listing_count_ly': 'int',
-    #     'pending_ratio_ly': 'float',
-    #     'median_listing_price_lm': 'float',
-    #     'active_listing_count_lm': 'int',
-    #     'median_days_on_market_lm': 'int',
-    #     'new_listing_count_lm': 'int',
-    #     'price_increased_count_lm': 'int',
-    #     'price_reduced_count_lm': 'int',
-    #     'pending_listing_count_lm': 'int',
-    #     'median_listing_price_per_square_foot_lm': 'float',
-    #     'median_square_feet_lm': 'int',
-    #     'average_listing_price_lm': 'float',
-    #     'total_listing_count_lm': 'int',
-    #     'pending_ratio_lm': 'float',
-    #     'zip_code': 'str'
-    # })
-
-        # redfin_df_v3.drop(columns=['inf'], inplace=True)
-    # redfin_df_v3.to_csv("2_Test/Data_Files/Refin_Period_Zip_10302024.csv")
-    redfin_df_v3.to_sql('REALTOR_MNTHLY_ARCHIVE', con=conn, if_exists='replace', index=False)
-    # check_df.to_csv('check_df.csv', index=False)
-    # print(check_df.head(1000))
-    # print(check_df.columns)

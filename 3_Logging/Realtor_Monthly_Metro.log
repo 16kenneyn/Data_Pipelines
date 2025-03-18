@@ -1,1 +1,1471 @@
 2025-03-12 22:23:14,087 - INFO - Successfully requested and received data from: https://econdata.s3-us-west-2.amazonaws.com/Reports/Core/RDC_Inventory_Core_Metrics_Metro_History.csv
+2025-03-13 21:29:33,889 - INFO - Successfully requested and received data from: https://econdata.s3-us-west-2.amazonaws.com/Reports/Core/RDC_Inventory_Core_Metrics_Metro_History.csv
+2025-03-13 21:42:47,923 - INFO - Successfully requested and received data from: https://econdata.s3-us-west-2.amazonaws.com/Reports/Core/RDC_Inventory_Core_Metrics_Metro_History.csv
+2025-03-13 21:43:25,985 - INFO - Successfully requested and received data from: https://econdata.s3-us-west-2.amazonaws.com/Reports/Core/RDC_Inventory_Core_Metrics_Metro_History.csv
+2025-03-13 21:43:59,454 - INFO - Successfully requested and received data from: https://econdata.s3-us-west-2.amazonaws.com/Reports/Core/RDC_Inventory_Core_Metrics_Metro_History.csv
+2025-03-13 22:20:39,461 - INFO - Successfully requested and received data from: https://econdata.s3-us-west-2.amazonaws.com/Reports/Core/RDC_Inventory_Core_Metrics_Metro_History.csv
+2025-03-13 22:37:32,114 - INFO - Successfully requested and received data from: https://econdata.s3-us-west-2.amazonaws.com/Reports/Core/RDC_Inventory_Core_Metrics_Metro_History.csv
+2025-03-13 22:37:58,872 - INFO - Successfully requested and received data from: https://econdata.s3-us-west-2.amazonaws.com/Reports/Core/RDC_Inventory_Core_Metrics_Metro_History.csv
+2025-03-14 06:32:11,571 - INFO - Successfully requested and received data from: https://econdata.s3-us-west-2.amazonaws.com/Reports/Core/RDC_Inventory_Core_Metrics_Metro_History.csv
+2025-03-14 06:52:07,089 - INFO - ******************************************
+2025-03-14 06:52:07,462 - INFO - Get Latest Yearmonth called, results for max date is None for table REALTOR_MNTHLY_METRO
+2025-03-14 06:52:08,230 - INFO - Successfully requested and received data from: https://econdata.s3-us-west-2.amazonaws.com/Reports/Core/RDC_Inventory_Core_Metrics_Metro.csv
+2025-03-14 06:52:08,254 - INFO - Writing historical data to REALTOR_MNTHLY_METRO.
+2025-03-14 06:52:11,884 - ERROR - An error occurred: (pymssql.exceptions.OperationalError) Cannot commit transaction: (3902, b'The COMMIT TRANSACTION request has no corresponding BEGIN TRANSACTION.DB-Lib error message 20018, severity 16:\nGeneral SQL Server error: Check messages from the SQL Server\n')
+(Background on this error at: https://sqlalche.me/e/20/e3q8)
+Traceback (most recent call last):
+  File "src\\pymssql\\_pymssql.pyx", line 254, in pymssql._pymssql.Connection.commit
+  File "src\\pymssql\\_mssql.pyx", line 1094, in pymssql._mssql.MSSQLConnection.execute_non_query
+  File "src\\pymssql\\_mssql.pyx", line 1115, in pymssql._mssql.MSSQLConnection.execute_non_query
+  File "src\\pymssql\\_mssql.pyx", line 1289, in pymssql._mssql.MSSQLConnection.format_and_run_query
+  File "src\\pymssql\\_mssql.pyx", line 1855, in pymssql._mssql.check_cancel_and_raise
+  File "src\\pymssql\\_mssql.pyx", line 1901, in pymssql._mssql.raise_MSSQLDatabaseException
+pymssql._mssql.MSSQLDatabaseException: (3902, b'The COMMIT TRANSACTION request has no corresponding BEGIN TRANSACTION.DB-Lib error message 20018, severity 16:\nGeneral SQL Server error: Check messages from the SQL Server\n')
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "C:\Users\nickk\PycharmProjects\Data_Pipelines\venv\Lib\site-packages\sqlalchemy\engine\base.py", line 1144, in _commit_impl
+    self.engine.dialect.do_commit(self.connection)
+  File "C:\Users\nickk\PycharmProjects\Data_Pipelines\venv\Lib\site-packages\sqlalchemy\engine\default.py", line 702, in do_commit
+    dbapi_connection.commit()
+  File "src\\pymssql\\_pymssql.pyx", line 257, in pymssql._pymssql.Connection.commit
+pymssql.exceptions.OperationalError: Cannot commit transaction: (3902, b'The COMMIT TRANSACTION request has no corresponding BEGIN TRANSACTION.DB-Lib error message 20018, severity 16:\nGeneral SQL Server error: Check messages from the SQL Server\n')
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "C:\Users\nickk\PycharmProjects\Data_Pipelines\Realtor_Monthly_Inventory_Metro.py", line 221, in <module>
+    main_run()
+  File "C:\Users\nickk\PycharmProjects\Data_Pipelines\Realtor_Monthly_Inventory_Metro.py", line 211, in main_run
+    redfin_df_v3.to_sql(sql_table_name, con=conn, if_exists='replace', index=False)
+  File "C:\Users\nickk\PycharmProjects\Data_Pipelines\venv\Lib\site-packages\pandas\util\_decorators.py", line 333, in wrapper
+    return func(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\nickk\PycharmProjects\Data_Pipelines\venv\Lib\site-packages\pandas\core\generic.py", line 3087, in to_sql
+    return sql.to_sql(
+           ^^^^^^^^^^^
+  File "C:\Users\nickk\PycharmProjects\Data_Pipelines\venv\Lib\site-packages\pandas\io\sql.py", line 841, in to_sql
+    with pandasSQL_builder(con, schema=schema, need_transaction=True) as pandas_sql:
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\nickk\PycharmProjects\Data_Pipelines\venv\Lib\site-packages\pandas\io\sql.py", line 1645, in __exit__
+    self.exit_stack.close()
+  File "C:\Program Files\WindowsApps\PythonSoftwareFoundation.Python.3.12_3.12.2544.0_x64__qbz5n2kfra8p0\Lib\contextlib.py", line 618, in close
+    self.__exit__(None, None, None)
+  File "C:\Program Files\WindowsApps\PythonSoftwareFoundation.Python.3.12_3.12.2544.0_x64__qbz5n2kfra8p0\Lib\contextlib.py", line 610, in __exit__
+    raise exc_details[1]
+  File "C:\Program Files\WindowsApps\PythonSoftwareFoundation.Python.3.12_3.12.2544.0_x64__qbz5n2kfra8p0\Lib\contextlib.py", line 595, in __exit__
+    if cb(*exc_details):
+       ^^^^^^^^^^^^^^^^
+  File "C:\Users\nickk\PycharmProjects\Data_Pipelines\venv\Lib\site-packages\sqlalchemy\engine\util.py", line 147, in __exit__
+    with util.safe_reraise():
+         ^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\nickk\PycharmProjects\Data_Pipelines\venv\Lib\site-packages\sqlalchemy\util\langhelpers.py", line 146, in __exit__
+    raise exc_value.with_traceback(exc_tb)
+  File "C:\Users\nickk\PycharmProjects\Data_Pipelines\venv\Lib\site-packages\sqlalchemy\engine\util.py", line 145, in __exit__
+    self.commit()
+  File "C:\Users\nickk\PycharmProjects\Data_Pipelines\venv\Lib\site-packages\sqlalchemy\engine\base.py", line 2631, in commit
+    self._do_commit()
+  File "C:\Users\nickk\PycharmProjects\Data_Pipelines\venv\Lib\site-packages\sqlalchemy\engine\base.py", line 2736, in _do_commit
+    self._connection_commit_impl()
+  File "C:\Users\nickk\PycharmProjects\Data_Pipelines\venv\Lib\site-packages\sqlalchemy\engine\base.py", line 2707, in _connection_commit_impl
+    self.connection._commit_impl()
+  File "C:\Users\nickk\PycharmProjects\Data_Pipelines\venv\Lib\site-packages\sqlalchemy\engine\base.py", line 1146, in _commit_impl
+    self._handle_dbapi_exception(e, None, None, None, None)
+  File "C:\Users\nickk\PycharmProjects\Data_Pipelines\venv\Lib\site-packages\sqlalchemy\engine\base.py", line 2355, in _handle_dbapi_exception
+    raise sqlalchemy_exception.with_traceback(exc_info[2]) from e
+  File "C:\Users\nickk\PycharmProjects\Data_Pipelines\venv\Lib\site-packages\sqlalchemy\engine\base.py", line 1144, in _commit_impl
+    self.engine.dialect.do_commit(self.connection)
+  File "C:\Users\nickk\PycharmProjects\Data_Pipelines\venv\Lib\site-packages\sqlalchemy\engine\default.py", line 702, in do_commit
+    dbapi_connection.commit()
+  File "src\\pymssql\\_pymssql.pyx", line 257, in pymssql._pymssql.Connection.commit
+sqlalchemy.exc.OperationalError: (pymssql.exceptions.OperationalError) Cannot commit transaction: (3902, b'The COMMIT TRANSACTION request has no corresponding BEGIN TRANSACTION.DB-Lib error message 20018, severity 16:\nGeneral SQL Server error: Check messages from the SQL Server\n')
+(Background on this error at: https://sqlalche.me/e/20/e3q8)
+
+2025-03-14 06:52:11,884 - INFO - Main Function took 0 minutes and 4.80 seconds to run.
+2025-03-14 06:52:11,884 - INFO - ******************************************
+2025-03-14 07:00:58,040 - INFO - ******************************************
+2025-03-14 07:00:58,344 - INFO - Get Latest Yearmonth called, results for max date is None for table REALTOR_MNTHLY_METRO
+2025-03-14 07:00:59,242 - INFO - Successfully requested and received data from: https://econdata.s3-us-west-2.amazonaws.com/Reports/Core/RDC_Inventory_Core_Metrics_Metro.csv
+2025-03-14 07:00:59,262 - INFO - Writing historical data to REALTOR_MNTHLY_METRO.
+2025-03-14 07:01:00,778 - ERROR - An error occurred: (pymssql.exceptions.OperationalError) Cannot commit transaction: (3902, b'The COMMIT TRANSACTION request has no corresponding BEGIN TRANSACTION.DB-Lib error message 20018, severity 16:\nGeneral SQL Server error: Check messages from the SQL Server\n')
+(Background on this error at: https://sqlalche.me/e/20/e3q8)
+Traceback (most recent call last):
+  File "src\\pymssql\\_pymssql.pyx", line 254, in pymssql._pymssql.Connection.commit
+  File "src\\pymssql\\_mssql.pyx", line 1094, in pymssql._mssql.MSSQLConnection.execute_non_query
+  File "src\\pymssql\\_mssql.pyx", line 1115, in pymssql._mssql.MSSQLConnection.execute_non_query
+  File "src\\pymssql\\_mssql.pyx", line 1289, in pymssql._mssql.MSSQLConnection.format_and_run_query
+  File "src\\pymssql\\_mssql.pyx", line 1855, in pymssql._mssql.check_cancel_and_raise
+  File "src\\pymssql\\_mssql.pyx", line 1901, in pymssql._mssql.raise_MSSQLDatabaseException
+pymssql._mssql.MSSQLDatabaseException: (3902, b'The COMMIT TRANSACTION request has no corresponding BEGIN TRANSACTION.DB-Lib error message 20018, severity 16:\nGeneral SQL Server error: Check messages from the SQL Server\n')
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "C:\Users\nickk\PycharmProjects\Data_Pipelines\venv\Lib\site-packages\sqlalchemy\engine\base.py", line 1144, in _commit_impl
+    self.engine.dialect.do_commit(self.connection)
+  File "C:\Users\nickk\PycharmProjects\Data_Pipelines\venv\Lib\site-packages\sqlalchemy\engine\default.py", line 702, in do_commit
+    dbapi_connection.commit()
+  File "src\\pymssql\\_pymssql.pyx", line 257, in pymssql._pymssql.Connection.commit
+pymssql.exceptions.OperationalError: Cannot commit transaction: (3902, b'The COMMIT TRANSACTION request has no corresponding BEGIN TRANSACTION.DB-Lib error message 20018, severity 16:\nGeneral SQL Server error: Check messages from the SQL Server\n')
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "C:\Users\nickk\PycharmProjects\Data_Pipelines\Realtor_Monthly_Inventory_Metro.py", line 221, in <module>
+    main_run()
+  File "C:\Users\nickk\PycharmProjects\Data_Pipelines\Realtor_Monthly_Inventory_Metro.py", line 211, in main_run
+    redfin_df_v3.to_sql(sql_table_name, con=conn, if_exists='replace', index=False)
+  File "C:\Users\nickk\PycharmProjects\Data_Pipelines\venv\Lib\site-packages\pandas\util\_decorators.py", line 333, in wrapper
+    return func(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\nickk\PycharmProjects\Data_Pipelines\venv\Lib\site-packages\pandas\core\generic.py", line 3087, in to_sql
+    return sql.to_sql(
+           ^^^^^^^^^^^
+  File "C:\Users\nickk\PycharmProjects\Data_Pipelines\venv\Lib\site-packages\pandas\io\sql.py", line 841, in to_sql
+    with pandasSQL_builder(con, schema=schema, need_transaction=True) as pandas_sql:
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\nickk\PycharmProjects\Data_Pipelines\venv\Lib\site-packages\pandas\io\sql.py", line 1645, in __exit__
+    self.exit_stack.close()
+  File "C:\Program Files\WindowsApps\PythonSoftwareFoundation.Python.3.12_3.12.2544.0_x64__qbz5n2kfra8p0\Lib\contextlib.py", line 618, in close
+    self.__exit__(None, None, None)
+  File "C:\Program Files\WindowsApps\PythonSoftwareFoundation.Python.3.12_3.12.2544.0_x64__qbz5n2kfra8p0\Lib\contextlib.py", line 610, in __exit__
+    raise exc_details[1]
+  File "C:\Program Files\WindowsApps\PythonSoftwareFoundation.Python.3.12_3.12.2544.0_x64__qbz5n2kfra8p0\Lib\contextlib.py", line 595, in __exit__
+    if cb(*exc_details):
+       ^^^^^^^^^^^^^^^^
+  File "C:\Users\nickk\PycharmProjects\Data_Pipelines\venv\Lib\site-packages\sqlalchemy\engine\util.py", line 147, in __exit__
+    with util.safe_reraise():
+         ^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\nickk\PycharmProjects\Data_Pipelines\venv\Lib\site-packages\sqlalchemy\util\langhelpers.py", line 146, in __exit__
+    raise exc_value.with_traceback(exc_tb)
+  File "C:\Users\nickk\PycharmProjects\Data_Pipelines\venv\Lib\site-packages\sqlalchemy\engine\util.py", line 145, in __exit__
+    self.commit()
+  File "C:\Users\nickk\PycharmProjects\Data_Pipelines\venv\Lib\site-packages\sqlalchemy\engine\base.py", line 2631, in commit
+    self._do_commit()
+  File "C:\Users\nickk\PycharmProjects\Data_Pipelines\venv\Lib\site-packages\sqlalchemy\engine\base.py", line 2736, in _do_commit
+    self._connection_commit_impl()
+  File "C:\Users\nickk\PycharmProjects\Data_Pipelines\venv\Lib\site-packages\sqlalchemy\engine\base.py", line 2707, in _connection_commit_impl
+    self.connection._commit_impl()
+  File "C:\Users\nickk\PycharmProjects\Data_Pipelines\venv\Lib\site-packages\sqlalchemy\engine\base.py", line 1146, in _commit_impl
+    self._handle_dbapi_exception(e, None, None, None, None)
+  File "C:\Users\nickk\PycharmProjects\Data_Pipelines\venv\Lib\site-packages\sqlalchemy\engine\base.py", line 2355, in _handle_dbapi_exception
+    raise sqlalchemy_exception.with_traceback(exc_info[2]) from e
+  File "C:\Users\nickk\PycharmProjects\Data_Pipelines\venv\Lib\site-packages\sqlalchemy\engine\base.py", line 1144, in _commit_impl
+    self.engine.dialect.do_commit(self.connection)
+  File "C:\Users\nickk\PycharmProjects\Data_Pipelines\venv\Lib\site-packages\sqlalchemy\engine\default.py", line 702, in do_commit
+    dbapi_connection.commit()
+  File "src\\pymssql\\_pymssql.pyx", line 257, in pymssql._pymssql.Connection.commit
+sqlalchemy.exc.OperationalError: (pymssql.exceptions.OperationalError) Cannot commit transaction: (3902, b'The COMMIT TRANSACTION request has no corresponding BEGIN TRANSACTION.DB-Lib error message 20018, severity 16:\nGeneral SQL Server error: Check messages from the SQL Server\n')
+(Background on this error at: https://sqlalche.me/e/20/e3q8)
+
+2025-03-14 07:01:00,778 - INFO - Main Function took 0 minutes and 2.74 seconds to run.
+2025-03-14 07:01:00,778 - INFO - ******************************************
+2025-03-14 07:09:14,378 - INFO - ******************************************
+2025-03-14 07:09:14,701 - INFO - Get Latest Yearmonth called, results for max date is None for table REALTOR_MNTHLY_METRO
+2025-03-14 07:09:15,732 - INFO - Successfully requested and received data from: https://econdata.s3-us-west-2.amazonaws.com/Reports/Core/RDC_Inventory_Core_Metrics_Metro.csv
+2025-03-14 07:09:15,755 - INFO - Writing historical data to REALTOR_MNTHLY_METRO.
+2025-03-14 07:09:16,884 - ERROR - An error occurred: (pymssql.exceptions.OperationalError) Cannot commit transaction: (3902, b'The COMMIT TRANSACTION request has no corresponding BEGIN TRANSACTION.DB-Lib error message 20018, severity 16:\nGeneral SQL Server error: Check messages from the SQL Server\n')
+(Background on this error at: https://sqlalche.me/e/20/e3q8)
+Traceback (most recent call last):
+  File "src\\pymssql\\_pymssql.pyx", line 254, in pymssql._pymssql.Connection.commit
+  File "src\\pymssql\\_mssql.pyx", line 1094, in pymssql._mssql.MSSQLConnection.execute_non_query
+  File "src\\pymssql\\_mssql.pyx", line 1115, in pymssql._mssql.MSSQLConnection.execute_non_query
+  File "src\\pymssql\\_mssql.pyx", line 1289, in pymssql._mssql.MSSQLConnection.format_and_run_query
+  File "src\\pymssql\\_mssql.pyx", line 1855, in pymssql._mssql.check_cancel_and_raise
+  File "src\\pymssql\\_mssql.pyx", line 1901, in pymssql._mssql.raise_MSSQLDatabaseException
+pymssql._mssql.MSSQLDatabaseException: (3902, b'The COMMIT TRANSACTION request has no corresponding BEGIN TRANSACTION.DB-Lib error message 20018, severity 16:\nGeneral SQL Server error: Check messages from the SQL Server\n')
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "C:\Users\nickk\PycharmProjects\Data_Pipelines\venv\Lib\site-packages\sqlalchemy\engine\base.py", line 1144, in _commit_impl
+    self.engine.dialect.do_commit(self.connection)
+  File "C:\Users\nickk\PycharmProjects\Data_Pipelines\venv\Lib\site-packages\sqlalchemy\engine\default.py", line 702, in do_commit
+    dbapi_connection.commit()
+  File "src\\pymssql\\_pymssql.pyx", line 257, in pymssql._pymssql.Connection.commit
+pymssql.exceptions.OperationalError: Cannot commit transaction: (3902, b'The COMMIT TRANSACTION request has no corresponding BEGIN TRANSACTION.DB-Lib error message 20018, severity 16:\nGeneral SQL Server error: Check messages from the SQL Server\n')
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "C:\Users\nickk\PycharmProjects\Data_Pipelines\Realtor_Monthly_Inventory_Metro.py", line 221, in <module>
+    main_run()
+  File "C:\Users\nickk\PycharmProjects\Data_Pipelines\Realtor_Monthly_Inventory_Metro.py", line 211, in main_run
+    redfin_df_v3.to_sql(sql_table_name, con=conn, if_exists='append', index=False)
+  File "C:\Users\nickk\PycharmProjects\Data_Pipelines\venv\Lib\site-packages\pandas\util\_decorators.py", line 333, in wrapper
+    return func(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\nickk\PycharmProjects\Data_Pipelines\venv\Lib\site-packages\pandas\core\generic.py", line 3087, in to_sql
+    return sql.to_sql(
+           ^^^^^^^^^^^
+  File "C:\Users\nickk\PycharmProjects\Data_Pipelines\venv\Lib\site-packages\pandas\io\sql.py", line 841, in to_sql
+    with pandasSQL_builder(con, schema=schema, need_transaction=True) as pandas_sql:
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\nickk\PycharmProjects\Data_Pipelines\venv\Lib\site-packages\pandas\io\sql.py", line 1645, in __exit__
+    self.exit_stack.close()
+  File "C:\Program Files\WindowsApps\PythonSoftwareFoundation.Python.3.12_3.12.2544.0_x64__qbz5n2kfra8p0\Lib\contextlib.py", line 618, in close
+    self.__exit__(None, None, None)
+  File "C:\Program Files\WindowsApps\PythonSoftwareFoundation.Python.3.12_3.12.2544.0_x64__qbz5n2kfra8p0\Lib\contextlib.py", line 610, in __exit__
+    raise exc_details[1]
+  File "C:\Program Files\WindowsApps\PythonSoftwareFoundation.Python.3.12_3.12.2544.0_x64__qbz5n2kfra8p0\Lib\contextlib.py", line 595, in __exit__
+    if cb(*exc_details):
+       ^^^^^^^^^^^^^^^^
+  File "C:\Users\nickk\PycharmProjects\Data_Pipelines\venv\Lib\site-packages\sqlalchemy\engine\util.py", line 147, in __exit__
+    with util.safe_reraise():
+         ^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\nickk\PycharmProjects\Data_Pipelines\venv\Lib\site-packages\sqlalchemy\util\langhelpers.py", line 146, in __exit__
+    raise exc_value.with_traceback(exc_tb)
+  File "C:\Users\nickk\PycharmProjects\Data_Pipelines\venv\Lib\site-packages\sqlalchemy\engine\util.py", line 145, in __exit__
+    self.commit()
+  File "C:\Users\nickk\PycharmProjects\Data_Pipelines\venv\Lib\site-packages\sqlalchemy\engine\base.py", line 2631, in commit
+    self._do_commit()
+  File "C:\Users\nickk\PycharmProjects\Data_Pipelines\venv\Lib\site-packages\sqlalchemy\engine\base.py", line 2736, in _do_commit
+    self._connection_commit_impl()
+  File "C:\Users\nickk\PycharmProjects\Data_Pipelines\venv\Lib\site-packages\sqlalchemy\engine\base.py", line 2707, in _connection_commit_impl
+    self.connection._commit_impl()
+  File "C:\Users\nickk\PycharmProjects\Data_Pipelines\venv\Lib\site-packages\sqlalchemy\engine\base.py", line 1146, in _commit_impl
+    self._handle_dbapi_exception(e, None, None, None, None)
+  File "C:\Users\nickk\PycharmProjects\Data_Pipelines\venv\Lib\site-packages\sqlalchemy\engine\base.py", line 2355, in _handle_dbapi_exception
+    raise sqlalchemy_exception.with_traceback(exc_info[2]) from e
+  File "C:\Users\nickk\PycharmProjects\Data_Pipelines\venv\Lib\site-packages\sqlalchemy\engine\base.py", line 1144, in _commit_impl
+    self.engine.dialect.do_commit(self.connection)
+  File "C:\Users\nickk\PycharmProjects\Data_Pipelines\venv\Lib\site-packages\sqlalchemy\engine\default.py", line 702, in do_commit
+    dbapi_connection.commit()
+  File "src\\pymssql\\_pymssql.pyx", line 257, in pymssql._pymssql.Connection.commit
+sqlalchemy.exc.OperationalError: (pymssql.exceptions.OperationalError) Cannot commit transaction: (3902, b'The COMMIT TRANSACTION request has no corresponding BEGIN TRANSACTION.DB-Lib error message 20018, severity 16:\nGeneral SQL Server error: Check messages from the SQL Server\n')
+(Background on this error at: https://sqlalche.me/e/20/e3q8)
+
+2025-03-14 07:09:16,885 - INFO - Main Function took 0 minutes and 2.51 seconds to run.
+2025-03-14 07:09:16,885 - INFO - ******************************************
+2025-03-14 07:12:24,920 - INFO - ******************************************
+2025-03-14 07:12:25,180 - INFO - Get Latest Yearmonth called, results for max date is None for table REALTOR_MNTHLY_METRO
+2025-03-14 07:12:25,908 - INFO - Successfully requested and received data from: https://econdata.s3-us-west-2.amazonaws.com/Reports/Core/RDC_Inventory_Core_Metrics_Metro.csv
+2025-03-14 07:12:25,933 - INFO - Writing historical data to REALTOR_MNTHLY_METRO.
+2025-03-14 07:12:27,800 - ERROR - An error occurred: (pymssql.exceptions.OperationalError) Cannot commit transaction: (3902, b'The COMMIT TRANSACTION request has no corresponding BEGIN TRANSACTION.DB-Lib error message 20018, severity 16:\nGeneral SQL Server error: Check messages from the SQL Server\n')
+(Background on this error at: https://sqlalche.me/e/20/e3q8)
+Traceback (most recent call last):
+  File "src\\pymssql\\_pymssql.pyx", line 254, in pymssql._pymssql.Connection.commit
+  File "src\\pymssql\\_mssql.pyx", line 1094, in pymssql._mssql.MSSQLConnection.execute_non_query
+  File "src\\pymssql\\_mssql.pyx", line 1115, in pymssql._mssql.MSSQLConnection.execute_non_query
+  File "src\\pymssql\\_mssql.pyx", line 1289, in pymssql._mssql.MSSQLConnection.format_and_run_query
+  File "src\\pymssql\\_mssql.pyx", line 1855, in pymssql._mssql.check_cancel_and_raise
+  File "src\\pymssql\\_mssql.pyx", line 1901, in pymssql._mssql.raise_MSSQLDatabaseException
+pymssql._mssql.MSSQLDatabaseException: (3902, b'The COMMIT TRANSACTION request has no corresponding BEGIN TRANSACTION.DB-Lib error message 20018, severity 16:\nGeneral SQL Server error: Check messages from the SQL Server\n')
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "C:\Users\nickk\PycharmProjects\Data_Pipelines\venv\Lib\site-packages\sqlalchemy\engine\base.py", line 1144, in _commit_impl
+    self.engine.dialect.do_commit(self.connection)
+  File "C:\Users\nickk\PycharmProjects\Data_Pipelines\venv\Lib\site-packages\sqlalchemy\engine\default.py", line 702, in do_commit
+    dbapi_connection.commit()
+  File "src\\pymssql\\_pymssql.pyx", line 257, in pymssql._pymssql.Connection.commit
+pymssql.exceptions.OperationalError: Cannot commit transaction: (3902, b'The COMMIT TRANSACTION request has no corresponding BEGIN TRANSACTION.DB-Lib error message 20018, severity 16:\nGeneral SQL Server error: Check messages from the SQL Server\n')
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "C:\Users\nickk\PycharmProjects\Data_Pipelines\Realtor_Monthly_Inventory_Metro.py", line 221, in <module>
+    main_run()
+  File "C:\Users\nickk\PycharmProjects\Data_Pipelines\Realtor_Monthly_Inventory_Metro.py", line 211, in main_run
+    redfin_df_v3.to_sql(sql_table_name, con=conn, if_exists='replace', index=False)
+  File "C:\Users\nickk\PycharmProjects\Data_Pipelines\venv\Lib\site-packages\pandas\util\_decorators.py", line 333, in wrapper
+    return func(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\nickk\PycharmProjects\Data_Pipelines\venv\Lib\site-packages\pandas\core\generic.py", line 3087, in to_sql
+    return sql.to_sql(
+           ^^^^^^^^^^^
+  File "C:\Users\nickk\PycharmProjects\Data_Pipelines\venv\Lib\site-packages\pandas\io\sql.py", line 841, in to_sql
+    with pandasSQL_builder(con, schema=schema, need_transaction=True) as pandas_sql:
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\nickk\PycharmProjects\Data_Pipelines\venv\Lib\site-packages\pandas\io\sql.py", line 1645, in __exit__
+    self.exit_stack.close()
+  File "C:\Program Files\WindowsApps\PythonSoftwareFoundation.Python.3.12_3.12.2544.0_x64__qbz5n2kfra8p0\Lib\contextlib.py", line 618, in close
+    self.__exit__(None, None, None)
+  File "C:\Program Files\WindowsApps\PythonSoftwareFoundation.Python.3.12_3.12.2544.0_x64__qbz5n2kfra8p0\Lib\contextlib.py", line 610, in __exit__
+    raise exc_details[1]
+  File "C:\Program Files\WindowsApps\PythonSoftwareFoundation.Python.3.12_3.12.2544.0_x64__qbz5n2kfra8p0\Lib\contextlib.py", line 595, in __exit__
+    if cb(*exc_details):
+       ^^^^^^^^^^^^^^^^
+  File "C:\Users\nickk\PycharmProjects\Data_Pipelines\venv\Lib\site-packages\sqlalchemy\engine\util.py", line 147, in __exit__
+    with util.safe_reraise():
+         ^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\nickk\PycharmProjects\Data_Pipelines\venv\Lib\site-packages\sqlalchemy\util\langhelpers.py", line 146, in __exit__
+    raise exc_value.with_traceback(exc_tb)
+  File "C:\Users\nickk\PycharmProjects\Data_Pipelines\venv\Lib\site-packages\sqlalchemy\engine\util.py", line 145, in __exit__
+    self.commit()
+  File "C:\Users\nickk\PycharmProjects\Data_Pipelines\venv\Lib\site-packages\sqlalchemy\engine\base.py", line 2631, in commit
+    self._do_commit()
+  File "C:\Users\nickk\PycharmProjects\Data_Pipelines\venv\Lib\site-packages\sqlalchemy\engine\base.py", line 2736, in _do_commit
+    self._connection_commit_impl()
+  File "C:\Users\nickk\PycharmProjects\Data_Pipelines\venv\Lib\site-packages\sqlalchemy\engine\base.py", line 2707, in _connection_commit_impl
+    self.connection._commit_impl()
+  File "C:\Users\nickk\PycharmProjects\Data_Pipelines\venv\Lib\site-packages\sqlalchemy\engine\base.py", line 1146, in _commit_impl
+    self._handle_dbapi_exception(e, None, None, None, None)
+  File "C:\Users\nickk\PycharmProjects\Data_Pipelines\venv\Lib\site-packages\sqlalchemy\engine\base.py", line 2355, in _handle_dbapi_exception
+    raise sqlalchemy_exception.with_traceback(exc_info[2]) from e
+  File "C:\Users\nickk\PycharmProjects\Data_Pipelines\venv\Lib\site-packages\sqlalchemy\engine\base.py", line 1144, in _commit_impl
+    self.engine.dialect.do_commit(self.connection)
+  File "C:\Users\nickk\PycharmProjects\Data_Pipelines\venv\Lib\site-packages\sqlalchemy\engine\default.py", line 702, in do_commit
+    dbapi_connection.commit()
+  File "src\\pymssql\\_pymssql.pyx", line 257, in pymssql._pymssql.Connection.commit
+sqlalchemy.exc.OperationalError: (pymssql.exceptions.OperationalError) Cannot commit transaction: (3902, b'The COMMIT TRANSACTION request has no corresponding BEGIN TRANSACTION.DB-Lib error message 20018, severity 16:\nGeneral SQL Server error: Check messages from the SQL Server\n')
+(Background on this error at: https://sqlalche.me/e/20/e3q8)
+
+2025-03-14 07:12:27,801 - INFO - Main Function took 0 minutes and 2.88 seconds to run.
+2025-03-14 07:12:27,801 - INFO - ******************************************
+2025-03-14 07:12:58,248 - INFO - ******************************************
+2025-03-14 07:12:59,003 - INFO - Get Latest Yearmonth called, results for max date is None for table REALTOR_MNTHLY_METRO
+2025-03-14 07:13:00,090 - INFO - Successfully requested and received data from: https://econdata.s3-us-west-2.amazonaws.com/Reports/Core/RDC_Inventory_Core_Metrics_Metro.csv
+2025-03-14 07:13:00,119 - INFO - Writing historical data to REALTOR_MNTHLY_METRO.
+2025-03-14 07:13:01,516 - ERROR - An error occurred: (pymssql.exceptions.OperationalError) Cannot commit transaction: (3902, b'The COMMIT TRANSACTION request has no corresponding BEGIN TRANSACTION.DB-Lib error message 20018, severity 16:\nGeneral SQL Server error: Check messages from the SQL Server\n')
+(Background on this error at: https://sqlalche.me/e/20/e3q8)
+Traceback (most recent call last):
+  File "src\\pymssql\\_pymssql.pyx", line 254, in pymssql._pymssql.Connection.commit
+  File "src\\pymssql\\_mssql.pyx", line 1094, in pymssql._mssql.MSSQLConnection.execute_non_query
+  File "src\\pymssql\\_mssql.pyx", line 1115, in pymssql._mssql.MSSQLConnection.execute_non_query
+  File "src\\pymssql\\_mssql.pyx", line 1289, in pymssql._mssql.MSSQLConnection.format_and_run_query
+  File "src\\pymssql\\_mssql.pyx", line 1855, in pymssql._mssql.check_cancel_and_raise
+  File "src\\pymssql\\_mssql.pyx", line 1901, in pymssql._mssql.raise_MSSQLDatabaseException
+pymssql._mssql.MSSQLDatabaseException: (3902, b'The COMMIT TRANSACTION request has no corresponding BEGIN TRANSACTION.DB-Lib error message 20018, severity 16:\nGeneral SQL Server error: Check messages from the SQL Server\n')
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "C:\Users\nickk\PycharmProjects\Data_Pipelines\venv\Lib\site-packages\sqlalchemy\engine\base.py", line 1144, in _commit_impl
+    self.engine.dialect.do_commit(self.connection)
+  File "C:\Users\nickk\PycharmProjects\Data_Pipelines\venv\Lib\site-packages\sqlalchemy\engine\default.py", line 702, in do_commit
+    dbapi_connection.commit()
+  File "src\\pymssql\\_pymssql.pyx", line 257, in pymssql._pymssql.Connection.commit
+pymssql.exceptions.OperationalError: Cannot commit transaction: (3902, b'The COMMIT TRANSACTION request has no corresponding BEGIN TRANSACTION.DB-Lib error message 20018, severity 16:\nGeneral SQL Server error: Check messages from the SQL Server\n')
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "C:\Users\nickk\PycharmProjects\Data_Pipelines\Realtor_Monthly_Inventory_Metro.py", line 221, in <module>
+    main_run()
+  File "C:\Users\nickk\PycharmProjects\Data_Pipelines\Realtor_Monthly_Inventory_Metro.py", line 211, in main_run
+    redfin_df_v3.to_sql(sql_table_name, con=conn, if_exists='replace', index=False, chunksize=1000)
+  File "C:\Users\nickk\PycharmProjects\Data_Pipelines\venv\Lib\site-packages\pandas\util\_decorators.py", line 333, in wrapper
+    return func(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\nickk\PycharmProjects\Data_Pipelines\venv\Lib\site-packages\pandas\core\generic.py", line 3087, in to_sql
+    return sql.to_sql(
+           ^^^^^^^^^^^
+  File "C:\Users\nickk\PycharmProjects\Data_Pipelines\venv\Lib\site-packages\pandas\io\sql.py", line 841, in to_sql
+    with pandasSQL_builder(con, schema=schema, need_transaction=True) as pandas_sql:
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\nickk\PycharmProjects\Data_Pipelines\venv\Lib\site-packages\pandas\io\sql.py", line 1645, in __exit__
+    self.exit_stack.close()
+  File "C:\Program Files\WindowsApps\PythonSoftwareFoundation.Python.3.12_3.12.2544.0_x64__qbz5n2kfra8p0\Lib\contextlib.py", line 618, in close
+    self.__exit__(None, None, None)
+  File "C:\Program Files\WindowsApps\PythonSoftwareFoundation.Python.3.12_3.12.2544.0_x64__qbz5n2kfra8p0\Lib\contextlib.py", line 610, in __exit__
+    raise exc_details[1]
+  File "C:\Program Files\WindowsApps\PythonSoftwareFoundation.Python.3.12_3.12.2544.0_x64__qbz5n2kfra8p0\Lib\contextlib.py", line 595, in __exit__
+    if cb(*exc_details):
+       ^^^^^^^^^^^^^^^^
+  File "C:\Users\nickk\PycharmProjects\Data_Pipelines\venv\Lib\site-packages\sqlalchemy\engine\util.py", line 147, in __exit__
+    with util.safe_reraise():
+         ^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\nickk\PycharmProjects\Data_Pipelines\venv\Lib\site-packages\sqlalchemy\util\langhelpers.py", line 146, in __exit__
+    raise exc_value.with_traceback(exc_tb)
+  File "C:\Users\nickk\PycharmProjects\Data_Pipelines\venv\Lib\site-packages\sqlalchemy\engine\util.py", line 145, in __exit__
+    self.commit()
+  File "C:\Users\nickk\PycharmProjects\Data_Pipelines\venv\Lib\site-packages\sqlalchemy\engine\base.py", line 2631, in commit
+    self._do_commit()
+  File "C:\Users\nickk\PycharmProjects\Data_Pipelines\venv\Lib\site-packages\sqlalchemy\engine\base.py", line 2736, in _do_commit
+    self._connection_commit_impl()
+  File "C:\Users\nickk\PycharmProjects\Data_Pipelines\venv\Lib\site-packages\sqlalchemy\engine\base.py", line 2707, in _connection_commit_impl
+    self.connection._commit_impl()
+  File "C:\Users\nickk\PycharmProjects\Data_Pipelines\venv\Lib\site-packages\sqlalchemy\engine\base.py", line 1146, in _commit_impl
+    self._handle_dbapi_exception(e, None, None, None, None)
+  File "C:\Users\nickk\PycharmProjects\Data_Pipelines\venv\Lib\site-packages\sqlalchemy\engine\base.py", line 2355, in _handle_dbapi_exception
+    raise sqlalchemy_exception.with_traceback(exc_info[2]) from e
+  File "C:\Users\nickk\PycharmProjects\Data_Pipelines\venv\Lib\site-packages\sqlalchemy\engine\base.py", line 1144, in _commit_impl
+    self.engine.dialect.do_commit(self.connection)
+  File "C:\Users\nickk\PycharmProjects\Data_Pipelines\venv\Lib\site-packages\sqlalchemy\engine\default.py", line 702, in do_commit
+    dbapi_connection.commit()
+  File "src\\pymssql\\_pymssql.pyx", line 257, in pymssql._pymssql.Connection.commit
+sqlalchemy.exc.OperationalError: (pymssql.exceptions.OperationalError) Cannot commit transaction: (3902, b'The COMMIT TRANSACTION request has no corresponding BEGIN TRANSACTION.DB-Lib error message 20018, severity 16:\nGeneral SQL Server error: Check messages from the SQL Server\n')
+(Background on this error at: https://sqlalche.me/e/20/e3q8)
+
+2025-03-14 07:13:01,516 - INFO - Main Function took 0 minutes and 3.27 seconds to run.
+2025-03-14 07:13:01,516 - INFO - ******************************************
+2025-03-14 07:14:54,812 - INFO - ******************************************
+2025-03-14 07:14:54,880 - ERROR - An error occurred: (pyodbc.InterfaceError) ('IM002', '[IM002] [Microsoft][ODBC Driver Manager] Data source name not found and no default driver specified (0) (SQLDriverConnect)')
+(Background on this error at: https://sqlalche.me/e/20/rvf5)
+Traceback (most recent call last):
+  File "C:\Users\nickk\PycharmProjects\Data_Pipelines\venv\Lib\site-packages\sqlalchemy\engine\base.py", line 146, in __init__
+    self._dbapi_connection = engine.raw_connection()
+                             ^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\nickk\PycharmProjects\Data_Pipelines\venv\Lib\site-packages\sqlalchemy\engine\base.py", line 3302, in raw_connection
+    return self.pool.connect()
+           ^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\nickk\PycharmProjects\Data_Pipelines\venv\Lib\site-packages\sqlalchemy\pool\base.py", line 449, in connect
+    return _ConnectionFairy._checkout(self)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\nickk\PycharmProjects\Data_Pipelines\venv\Lib\site-packages\sqlalchemy\pool\base.py", line 1263, in _checkout
+    fairy = _ConnectionRecord.checkout(pool)
+            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\nickk\PycharmProjects\Data_Pipelines\venv\Lib\site-packages\sqlalchemy\pool\base.py", line 712, in checkout
+    rec = pool._do_get()
+          ^^^^^^^^^^^^^^
+  File "C:\Users\nickk\PycharmProjects\Data_Pipelines\venv\Lib\site-packages\sqlalchemy\pool\impl.py", line 179, in _do_get
+    with util.safe_reraise():
+         ^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\nickk\PycharmProjects\Data_Pipelines\venv\Lib\site-packages\sqlalchemy\util\langhelpers.py", line 146, in __exit__
+    raise exc_value.with_traceback(exc_tb)
+  File "C:\Users\nickk\PycharmProjects\Data_Pipelines\venv\Lib\site-packages\sqlalchemy\pool\impl.py", line 177, in _do_get
+    return self._create_connection()
+           ^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\nickk\PycharmProjects\Data_Pipelines\venv\Lib\site-packages\sqlalchemy\pool\base.py", line 390, in _create_connection
+    return _ConnectionRecord(self)
+           ^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\nickk\PycharmProjects\Data_Pipelines\venv\Lib\site-packages\sqlalchemy\pool\base.py", line 674, in __init__
+    self.__connect()
+  File "C:\Users\nickk\PycharmProjects\Data_Pipelines\venv\Lib\site-packages\sqlalchemy\pool\base.py", line 900, in __connect
+    with util.safe_reraise():
+         ^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\nickk\PycharmProjects\Data_Pipelines\venv\Lib\site-packages\sqlalchemy\util\langhelpers.py", line 146, in __exit__
+    raise exc_value.with_traceback(exc_tb)
+  File "C:\Users\nickk\PycharmProjects\Data_Pipelines\venv\Lib\site-packages\sqlalchemy\pool\base.py", line 896, in __connect
+    self.dbapi_connection = connection = pool._invoke_creator(self)
+                                         ^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\nickk\PycharmProjects\Data_Pipelines\venv\Lib\site-packages\sqlalchemy\engine\create.py", line 643, in connect
+    return dialect.connect(*cargs, **cparams)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\nickk\PycharmProjects\Data_Pipelines\venv\Lib\site-packages\sqlalchemy\engine\default.py", line 621, in connect
+    return self.loaded_dbapi.connect(*cargs, **cparams)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+pyodbc.InterfaceError: ('IM002', '[IM002] [Microsoft][ODBC Driver Manager] Data source name not found and no default driver specified (0) (SQLDriverConnect)')
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "C:\Users\nickk\PycharmProjects\Data_Pipelines\Realtor_Monthly_Inventory_Metro.py", line 221, in <module>
+    main_run()
+  File "C:\Users\nickk\PycharmProjects\Data_Pipelines\Realtor_Monthly_Inventory_Metro.py", line 176, in main_run
+    sql_table_max_date = get_latest_yearmonth(sql_table_name)
+                         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\nickk\PycharmProjects\Data_Pipelines\Realtor_Monthly_Inventory_Metro.py", line 62, in get_latest_yearmonth
+    with sqlalchemy_engine().connect() as connection:
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\nickk\PycharmProjects\Data_Pipelines\venv\Lib\site-packages\sqlalchemy\engine\base.py", line 3278, in connect
+    return self._connection_cls(self)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\nickk\PycharmProjects\Data_Pipelines\venv\Lib\site-packages\sqlalchemy\engine\base.py", line 148, in __init__
+    Connection._handle_dbapi_exception_noconnection(
+  File "C:\Users\nickk\PycharmProjects\Data_Pipelines\venv\Lib\site-packages\sqlalchemy\engine\base.py", line 2442, in _handle_dbapi_exception_noconnection
+    raise sqlalchemy_exception.with_traceback(exc_info[2]) from e
+  File "C:\Users\nickk\PycharmProjects\Data_Pipelines\venv\Lib\site-packages\sqlalchemy\engine\base.py", line 146, in __init__
+    self._dbapi_connection = engine.raw_connection()
+                             ^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\nickk\PycharmProjects\Data_Pipelines\venv\Lib\site-packages\sqlalchemy\engine\base.py", line 3302, in raw_connection
+    return self.pool.connect()
+           ^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\nickk\PycharmProjects\Data_Pipelines\venv\Lib\site-packages\sqlalchemy\pool\base.py", line 449, in connect
+    return _ConnectionFairy._checkout(self)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\nickk\PycharmProjects\Data_Pipelines\venv\Lib\site-packages\sqlalchemy\pool\base.py", line 1263, in _checkout
+    fairy = _ConnectionRecord.checkout(pool)
+            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\nickk\PycharmProjects\Data_Pipelines\venv\Lib\site-packages\sqlalchemy\pool\base.py", line 712, in checkout
+    rec = pool._do_get()
+          ^^^^^^^^^^^^^^
+  File "C:\Users\nickk\PycharmProjects\Data_Pipelines\venv\Lib\site-packages\sqlalchemy\pool\impl.py", line 179, in _do_get
+    with util.safe_reraise():
+         ^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\nickk\PycharmProjects\Data_Pipelines\venv\Lib\site-packages\sqlalchemy\util\langhelpers.py", line 146, in __exit__
+    raise exc_value.with_traceback(exc_tb)
+  File "C:\Users\nickk\PycharmProjects\Data_Pipelines\venv\Lib\site-packages\sqlalchemy\pool\impl.py", line 177, in _do_get
+    return self._create_connection()
+           ^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\nickk\PycharmProjects\Data_Pipelines\venv\Lib\site-packages\sqlalchemy\pool\base.py", line 390, in _create_connection
+    return _ConnectionRecord(self)
+           ^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\nickk\PycharmProjects\Data_Pipelines\venv\Lib\site-packages\sqlalchemy\pool\base.py", line 674, in __init__
+    self.__connect()
+  File "C:\Users\nickk\PycharmProjects\Data_Pipelines\venv\Lib\site-packages\sqlalchemy\pool\base.py", line 900, in __connect
+    with util.safe_reraise():
+         ^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\nickk\PycharmProjects\Data_Pipelines\venv\Lib\site-packages\sqlalchemy\util\langhelpers.py", line 146, in __exit__
+    raise exc_value.with_traceback(exc_tb)
+  File "C:\Users\nickk\PycharmProjects\Data_Pipelines\venv\Lib\site-packages\sqlalchemy\pool\base.py", line 896, in __connect
+    self.dbapi_connection = connection = pool._invoke_creator(self)
+                                         ^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\nickk\PycharmProjects\Data_Pipelines\venv\Lib\site-packages\sqlalchemy\engine\create.py", line 643, in connect
+    return dialect.connect(*cargs, **cparams)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\nickk\PycharmProjects\Data_Pipelines\venv\Lib\site-packages\sqlalchemy\engine\default.py", line 621, in connect
+    return self.loaded_dbapi.connect(*cargs, **cparams)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+sqlalchemy.exc.InterfaceError: (pyodbc.InterfaceError) ('IM002', '[IM002] [Microsoft][ODBC Driver Manager] Data source name not found and no default driver specified (0) (SQLDriverConnect)')
+(Background on this error at: https://sqlalche.me/e/20/rvf5)
+
+2025-03-14 07:14:54,880 - INFO - Main Function took 0 minutes and 0.07 seconds to run.
+2025-03-14 07:14:54,880 - INFO - ******************************************
+2025-03-15 12:10:49,245 - INFO - ******************************************
+2025-03-15 12:10:49,434 - ERROR - An error occurred: (pyodbc.InterfaceError) ('IM002', '[IM002] [Microsoft][ODBC Driver Manager] Data source name not found and no default driver specified (0) (SQLDriverConnect)')
+(Background on this error at: https://sqlalche.me/e/20/rvf5)
+Traceback (most recent call last):
+  File "C:\Users\nickk\PycharmProjects\Data_Pipelines\venv\Lib\site-packages\sqlalchemy\engine\base.py", line 146, in __init__
+    self._dbapi_connection = engine.raw_connection()
+                             ^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\nickk\PycharmProjects\Data_Pipelines\venv\Lib\site-packages\sqlalchemy\engine\base.py", line 3302, in raw_connection
+    return self.pool.connect()
+           ^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\nickk\PycharmProjects\Data_Pipelines\venv\Lib\site-packages\sqlalchemy\pool\base.py", line 449, in connect
+    return _ConnectionFairy._checkout(self)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\nickk\PycharmProjects\Data_Pipelines\venv\Lib\site-packages\sqlalchemy\pool\base.py", line 1263, in _checkout
+    fairy = _ConnectionRecord.checkout(pool)
+            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\nickk\PycharmProjects\Data_Pipelines\venv\Lib\site-packages\sqlalchemy\pool\base.py", line 712, in checkout
+    rec = pool._do_get()
+          ^^^^^^^^^^^^^^
+  File "C:\Users\nickk\PycharmProjects\Data_Pipelines\venv\Lib\site-packages\sqlalchemy\pool\impl.py", line 179, in _do_get
+    with util.safe_reraise():
+         ^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\nickk\PycharmProjects\Data_Pipelines\venv\Lib\site-packages\sqlalchemy\util\langhelpers.py", line 146, in __exit__
+    raise exc_value.with_traceback(exc_tb)
+  File "C:\Users\nickk\PycharmProjects\Data_Pipelines\venv\Lib\site-packages\sqlalchemy\pool\impl.py", line 177, in _do_get
+    return self._create_connection()
+           ^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\nickk\PycharmProjects\Data_Pipelines\venv\Lib\site-packages\sqlalchemy\pool\base.py", line 390, in _create_connection
+    return _ConnectionRecord(self)
+           ^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\nickk\PycharmProjects\Data_Pipelines\venv\Lib\site-packages\sqlalchemy\pool\base.py", line 674, in __init__
+    self.__connect()
+  File "C:\Users\nickk\PycharmProjects\Data_Pipelines\venv\Lib\site-packages\sqlalchemy\pool\base.py", line 900, in __connect
+    with util.safe_reraise():
+         ^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\nickk\PycharmProjects\Data_Pipelines\venv\Lib\site-packages\sqlalchemy\util\langhelpers.py", line 146, in __exit__
+    raise exc_value.with_traceback(exc_tb)
+  File "C:\Users\nickk\PycharmProjects\Data_Pipelines\venv\Lib\site-packages\sqlalchemy\pool\base.py", line 896, in __connect
+    self.dbapi_connection = connection = pool._invoke_creator(self)
+                                         ^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\nickk\PycharmProjects\Data_Pipelines\venv\Lib\site-packages\sqlalchemy\engine\create.py", line 643, in connect
+    return dialect.connect(*cargs, **cparams)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\nickk\PycharmProjects\Data_Pipelines\venv\Lib\site-packages\sqlalchemy\engine\default.py", line 621, in connect
+    return self.loaded_dbapi.connect(*cargs, **cparams)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+pyodbc.InterfaceError: ('IM002', '[IM002] [Microsoft][ODBC Driver Manager] Data source name not found and no default driver specified (0) (SQLDriverConnect)')
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "C:\Users\nickk\PycharmProjects\Data_Pipelines\Realtor_Monthly_Inventory_Metro.py", line 221, in <module>
+    main_run()
+  File "C:\Users\nickk\PycharmProjects\Data_Pipelines\Realtor_Monthly_Inventory_Metro.py", line 176, in main_run
+    sql_table_max_date = get_latest_yearmonth(sql_table_name)
+                         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\nickk\PycharmProjects\Data_Pipelines\Realtor_Monthly_Inventory_Metro.py", line 62, in get_latest_yearmonth
+    with sqlalchemy_engine().connect() as connection:
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\nickk\PycharmProjects\Data_Pipelines\venv\Lib\site-packages\sqlalchemy\engine\base.py", line 3278, in connect
+    return self._connection_cls(self)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\nickk\PycharmProjects\Data_Pipelines\venv\Lib\site-packages\sqlalchemy\engine\base.py", line 148, in __init__
+    Connection._handle_dbapi_exception_noconnection(
+  File "C:\Users\nickk\PycharmProjects\Data_Pipelines\venv\Lib\site-packages\sqlalchemy\engine\base.py", line 2442, in _handle_dbapi_exception_noconnection
+    raise sqlalchemy_exception.with_traceback(exc_info[2]) from e
+  File "C:\Users\nickk\PycharmProjects\Data_Pipelines\venv\Lib\site-packages\sqlalchemy\engine\base.py", line 146, in __init__
+    self._dbapi_connection = engine.raw_connection()
+                             ^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\nickk\PycharmProjects\Data_Pipelines\venv\Lib\site-packages\sqlalchemy\engine\base.py", line 3302, in raw_connection
+    return self.pool.connect()
+           ^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\nickk\PycharmProjects\Data_Pipelines\venv\Lib\site-packages\sqlalchemy\pool\base.py", line 449, in connect
+    return _ConnectionFairy._checkout(self)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\nickk\PycharmProjects\Data_Pipelines\venv\Lib\site-packages\sqlalchemy\pool\base.py", line 1263, in _checkout
+    fairy = _ConnectionRecord.checkout(pool)
+            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\nickk\PycharmProjects\Data_Pipelines\venv\Lib\site-packages\sqlalchemy\pool\base.py", line 712, in checkout
+    rec = pool._do_get()
+          ^^^^^^^^^^^^^^
+  File "C:\Users\nickk\PycharmProjects\Data_Pipelines\venv\Lib\site-packages\sqlalchemy\pool\impl.py", line 179, in _do_get
+    with util.safe_reraise():
+         ^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\nickk\PycharmProjects\Data_Pipelines\venv\Lib\site-packages\sqlalchemy\util\langhelpers.py", line 146, in __exit__
+    raise exc_value.with_traceback(exc_tb)
+  File "C:\Users\nickk\PycharmProjects\Data_Pipelines\venv\Lib\site-packages\sqlalchemy\pool\impl.py", line 177, in _do_get
+    return self._create_connection()
+           ^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\nickk\PycharmProjects\Data_Pipelines\venv\Lib\site-packages\sqlalchemy\pool\base.py", line 390, in _create_connection
+    return _ConnectionRecord(self)
+           ^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\nickk\PycharmProjects\Data_Pipelines\venv\Lib\site-packages\sqlalchemy\pool\base.py", line 674, in __init__
+    self.__connect()
+  File "C:\Users\nickk\PycharmProjects\Data_Pipelines\venv\Lib\site-packages\sqlalchemy\pool\base.py", line 900, in __connect
+    with util.safe_reraise():
+         ^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\nickk\PycharmProjects\Data_Pipelines\venv\Lib\site-packages\sqlalchemy\util\langhelpers.py", line 146, in __exit__
+    raise exc_value.with_traceback(exc_tb)
+  File "C:\Users\nickk\PycharmProjects\Data_Pipelines\venv\Lib\site-packages\sqlalchemy\pool\base.py", line 896, in __connect
+    self.dbapi_connection = connection = pool._invoke_creator(self)
+                                         ^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\nickk\PycharmProjects\Data_Pipelines\venv\Lib\site-packages\sqlalchemy\engine\create.py", line 643, in connect
+    return dialect.connect(*cargs, **cparams)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\nickk\PycharmProjects\Data_Pipelines\venv\Lib\site-packages\sqlalchemy\engine\default.py", line 621, in connect
+    return self.loaded_dbapi.connect(*cargs, **cparams)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+sqlalchemy.exc.InterfaceError: (pyodbc.InterfaceError) ('IM002', '[IM002] [Microsoft][ODBC Driver Manager] Data source name not found and no default driver specified (0) (SQLDriverConnect)')
+(Background on this error at: https://sqlalche.me/e/20/rvf5)
+
+2025-03-15 12:10:49,435 - INFO - Main Function took 0 minutes and 0.19 seconds to run.
+2025-03-15 12:10:49,435 - INFO - ******************************************
+2025-03-15 12:40:52,768 - INFO - ******************************************
+2025-03-15 12:40:52,774 - ERROR - An error occurred: (pyodbc.InterfaceError) ('IM002', '[IM002] [Microsoft][ODBC Driver Manager] Data source name not found and no default driver specified (0) (SQLDriverConnect)')
+(Background on this error at: https://sqlalche.me/e/20/rvf5)
+Traceback (most recent call last):
+  File "C:\Users\nickk\PycharmProjects\Data_Pipelines\venv\Lib\site-packages\sqlalchemy\engine\base.py", line 146, in __init__
+    self._dbapi_connection = engine.raw_connection()
+                             ^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\nickk\PycharmProjects\Data_Pipelines\venv\Lib\site-packages\sqlalchemy\engine\base.py", line 3302, in raw_connection
+    return self.pool.connect()
+           ^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\nickk\PycharmProjects\Data_Pipelines\venv\Lib\site-packages\sqlalchemy\pool\base.py", line 449, in connect
+    return _ConnectionFairy._checkout(self)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\nickk\PycharmProjects\Data_Pipelines\venv\Lib\site-packages\sqlalchemy\pool\base.py", line 1263, in _checkout
+    fairy = _ConnectionRecord.checkout(pool)
+            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\nickk\PycharmProjects\Data_Pipelines\venv\Lib\site-packages\sqlalchemy\pool\base.py", line 712, in checkout
+    rec = pool._do_get()
+          ^^^^^^^^^^^^^^
+  File "C:\Users\nickk\PycharmProjects\Data_Pipelines\venv\Lib\site-packages\sqlalchemy\pool\impl.py", line 179, in _do_get
+    with util.safe_reraise():
+         ^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\nickk\PycharmProjects\Data_Pipelines\venv\Lib\site-packages\sqlalchemy\util\langhelpers.py", line 146, in __exit__
+    raise exc_value.with_traceback(exc_tb)
+  File "C:\Users\nickk\PycharmProjects\Data_Pipelines\venv\Lib\site-packages\sqlalchemy\pool\impl.py", line 177, in _do_get
+    return self._create_connection()
+           ^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\nickk\PycharmProjects\Data_Pipelines\venv\Lib\site-packages\sqlalchemy\pool\base.py", line 390, in _create_connection
+    return _ConnectionRecord(self)
+           ^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\nickk\PycharmProjects\Data_Pipelines\venv\Lib\site-packages\sqlalchemy\pool\base.py", line 674, in __init__
+    self.__connect()
+  File "C:\Users\nickk\PycharmProjects\Data_Pipelines\venv\Lib\site-packages\sqlalchemy\pool\base.py", line 900, in __connect
+    with util.safe_reraise():
+         ^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\nickk\PycharmProjects\Data_Pipelines\venv\Lib\site-packages\sqlalchemy\util\langhelpers.py", line 146, in __exit__
+    raise exc_value.with_traceback(exc_tb)
+  File "C:\Users\nickk\PycharmProjects\Data_Pipelines\venv\Lib\site-packages\sqlalchemy\pool\base.py", line 896, in __connect
+    self.dbapi_connection = connection = pool._invoke_creator(self)
+                                         ^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\nickk\PycharmProjects\Data_Pipelines\venv\Lib\site-packages\sqlalchemy\engine\create.py", line 643, in connect
+    return dialect.connect(*cargs, **cparams)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\nickk\PycharmProjects\Data_Pipelines\venv\Lib\site-packages\sqlalchemy\engine\default.py", line 621, in connect
+    return self.loaded_dbapi.connect(*cargs, **cparams)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+pyodbc.InterfaceError: ('IM002', '[IM002] [Microsoft][ODBC Driver Manager] Data source name not found and no default driver specified (0) (SQLDriverConnect)')
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "C:\Users\nickk\PycharmProjects\Data_Pipelines\Realtor_Monthly_Inventory_Metro.py", line 221, in <module>
+    main_run()
+  File "C:\Users\nickk\PycharmProjects\Data_Pipelines\Realtor_Monthly_Inventory_Metro.py", line 176, in main_run
+    sql_table_max_date = get_latest_yearmonth(sql_table_name)
+                         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\nickk\PycharmProjects\Data_Pipelines\Realtor_Monthly_Inventory_Metro.py", line 62, in get_latest_yearmonth
+    with sqlalchemy_engine().connect() as connection:
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\nickk\PycharmProjects\Data_Pipelines\venv\Lib\site-packages\sqlalchemy\engine\base.py", line 3278, in connect
+    return self._connection_cls(self)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\nickk\PycharmProjects\Data_Pipelines\venv\Lib\site-packages\sqlalchemy\engine\base.py", line 148, in __init__
+    Connection._handle_dbapi_exception_noconnection(
+  File "C:\Users\nickk\PycharmProjects\Data_Pipelines\venv\Lib\site-packages\sqlalchemy\engine\base.py", line 2442, in _handle_dbapi_exception_noconnection
+    raise sqlalchemy_exception.with_traceback(exc_info[2]) from e
+  File "C:\Users\nickk\PycharmProjects\Data_Pipelines\venv\Lib\site-packages\sqlalchemy\engine\base.py", line 146, in __init__
+    self._dbapi_connection = engine.raw_connection()
+                             ^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\nickk\PycharmProjects\Data_Pipelines\venv\Lib\site-packages\sqlalchemy\engine\base.py", line 3302, in raw_connection
+    return self.pool.connect()
+           ^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\nickk\PycharmProjects\Data_Pipelines\venv\Lib\site-packages\sqlalchemy\pool\base.py", line 449, in connect
+    return _ConnectionFairy._checkout(self)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\nickk\PycharmProjects\Data_Pipelines\venv\Lib\site-packages\sqlalchemy\pool\base.py", line 1263, in _checkout
+    fairy = _ConnectionRecord.checkout(pool)
+            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\nickk\PycharmProjects\Data_Pipelines\venv\Lib\site-packages\sqlalchemy\pool\base.py", line 712, in checkout
+    rec = pool._do_get()
+          ^^^^^^^^^^^^^^
+  File "C:\Users\nickk\PycharmProjects\Data_Pipelines\venv\Lib\site-packages\sqlalchemy\pool\impl.py", line 179, in _do_get
+    with util.safe_reraise():
+         ^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\nickk\PycharmProjects\Data_Pipelines\venv\Lib\site-packages\sqlalchemy\util\langhelpers.py", line 146, in __exit__
+    raise exc_value.with_traceback(exc_tb)
+  File "C:\Users\nickk\PycharmProjects\Data_Pipelines\venv\Lib\site-packages\sqlalchemy\pool\impl.py", line 177, in _do_get
+    return self._create_connection()
+           ^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\nickk\PycharmProjects\Data_Pipelines\venv\Lib\site-packages\sqlalchemy\pool\base.py", line 390, in _create_connection
+    return _ConnectionRecord(self)
+           ^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\nickk\PycharmProjects\Data_Pipelines\venv\Lib\site-packages\sqlalchemy\pool\base.py", line 674, in __init__
+    self.__connect()
+  File "C:\Users\nickk\PycharmProjects\Data_Pipelines\venv\Lib\site-packages\sqlalchemy\pool\base.py", line 900, in __connect
+    with util.safe_reraise():
+         ^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\nickk\PycharmProjects\Data_Pipelines\venv\Lib\site-packages\sqlalchemy\util\langhelpers.py", line 146, in __exit__
+    raise exc_value.with_traceback(exc_tb)
+  File "C:\Users\nickk\PycharmProjects\Data_Pipelines\venv\Lib\site-packages\sqlalchemy\pool\base.py", line 896, in __connect
+    self.dbapi_connection = connection = pool._invoke_creator(self)
+                                         ^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\nickk\PycharmProjects\Data_Pipelines\venv\Lib\site-packages\sqlalchemy\engine\create.py", line 643, in connect
+    return dialect.connect(*cargs, **cparams)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\nickk\PycharmProjects\Data_Pipelines\venv\Lib\site-packages\sqlalchemy\engine\default.py", line 621, in connect
+    return self.loaded_dbapi.connect(*cargs, **cparams)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+sqlalchemy.exc.InterfaceError: (pyodbc.InterfaceError) ('IM002', '[IM002] [Microsoft][ODBC Driver Manager] Data source name not found and no default driver specified (0) (SQLDriverConnect)')
+(Background on this error at: https://sqlalche.me/e/20/rvf5)
+
+2025-03-15 12:40:52,775 - INFO - Main Function took 0 minutes and 0.01 seconds to run.
+2025-03-15 12:40:52,775 - INFO - ******************************************
+2025-03-15 12:43:14,765 - INFO - ******************************************
+2025-03-15 12:43:14,790 - ERROR - An error occurred: (pyodbc.InterfaceError) ('IM002', '[IM002] [Microsoft][ODBC Driver Manager] Data source name not found and no default driver specified (0) (SQLDriverConnect)')
+(Background on this error at: https://sqlalche.me/e/20/rvf5)
+Traceback (most recent call last):
+  File "C:\Users\nickk\PycharmProjects\Data_Pipelines\venv\Lib\site-packages\sqlalchemy\engine\base.py", line 146, in __init__
+    self._dbapi_connection = engine.raw_connection()
+                             ^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\nickk\PycharmProjects\Data_Pipelines\venv\Lib\site-packages\sqlalchemy\engine\base.py", line 3302, in raw_connection
+    return self.pool.connect()
+           ^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\nickk\PycharmProjects\Data_Pipelines\venv\Lib\site-packages\sqlalchemy\pool\base.py", line 449, in connect
+    return _ConnectionFairy._checkout(self)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\nickk\PycharmProjects\Data_Pipelines\venv\Lib\site-packages\sqlalchemy\pool\base.py", line 1263, in _checkout
+    fairy = _ConnectionRecord.checkout(pool)
+            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\nickk\PycharmProjects\Data_Pipelines\venv\Lib\site-packages\sqlalchemy\pool\base.py", line 712, in checkout
+    rec = pool._do_get()
+          ^^^^^^^^^^^^^^
+  File "C:\Users\nickk\PycharmProjects\Data_Pipelines\venv\Lib\site-packages\sqlalchemy\pool\impl.py", line 179, in _do_get
+    with util.safe_reraise():
+         ^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\nickk\PycharmProjects\Data_Pipelines\venv\Lib\site-packages\sqlalchemy\util\langhelpers.py", line 146, in __exit__
+    raise exc_value.with_traceback(exc_tb)
+  File "C:\Users\nickk\PycharmProjects\Data_Pipelines\venv\Lib\site-packages\sqlalchemy\pool\impl.py", line 177, in _do_get
+    return self._create_connection()
+           ^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\nickk\PycharmProjects\Data_Pipelines\venv\Lib\site-packages\sqlalchemy\pool\base.py", line 390, in _create_connection
+    return _ConnectionRecord(self)
+           ^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\nickk\PycharmProjects\Data_Pipelines\venv\Lib\site-packages\sqlalchemy\pool\base.py", line 674, in __init__
+    self.__connect()
+  File "C:\Users\nickk\PycharmProjects\Data_Pipelines\venv\Lib\site-packages\sqlalchemy\pool\base.py", line 900, in __connect
+    with util.safe_reraise():
+         ^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\nickk\PycharmProjects\Data_Pipelines\venv\Lib\site-packages\sqlalchemy\util\langhelpers.py", line 146, in __exit__
+    raise exc_value.with_traceback(exc_tb)
+  File "C:\Users\nickk\PycharmProjects\Data_Pipelines\venv\Lib\site-packages\sqlalchemy\pool\base.py", line 896, in __connect
+    self.dbapi_connection = connection = pool._invoke_creator(self)
+                                         ^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\nickk\PycharmProjects\Data_Pipelines\venv\Lib\site-packages\sqlalchemy\engine\create.py", line 643, in connect
+    return dialect.connect(*cargs, **cparams)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\nickk\PycharmProjects\Data_Pipelines\venv\Lib\site-packages\sqlalchemy\engine\default.py", line 621, in connect
+    return self.loaded_dbapi.connect(*cargs, **cparams)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+pyodbc.InterfaceError: ('IM002', '[IM002] [Microsoft][ODBC Driver Manager] Data source name not found and no default driver specified (0) (SQLDriverConnect)')
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "C:\Users\nickk\PycharmProjects\Data_Pipelines\Realtor_Monthly_Inventory_Metro.py", line 221, in <module>
+    main_run()
+  File "C:\Users\nickk\PycharmProjects\Data_Pipelines\Realtor_Monthly_Inventory_Metro.py", line 176, in main_run
+    sql_table_max_date = get_latest_yearmonth(sql_table_name)
+                         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\nickk\PycharmProjects\Data_Pipelines\Realtor_Monthly_Inventory_Metro.py", line 61, in get_latest_yearmonth
+    with sqlalchemy_engine().connect() as connection:
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\nickk\PycharmProjects\Data_Pipelines\venv\Lib\site-packages\sqlalchemy\engine\base.py", line 3278, in connect
+    return self._connection_cls(self)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\nickk\PycharmProjects\Data_Pipelines\venv\Lib\site-packages\sqlalchemy\engine\base.py", line 148, in __init__
+    Connection._handle_dbapi_exception_noconnection(
+  File "C:\Users\nickk\PycharmProjects\Data_Pipelines\venv\Lib\site-packages\sqlalchemy\engine\base.py", line 2442, in _handle_dbapi_exception_noconnection
+    raise sqlalchemy_exception.with_traceback(exc_info[2]) from e
+  File "C:\Users\nickk\PycharmProjects\Data_Pipelines\venv\Lib\site-packages\sqlalchemy\engine\base.py", line 146, in __init__
+    self._dbapi_connection = engine.raw_connection()
+                             ^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\nickk\PycharmProjects\Data_Pipelines\venv\Lib\site-packages\sqlalchemy\engine\base.py", line 3302, in raw_connection
+    return self.pool.connect()
+           ^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\nickk\PycharmProjects\Data_Pipelines\venv\Lib\site-packages\sqlalchemy\pool\base.py", line 449, in connect
+    return _ConnectionFairy._checkout(self)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\nickk\PycharmProjects\Data_Pipelines\venv\Lib\site-packages\sqlalchemy\pool\base.py", line 1263, in _checkout
+    fairy = _ConnectionRecord.checkout(pool)
+            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\nickk\PycharmProjects\Data_Pipelines\venv\Lib\site-packages\sqlalchemy\pool\base.py", line 712, in checkout
+    rec = pool._do_get()
+          ^^^^^^^^^^^^^^
+  File "C:\Users\nickk\PycharmProjects\Data_Pipelines\venv\Lib\site-packages\sqlalchemy\pool\impl.py", line 179, in _do_get
+    with util.safe_reraise():
+         ^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\nickk\PycharmProjects\Data_Pipelines\venv\Lib\site-packages\sqlalchemy\util\langhelpers.py", line 146, in __exit__
+    raise exc_value.with_traceback(exc_tb)
+  File "C:\Users\nickk\PycharmProjects\Data_Pipelines\venv\Lib\site-packages\sqlalchemy\pool\impl.py", line 177, in _do_get
+    return self._create_connection()
+           ^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\nickk\PycharmProjects\Data_Pipelines\venv\Lib\site-packages\sqlalchemy\pool\base.py", line 390, in _create_connection
+    return _ConnectionRecord(self)
+           ^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\nickk\PycharmProjects\Data_Pipelines\venv\Lib\site-packages\sqlalchemy\pool\base.py", line 674, in __init__
+    self.__connect()
+  File "C:\Users\nickk\PycharmProjects\Data_Pipelines\venv\Lib\site-packages\sqlalchemy\pool\base.py", line 900, in __connect
+    with util.safe_reraise():
+         ^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\nickk\PycharmProjects\Data_Pipelines\venv\Lib\site-packages\sqlalchemy\util\langhelpers.py", line 146, in __exit__
+    raise exc_value.with_traceback(exc_tb)
+  File "C:\Users\nickk\PycharmProjects\Data_Pipelines\venv\Lib\site-packages\sqlalchemy\pool\base.py", line 896, in __connect
+    self.dbapi_connection = connection = pool._invoke_creator(self)
+                                         ^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\nickk\PycharmProjects\Data_Pipelines\venv\Lib\site-packages\sqlalchemy\engine\create.py", line 643, in connect
+    return dialect.connect(*cargs, **cparams)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\nickk\PycharmProjects\Data_Pipelines\venv\Lib\site-packages\sqlalchemy\engine\default.py", line 621, in connect
+    return self.loaded_dbapi.connect(*cargs, **cparams)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+sqlalchemy.exc.InterfaceError: (pyodbc.InterfaceError) ('IM002', '[IM002] [Microsoft][ODBC Driver Manager] Data source name not found and no default driver specified (0) (SQLDriverConnect)')
+(Background on this error at: https://sqlalche.me/e/20/rvf5)
+
+2025-03-15 12:43:14,790 - INFO - Main Function took 0 minutes and 0.03 seconds to run.
+2025-03-15 12:43:14,790 - INFO - ******************************************
+2025-03-15 12:46:04,767 - INFO - ******************************************
+2025-03-15 12:46:05,036 - INFO - Get Latest Yearmonth called, results for max date is None for table REALTOR_MNTHLY_METRO
+2025-03-15 12:46:05,854 - INFO - Successfully requested and received data from: https://econdata.s3-us-west-2.amazonaws.com/Reports/Core/RDC_Inventory_Core_Metrics_Metro.csv
+2025-03-15 12:46:05,890 - INFO - Writing historical data to REALTOR_MNTHLY_METRO.
+2025-03-15 12:46:07,498 - ERROR - An error occurred: (pymssql.exceptions.OperationalError) Cannot commit transaction: (3902, b'The COMMIT TRANSACTION request has no corresponding BEGIN TRANSACTION.DB-Lib error message 20018, severity 16:\nGeneral SQL Server error: Check messages from the SQL Server\n')
+(Background on this error at: https://sqlalche.me/e/20/e3q8)
+Traceback (most recent call last):
+  File "src\\pymssql\\_pymssql.pyx", line 254, in pymssql._pymssql.Connection.commit
+  File "src\\pymssql\\_mssql.pyx", line 1094, in pymssql._mssql.MSSQLConnection.execute_non_query
+  File "src\\pymssql\\_mssql.pyx", line 1115, in pymssql._mssql.MSSQLConnection.execute_non_query
+  File "src\\pymssql\\_mssql.pyx", line 1289, in pymssql._mssql.MSSQLConnection.format_and_run_query
+  File "src\\pymssql\\_mssql.pyx", line 1855, in pymssql._mssql.check_cancel_and_raise
+  File "src\\pymssql\\_mssql.pyx", line 1901, in pymssql._mssql.raise_MSSQLDatabaseException
+pymssql._mssql.MSSQLDatabaseException: (3902, b'The COMMIT TRANSACTION request has no corresponding BEGIN TRANSACTION.DB-Lib error message 20018, severity 16:\nGeneral SQL Server error: Check messages from the SQL Server\n')
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "C:\Users\nickk\PycharmProjects\Data_Pipelines\venv\Lib\site-packages\sqlalchemy\engine\base.py", line 1144, in _commit_impl
+    self.engine.dialect.do_commit(self.connection)
+  File "C:\Users\nickk\PycharmProjects\Data_Pipelines\venv\Lib\site-packages\sqlalchemy\engine\default.py", line 702, in do_commit
+    dbapi_connection.commit()
+  File "src\\pymssql\\_pymssql.pyx", line 257, in pymssql._pymssql.Connection.commit
+pymssql.exceptions.OperationalError: Cannot commit transaction: (3902, b'The COMMIT TRANSACTION request has no corresponding BEGIN TRANSACTION.DB-Lib error message 20018, severity 16:\nGeneral SQL Server error: Check messages from the SQL Server\n')
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "C:\Users\nickk\PycharmProjects\Data_Pipelines\Realtor_Monthly_Inventory_Metro.py", line 221, in <module>
+    main_run()
+  File "C:\Users\nickk\PycharmProjects\Data_Pipelines\Realtor_Monthly_Inventory_Metro.py", line 211, in main_run
+    redfin_df_v3.to_sql(sql_table_name, con=conn, if_exists='replace', index=False, chunksize=1000)
+  File "C:\Users\nickk\PycharmProjects\Data_Pipelines\venv\Lib\site-packages\pandas\util\_decorators.py", line 333, in wrapper
+    return func(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\nickk\PycharmProjects\Data_Pipelines\venv\Lib\site-packages\pandas\core\generic.py", line 3087, in to_sql
+    return sql.to_sql(
+           ^^^^^^^^^^^
+  File "C:\Users\nickk\PycharmProjects\Data_Pipelines\venv\Lib\site-packages\pandas\io\sql.py", line 841, in to_sql
+    with pandasSQL_builder(con, schema=schema, need_transaction=True) as pandas_sql:
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\nickk\PycharmProjects\Data_Pipelines\venv\Lib\site-packages\pandas\io\sql.py", line 1645, in __exit__
+    self.exit_stack.close()
+  File "C:\Program Files\WindowsApps\PythonSoftwareFoundation.Python.3.12_3.12.2544.0_x64__qbz5n2kfra8p0\Lib\contextlib.py", line 618, in close
+    self.__exit__(None, None, None)
+  File "C:\Program Files\WindowsApps\PythonSoftwareFoundation.Python.3.12_3.12.2544.0_x64__qbz5n2kfra8p0\Lib\contextlib.py", line 610, in __exit__
+    raise exc_details[1]
+  File "C:\Program Files\WindowsApps\PythonSoftwareFoundation.Python.3.12_3.12.2544.0_x64__qbz5n2kfra8p0\Lib\contextlib.py", line 595, in __exit__
+    if cb(*exc_details):
+       ^^^^^^^^^^^^^^^^
+  File "C:\Users\nickk\PycharmProjects\Data_Pipelines\venv\Lib\site-packages\sqlalchemy\engine\util.py", line 147, in __exit__
+    with util.safe_reraise():
+         ^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\nickk\PycharmProjects\Data_Pipelines\venv\Lib\site-packages\sqlalchemy\util\langhelpers.py", line 146, in __exit__
+    raise exc_value.with_traceback(exc_tb)
+  File "C:\Users\nickk\PycharmProjects\Data_Pipelines\venv\Lib\site-packages\sqlalchemy\engine\util.py", line 145, in __exit__
+    self.commit()
+  File "C:\Users\nickk\PycharmProjects\Data_Pipelines\venv\Lib\site-packages\sqlalchemy\engine\base.py", line 2631, in commit
+    self._do_commit()
+  File "C:\Users\nickk\PycharmProjects\Data_Pipelines\venv\Lib\site-packages\sqlalchemy\engine\base.py", line 2736, in _do_commit
+    self._connection_commit_impl()
+  File "C:\Users\nickk\PycharmProjects\Data_Pipelines\venv\Lib\site-packages\sqlalchemy\engine\base.py", line 2707, in _connection_commit_impl
+    self.connection._commit_impl()
+  File "C:\Users\nickk\PycharmProjects\Data_Pipelines\venv\Lib\site-packages\sqlalchemy\engine\base.py", line 1146, in _commit_impl
+    self._handle_dbapi_exception(e, None, None, None, None)
+  File "C:\Users\nickk\PycharmProjects\Data_Pipelines\venv\Lib\site-packages\sqlalchemy\engine\base.py", line 2355, in _handle_dbapi_exception
+    raise sqlalchemy_exception.with_traceback(exc_info[2]) from e
+  File "C:\Users\nickk\PycharmProjects\Data_Pipelines\venv\Lib\site-packages\sqlalchemy\engine\base.py", line 1144, in _commit_impl
+    self.engine.dialect.do_commit(self.connection)
+  File "C:\Users\nickk\PycharmProjects\Data_Pipelines\venv\Lib\site-packages\sqlalchemy\engine\default.py", line 702, in do_commit
+    dbapi_connection.commit()
+  File "src\\pymssql\\_pymssql.pyx", line 257, in pymssql._pymssql.Connection.commit
+sqlalchemy.exc.OperationalError: (pymssql.exceptions.OperationalError) Cannot commit transaction: (3902, b'The COMMIT TRANSACTION request has no corresponding BEGIN TRANSACTION.DB-Lib error message 20018, severity 16:\nGeneral SQL Server error: Check messages from the SQL Server\n')
+(Background on this error at: https://sqlalche.me/e/20/e3q8)
+
+2025-03-15 12:46:07,499 - INFO - Main Function took 0 minutes and 2.73 seconds to run.
+2025-03-15 12:46:07,499 - INFO - ******************************************
+2025-03-15 12:46:35,888 - INFO - ******************************************
+2025-03-15 12:46:36,172 - INFO - Get Latest Yearmonth called, results for max date is None for table REALTOR_MNTHLY_METRO
+2025-03-15 12:46:36,980 - INFO - Successfully requested and received data from: https://econdata.s3-us-west-2.amazonaws.com/Reports/Core/RDC_Inventory_Core_Metrics_Metro.csv
+2025-03-15 12:46:37,001 - INFO - Writing historical data to REALTOR_MNTHLY_METRO.
+2025-03-15 12:46:38,485 - ERROR - An error occurred: (pymssql.exceptions.OperationalError) Cannot commit transaction: (3902, b'The COMMIT TRANSACTION request has no corresponding BEGIN TRANSACTION.DB-Lib error message 20018, severity 16:\nGeneral SQL Server error: Check messages from the SQL Server\n')
+(Background on this error at: https://sqlalche.me/e/20/e3q8)
+Traceback (most recent call last):
+  File "src\\pymssql\\_pymssql.pyx", line 254, in pymssql._pymssql.Connection.commit
+  File "src\\pymssql\\_mssql.pyx", line 1094, in pymssql._mssql.MSSQLConnection.execute_non_query
+  File "src\\pymssql\\_mssql.pyx", line 1115, in pymssql._mssql.MSSQLConnection.execute_non_query
+  File "src\\pymssql\\_mssql.pyx", line 1289, in pymssql._mssql.MSSQLConnection.format_and_run_query
+  File "src\\pymssql\\_mssql.pyx", line 1855, in pymssql._mssql.check_cancel_and_raise
+  File "src\\pymssql\\_mssql.pyx", line 1901, in pymssql._mssql.raise_MSSQLDatabaseException
+pymssql._mssql.MSSQLDatabaseException: (3902, b'The COMMIT TRANSACTION request has no corresponding BEGIN TRANSACTION.DB-Lib error message 20018, severity 16:\nGeneral SQL Server error: Check messages from the SQL Server\n')
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "C:\Users\nickk\PycharmProjects\Data_Pipelines\venv\Lib\site-packages\sqlalchemy\engine\base.py", line 1144, in _commit_impl
+    self.engine.dialect.do_commit(self.connection)
+  File "C:\Users\nickk\PycharmProjects\Data_Pipelines\venv\Lib\site-packages\sqlalchemy\engine\default.py", line 702, in do_commit
+    dbapi_connection.commit()
+  File "src\\pymssql\\_pymssql.pyx", line 257, in pymssql._pymssql.Connection.commit
+pymssql.exceptions.OperationalError: Cannot commit transaction: (3902, b'The COMMIT TRANSACTION request has no corresponding BEGIN TRANSACTION.DB-Lib error message 20018, severity 16:\nGeneral SQL Server error: Check messages from the SQL Server\n')
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "C:\Users\nickk\PycharmProjects\Data_Pipelines\Realtor_Monthly_Inventory_Metro.py", line 221, in <module>
+    main_run()
+  File "C:\Users\nickk\PycharmProjects\Data_Pipelines\Realtor_Monthly_Inventory_Metro.py", line 211, in main_run
+    redfin_df_v3.to_sql(sql_table_name, con=conn, if_exists='replace', index=False)
+  File "C:\Users\nickk\PycharmProjects\Data_Pipelines\venv\Lib\site-packages\pandas\util\_decorators.py", line 333, in wrapper
+    return func(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\nickk\PycharmProjects\Data_Pipelines\venv\Lib\site-packages\pandas\core\generic.py", line 3087, in to_sql
+    return sql.to_sql(
+           ^^^^^^^^^^^
+  File "C:\Users\nickk\PycharmProjects\Data_Pipelines\venv\Lib\site-packages\pandas\io\sql.py", line 841, in to_sql
+    with pandasSQL_builder(con, schema=schema, need_transaction=True) as pandas_sql:
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\nickk\PycharmProjects\Data_Pipelines\venv\Lib\site-packages\pandas\io\sql.py", line 1645, in __exit__
+    self.exit_stack.close()
+  File "C:\Program Files\WindowsApps\PythonSoftwareFoundation.Python.3.12_3.12.2544.0_x64__qbz5n2kfra8p0\Lib\contextlib.py", line 618, in close
+    self.__exit__(None, None, None)
+  File "C:\Program Files\WindowsApps\PythonSoftwareFoundation.Python.3.12_3.12.2544.0_x64__qbz5n2kfra8p0\Lib\contextlib.py", line 610, in __exit__
+    raise exc_details[1]
+  File "C:\Program Files\WindowsApps\PythonSoftwareFoundation.Python.3.12_3.12.2544.0_x64__qbz5n2kfra8p0\Lib\contextlib.py", line 595, in __exit__
+    if cb(*exc_details):
+       ^^^^^^^^^^^^^^^^
+  File "C:\Users\nickk\PycharmProjects\Data_Pipelines\venv\Lib\site-packages\sqlalchemy\engine\util.py", line 147, in __exit__
+    with util.safe_reraise():
+         ^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\nickk\PycharmProjects\Data_Pipelines\venv\Lib\site-packages\sqlalchemy\util\langhelpers.py", line 146, in __exit__
+    raise exc_value.with_traceback(exc_tb)
+  File "C:\Users\nickk\PycharmProjects\Data_Pipelines\venv\Lib\site-packages\sqlalchemy\engine\util.py", line 145, in __exit__
+    self.commit()
+  File "C:\Users\nickk\PycharmProjects\Data_Pipelines\venv\Lib\site-packages\sqlalchemy\engine\base.py", line 2631, in commit
+    self._do_commit()
+  File "C:\Users\nickk\PycharmProjects\Data_Pipelines\venv\Lib\site-packages\sqlalchemy\engine\base.py", line 2736, in _do_commit
+    self._connection_commit_impl()
+  File "C:\Users\nickk\PycharmProjects\Data_Pipelines\venv\Lib\site-packages\sqlalchemy\engine\base.py", line 2707, in _connection_commit_impl
+    self.connection._commit_impl()
+  File "C:\Users\nickk\PycharmProjects\Data_Pipelines\venv\Lib\site-packages\sqlalchemy\engine\base.py", line 1146, in _commit_impl
+    self._handle_dbapi_exception(e, None, None, None, None)
+  File "C:\Users\nickk\PycharmProjects\Data_Pipelines\venv\Lib\site-packages\sqlalchemy\engine\base.py", line 2355, in _handle_dbapi_exception
+    raise sqlalchemy_exception.with_traceback(exc_info[2]) from e
+  File "C:\Users\nickk\PycharmProjects\Data_Pipelines\venv\Lib\site-packages\sqlalchemy\engine\base.py", line 1144, in _commit_impl
+    self.engine.dialect.do_commit(self.connection)
+  File "C:\Users\nickk\PycharmProjects\Data_Pipelines\venv\Lib\site-packages\sqlalchemy\engine\default.py", line 702, in do_commit
+    dbapi_connection.commit()
+  File "src\\pymssql\\_pymssql.pyx", line 257, in pymssql._pymssql.Connection.commit
+sqlalchemy.exc.OperationalError: (pymssql.exceptions.OperationalError) Cannot commit transaction: (3902, b'The COMMIT TRANSACTION request has no corresponding BEGIN TRANSACTION.DB-Lib error message 20018, severity 16:\nGeneral SQL Server error: Check messages from the SQL Server\n')
+(Background on this error at: https://sqlalche.me/e/20/e3q8)
+
+2025-03-15 12:46:38,486 - INFO - Main Function took 0 minutes and 2.60 seconds to run.
+2025-03-15 12:46:38,486 - INFO - ******************************************
+2025-03-15 12:48:27,777 - INFO - ******************************************
+2025-03-15 12:48:28,150 - INFO - Get Latest Yearmonth called, results for max date is None for table REALTOR_MNTHLY_METRO
+2025-03-15 12:48:28,904 - INFO - Successfully requested and received data from: https://econdata.s3-us-west-2.amazonaws.com/Reports/Core/RDC_Inventory_Core_Metrics_Metro.csv
+2025-03-15 12:48:30,097 - ERROR - An error occurred: (pymssql.exceptions.OperationalError) (245, b"Conversion failed when converting the nvarchar value 'Pottsville, PA' to data type int.DB-Lib error message 20018, severity 16:\nGeneral SQL Server error: Check messages from the SQL Server\n")
+[SQL: INSERT INTO [REALTOR_MNTHLY_METRO] (month_date_yyyymm, cbsa_code, cbsa_title, [HouseholdRank], median_listing_price, active_listing_count, median_days_on_market, new_listing_count, price_increased_count, price_reduced_count, pending_listing_count, me ... 64137 characters truncated ... sting_price_lm__48)s, %(total_listing_count_lm__48)s, %(pending_ratio_lm__48)s, %(Update_Date__48)s)]
+[parameters: {'average_listing_price__0': 227800.0, 'median_square_feet__0': 1654.0, 'median_days_on_market_lm__0': 77.0, 'new_listing_count__0': 126.0, 'price_increased_count_ly__0': 0.0, 'pending_ratio_ly__0': 1.0, 'month_date_yyyymm__0': 202502, 'active_listing_count__0': 264, 'median_listing_price_per_square_foot_ly__0': 99.0, 'total_listing_count_lm__0': 399.0, 'pending_listing_count__0': 142.0, 'average_listing_price_ly__0': 187567.0, 'cbsa_code__0': 39060.0, 'active_listing_count_lm__0': 275.0, 'new_listing_count_ly__0': 108.0, 'median_listing_price_per_square_foot__0': 94.0, 'HouseholdRank__0': 292.0, 'price_increased_count_lm__0': 0.0, 'total_listing_count_ly__0': 324.0, 'median_square_feet_lm__0': 1595.0, 'median_listing_price_per_square_foot_lm__0': 94.0, 'price_increased_count__0': 2.0, 'median_square_feet_ly__0': 1439.0, 'pending_listing_count_lm__0': 127.0, 'average_listing_price_lm__0': 223794.0, 'price_reduced_count__0': 68.0, 'pending_listing_count_ly__0': 140.0, 'median_listing_price_lm__0': 149924.0, 'cbsa_title__0': 'Pottsville, PA', 'median_listing_price__0': 147000.0, 'price_reduced_count_ly__0': 66.0, 'median_listing_price_ly__0': 138994.0, 'total_listing_count__0': 407.0, 'active_listing_count_ly__0': 186.0, 'Update_Date__0': '2025-03-15 12:48:28', 'pending_ratio_lm__0': 0.4989759821262335, 'median_days_on_market__0': 72.0, 'median_days_on_market_ly__0': 62.0, 'price_reduced_count_lm__0': 68.0, 'new_listing_count_lm__0': 118.0, 'quality_flag__0': 0, 'pending_ratio__0': 0.536, 'average_listing_price__1': 252484.0, 'median_square_feet__1': 1821.0, 'median_days_on_market_lm__1': 86.0, 'new_listing_count__1': 46.0, 'price_increased_count_ly__1': 0.0, 'pending_ratio_ly__1': 0.0, 'month_date_yyyymm__1': 202502, 'active_listing_count__1': 143 ... 1958 parameters truncated ... 'Update_Date__47': '2025-03-15 12:48:28', 'pending_ratio_lm__47': 0.3871981150598861, 'median_days_on_market__47': 66.0, 'median_days_on_market_ly__47': 60.0, 'price_reduced_count_lm__47': 2622.0, 'new_listing_count_lm__47': 2742.0, 'quality_flag__47': 0, 'pending_ratio__47': 0.3944, 'average_listing_price__48': 3460453.0, 'median_square_feet__48': 2029.0, 'median_days_on_market_lm__48': 97.0, 'new_listing_count__48': 74.0, 'price_increased_count_ly__48': 0.0, 'pending_ratio_ly__48': 0.0, 'month_date_yyyymm__48': 202502, 'active_listing_count__48': 212, 'median_listing_price_per_square_foot_ly__48': 826.0, 'total_listing_count_lm__48': 256.0, 'pending_listing_count__48': 46.0, 'average_listing_price_ly__48': 2903795.0, 'cbsa_code__48': 25200.0, 'active_listing_count_lm__48': 209.0, 'new_listing_count_ly__48': 54.0, 'median_listing_price_per_square_foot__48': 900.0, 'HouseholdRank__48': 795.0, 'price_increased_count_lm__48': 0.0, 'total_listing_count_ly__48': 224.0, 'median_square_feet_lm__48': 1980.0, 'median_listing_price_per_square_foot_lm__48': 907.0, 'price_increased_count__48': 0.0, 'median_square_feet_ly__48': 2234.0, 'pending_listing_count_lm__48': 48.0, 'average_listing_price_lm__48': 3236185.0, 'price_reduced_count__48': 24.0, 'pending_listing_count_ly__48': 44.0, 'median_listing_price_lm__48': 1373725.0, 'cbsa_title__48': 'Hailey, ID', 'median_listing_price__48': 1535000.0, 'price_reduced_count_ly__48': 26.0, 'median_listing_price_ly__48': 1228295.0, 'total_listing_count__48': 255.0, 'active_listing_count_ly__48': 180.0, 'Update_Date__48': '2025-03-15 12:48:28', 'pending_ratio_lm__48': 0.21733858745074267, 'median_days_on_market__48': 76.0, 'median_days_on_market_ly__48': 82.0, 'price_reduced_count_lm__48': 24.0, 'new_listing_count_lm__48': 40.0, 'quality_flag__48': 0, 'pending_ratio__48': 0.2151}]
+(Background on this error at: https://sqlalche.me/e/20/e3q8)
+Traceback (most recent call last):
+  File "src\\pymssql\\_pymssql.pyx", line 447, in pymssql._pymssql.Cursor.execute
+  File "src\\pymssql\\_mssql.pyx", line 1125, in pymssql._mssql.MSSQLConnection.execute_query
+  File "src\\pymssql\\_mssql.pyx", line 1156, in pymssql._mssql.MSSQLConnection.execute_query
+  File "src\\pymssql\\_mssql.pyx", line 1289, in pymssql._mssql.MSSQLConnection.format_and_run_query
+  File "src\\pymssql\\_mssql.pyx", line 1855, in pymssql._mssql.check_cancel_and_raise
+  File "src\\pymssql\\_mssql.pyx", line 1901, in pymssql._mssql.raise_MSSQLDatabaseException
+pymssql._mssql.MSSQLDatabaseException: (245, b"Conversion failed when converting the nvarchar value 'Pottsville, PA' to data type int.DB-Lib error message 20018, severity 16:\nGeneral SQL Server error: Check messages from the SQL Server\n")
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "C:\Users\nickk\PycharmProjects\Data_Pipelines\venv\Lib\site-packages\sqlalchemy\engine\base.py", line 2118, in _exec_insertmany_context
+    dialect.do_execute(
+  File "C:\Users\nickk\PycharmProjects\Data_Pipelines\venv\Lib\site-packages\sqlalchemy\engine\default.py", line 941, in do_execute
+    cursor.execute(statement, parameters)
+  File "src\\pymssql\\_pymssql.pyx", line 465, in pymssql._pymssql.Cursor.execute
+pymssql.exceptions.OperationalError: (245, b"Conversion failed when converting the nvarchar value 'Pottsville, PA' to data type int.DB-Lib error message 20018, severity 16:\nGeneral SQL Server error: Check messages from the SQL Server\n")
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "C:\Users\nickk\PycharmProjects\Data_Pipelines\Realtor_Monthly_Inventory_Metro.py", line 227, in <module>
+    main_run()
+  File "C:\Users\nickk\PycharmProjects\Data_Pipelines\Realtor_Monthly_Inventory_Metro.py", line 212, in main_run
+    redfin_df_v3.to_sql(sql_table_name, con=connection, if_exists='fail', index=False)
+  File "C:\Users\nickk\PycharmProjects\Data_Pipelines\venv\Lib\site-packages\pandas\util\_decorators.py", line 333, in wrapper
+    return func(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\nickk\PycharmProjects\Data_Pipelines\venv\Lib\site-packages\pandas\core\generic.py", line 3087, in to_sql
+    return sql.to_sql(
+           ^^^^^^^^^^^
+  File "C:\Users\nickk\PycharmProjects\Data_Pipelines\venv\Lib\site-packages\pandas\io\sql.py", line 842, in to_sql
+    return pandas_sql.to_sql(
+           ^^^^^^^^^^^^^^^^^^
+  File "C:\Users\nickk\PycharmProjects\Data_Pipelines\venv\Lib\site-packages\pandas\io\sql.py", line 2018, in to_sql
+    total_inserted = sql_engine.insert_records(
+                     ^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\nickk\PycharmProjects\Data_Pipelines\venv\Lib\site-packages\pandas\io\sql.py", line 1567, in insert_records
+    raise err
+  File "C:\Users\nickk\PycharmProjects\Data_Pipelines\venv\Lib\site-packages\pandas\io\sql.py", line 1558, in insert_records
+    return table.insert(chunksize=chunksize, method=method)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\nickk\PycharmProjects\Data_Pipelines\venv\Lib\site-packages\pandas\io\sql.py", line 1119, in insert
+    num_inserted = exec_insert(conn, keys, chunk_iter)
+                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\nickk\PycharmProjects\Data_Pipelines\venv\Lib\site-packages\pandas\io\sql.py", line 1010, in _execute_insert
+    result = conn.execute(self.table.insert(), data)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\nickk\PycharmProjects\Data_Pipelines\venv\Lib\site-packages\sqlalchemy\engine\base.py", line 1418, in execute
+    return meth(
+           ^^^^^
+  File "C:\Users\nickk\PycharmProjects\Data_Pipelines\venv\Lib\site-packages\sqlalchemy\sql\elements.py", line 515, in _execute_on_connection
+    return connection._execute_clauseelement(
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\nickk\PycharmProjects\Data_Pipelines\venv\Lib\site-packages\sqlalchemy\engine\base.py", line 1640, in _execute_clauseelement
+    ret = self._execute_context(
+          ^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\nickk\PycharmProjects\Data_Pipelines\venv\Lib\site-packages\sqlalchemy\engine\base.py", line 1844, in _execute_context
+    return self._exec_insertmany_context(dialect, context)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\nickk\PycharmProjects\Data_Pipelines\venv\Lib\site-packages\sqlalchemy\engine\base.py", line 2126, in _exec_insertmany_context
+    self._handle_dbapi_exception(
+  File "C:\Users\nickk\PycharmProjects\Data_Pipelines\venv\Lib\site-packages\sqlalchemy\engine\base.py", line 2355, in _handle_dbapi_exception
+    raise sqlalchemy_exception.with_traceback(exc_info[2]) from e
+  File "C:\Users\nickk\PycharmProjects\Data_Pipelines\venv\Lib\site-packages\sqlalchemy\engine\base.py", line 2118, in _exec_insertmany_context
+    dialect.do_execute(
+  File "C:\Users\nickk\PycharmProjects\Data_Pipelines\venv\Lib\site-packages\sqlalchemy\engine\default.py", line 941, in do_execute
+    cursor.execute(statement, parameters)
+  File "src\\pymssql\\_pymssql.pyx", line 465, in pymssql._pymssql.Cursor.execute
+sqlalchemy.exc.OperationalError: (pymssql.exceptions.OperationalError) (245, b"Conversion failed when converting the nvarchar value 'Pottsville, PA' to data type int.DB-Lib error message 20018, severity 16:\nGeneral SQL Server error: Check messages from the SQL Server\n")
+[SQL: INSERT INTO [REALTOR_MNTHLY_METRO] (month_date_yyyymm, cbsa_code, cbsa_title, [HouseholdRank], median_listing_price, active_listing_count, median_days_on_market, new_listing_count, price_increased_count, price_reduced_count, pending_listing_count, me ... 64137 characters truncated ... sting_price_lm__48)s, %(total_listing_count_lm__48)s, %(pending_ratio_lm__48)s, %(Update_Date__48)s)]
+[parameters: {'average_listing_price__0': 227800.0, 'median_square_feet__0': 1654.0, 'median_days_on_market_lm__0': 77.0, 'new_listing_count__0': 126.0, 'price_increased_count_ly__0': 0.0, 'pending_ratio_ly__0': 1.0, 'month_date_yyyymm__0': 202502, 'active_listing_count__0': 264, 'median_listing_price_per_square_foot_ly__0': 99.0, 'total_listing_count_lm__0': 399.0, 'pending_listing_count__0': 142.0, 'average_listing_price_ly__0': 187567.0, 'cbsa_code__0': 39060.0, 'active_listing_count_lm__0': 275.0, 'new_listing_count_ly__0': 108.0, 'median_listing_price_per_square_foot__0': 94.0, 'HouseholdRank__0': 292.0, 'price_increased_count_lm__0': 0.0, 'total_listing_count_ly__0': 324.0, 'median_square_feet_lm__0': 1595.0, 'median_listing_price_per_square_foot_lm__0': 94.0, 'price_increased_count__0': 2.0, 'median_square_feet_ly__0': 1439.0, 'pending_listing_count_lm__0': 127.0, 'average_listing_price_lm__0': 223794.0, 'price_reduced_count__0': 68.0, 'pending_listing_count_ly__0': 140.0, 'median_listing_price_lm__0': 149924.0, 'cbsa_title__0': 'Pottsville, PA', 'median_listing_price__0': 147000.0, 'price_reduced_count_ly__0': 66.0, 'median_listing_price_ly__0': 138994.0, 'total_listing_count__0': 407.0, 'active_listing_count_ly__0': 186.0, 'Update_Date__0': '2025-03-15 12:48:28', 'pending_ratio_lm__0': 0.4989759821262335, 'median_days_on_market__0': 72.0, 'median_days_on_market_ly__0': 62.0, 'price_reduced_count_lm__0': 68.0, 'new_listing_count_lm__0': 118.0, 'quality_flag__0': 0, 'pending_ratio__0': 0.536, 'average_listing_price__1': 252484.0, 'median_square_feet__1': 1821.0, 'median_days_on_market_lm__1': 86.0, 'new_listing_count__1': 46.0, 'price_increased_count_ly__1': 0.0, 'pending_ratio_ly__1': 0.0, 'month_date_yyyymm__1': 202502, 'active_listing_count__1': 143 ... 1958 parameters truncated ... 'Update_Date__47': '2025-03-15 12:48:28', 'pending_ratio_lm__47': 0.3871981150598861, 'median_days_on_market__47': 66.0, 'median_days_on_market_ly__47': 60.0, 'price_reduced_count_lm__47': 2622.0, 'new_listing_count_lm__47': 2742.0, 'quality_flag__47': 0, 'pending_ratio__47': 0.3944, 'average_listing_price__48': 3460453.0, 'median_square_feet__48': 2029.0, 'median_days_on_market_lm__48': 97.0, 'new_listing_count__48': 74.0, 'price_increased_count_ly__48': 0.0, 'pending_ratio_ly__48': 0.0, 'month_date_yyyymm__48': 202502, 'active_listing_count__48': 212, 'median_listing_price_per_square_foot_ly__48': 826.0, 'total_listing_count_lm__48': 256.0, 'pending_listing_count__48': 46.0, 'average_listing_price_ly__48': 2903795.0, 'cbsa_code__48': 25200.0, 'active_listing_count_lm__48': 209.0, 'new_listing_count_ly__48': 54.0, 'median_listing_price_per_square_foot__48': 900.0, 'HouseholdRank__48': 795.0, 'price_increased_count_lm__48': 0.0, 'total_listing_count_ly__48': 224.0, 'median_square_feet_lm__48': 1980.0, 'median_listing_price_per_square_foot_lm__48': 907.0, 'price_increased_count__48': 0.0, 'median_square_feet_ly__48': 2234.0, 'pending_listing_count_lm__48': 48.0, 'average_listing_price_lm__48': 3236185.0, 'price_reduced_count__48': 24.0, 'pending_listing_count_ly__48': 44.0, 'median_listing_price_lm__48': 1373725.0, 'cbsa_title__48': 'Hailey, ID', 'median_listing_price__48': 1535000.0, 'price_reduced_count_ly__48': 26.0, 'median_listing_price_ly__48': 1228295.0, 'total_listing_count__48': 255.0, 'active_listing_count_ly__48': 180.0, 'Update_Date__48': '2025-03-15 12:48:28', 'pending_ratio_lm__48': 0.21733858745074267, 'median_days_on_market__48': 76.0, 'median_days_on_market_ly__48': 82.0, 'price_reduced_count_lm__48': 24.0, 'new_listing_count_lm__48': 40.0, 'quality_flag__48': 0, 'pending_ratio__48': 0.2151}]
+(Background on this error at: https://sqlalche.me/e/20/e3q8)
+
+2025-03-15 12:48:30,099 - INFO - Main Function took 0 minutes and 2.32 seconds to run.
+2025-03-15 12:48:30,099 - INFO - ******************************************
+2025-03-15 12:53:17,281 - INFO - ******************************************
+2025-03-15 12:53:17,596 - INFO - Get Latest Yearmonth called, results for max date is None for table REALTOR_MNTHLY_METRO
+2025-03-15 12:53:18,333 - INFO - Successfully requested and received data from: https://econdata.s3-us-west-2.amazonaws.com/Reports/Core/RDC_Inventory_Core_Metrics_Metro.csv
+2025-03-15 12:53:19,540 - ERROR - An error occurred: (pymssql.exceptions.OperationalError) (245, b"Conversion failed when converting the nvarchar value 'Pottsville, PA' to data type int.DB-Lib error message 20018, severity 16:\nGeneral SQL Server error: Check messages from the SQL Server\n")
+[SQL: INSERT INTO [REALTOR_MNTHLY_METRO] (month_date_yyyymm, cbsa_code, cbsa_title, [HouseholdRank], median_listing_price, active_listing_count, median_days_on_market, new_listing_count, price_increased_count, price_reduced_count, pending_listing_count, me ... 64137 characters truncated ... sting_price_lm__48)s, %(total_listing_count_lm__48)s, %(pending_ratio_lm__48)s, %(Update_Date__48)s)]
+[parameters: {'Update_Date__0': '2025-03-15 12:53:18', 'new_listing_count_ly__0': 108.0, 'month_date_yyyymm__0': 202502, 'median_listing_price_per_square_foot__0': 94.0, 'new_listing_count_lm__0': 118.0, 'price_reduced_count_lm__0': 68.0, 'median_listing_price_ly__0': 138994.0, 'quality_flag__0': 0, 'cbsa_title__0': 'Pottsville, PA', 'median_days_on_market_lm__0': 77.0, 'price_increased_count__0': 2.0, 'pending_listing_count_lm__0': 127.0, 'pending_ratio_lm__0': 0.4989759821262335, 'pending_listing_count_ly__0': 140.0, 'pending_ratio__0': 0.536, 'HouseholdRank__0': 292.0, 'pending_listing_count__0': 142.0, 'price_increased_count_lm__0': 0.0, 'price_reduced_count_ly__0': 66.0, 'median_square_feet_ly__0': 1439.0, 'total_listing_count__0': 407.0, 'median_square_feet_lm__0': 1595.0, 'median_days_on_market_ly__0': 62.0, 'median_listing_price_lm__0': 149924.0, 'average_listing_price_ly__0': 187567.0, 'cbsa_code__0': 39060.0, 'total_listing_count_lm__0': 399.0, 'median_days_on_market__0': 72.0, 'pending_ratio_ly__0': 1.0, 'price_increased_count_ly__0': 0.0, 'price_reduced_count__0': 68.0, 'active_listing_count__0': 264, 'total_listing_count_ly__0': 324.0, 'median_listing_price_per_square_foot_lm__0': 94.0, 'average_listing_price_lm__0': 223794.0, 'average_listing_price__0': 227800.0, 'median_listing_price_per_square_foot_ly__0': 99.0, 'median_listing_price__0': 147000.0, 'new_listing_count__0': 126.0, 'median_square_feet__0': 1654.0, 'active_listing_count_lm__0': 275.0, 'active_listing_count_ly__0': 186.0, 'Update_Date__1': '2025-03-15 12:53:18', 'new_listing_count_ly__1': 32.0, 'month_date_yyyymm__1': 202502, 'median_listing_price_per_square_foot__1': 127.0, 'new_listing_count_lm__1': 24.0, 'price_reduced_count_lm__1': 20.0, 'median_listing_price_ly__1': 226227.0, 'quality_flag__1': 0 ... 1958 parameters truncated ... 'average_listing_price_lm__47': 764861.0, 'average_listing_price__47': 780770.0, 'median_listing_price_per_square_foot_ly__47': 268.0, 'median_listing_price__47': 499000.0, 'new_listing_count__47': 3260.0, 'median_square_feet__47': 2017.0, 'active_listing_count_lm__47': 7489.0, 'active_listing_count_ly__47': 6608.0, 'Update_Date__48': '2025-03-15 12:53:18', 'new_listing_count_ly__48': 54.0, 'month_date_yyyymm__48': 202502, 'median_listing_price_per_square_foot__48': 900.0, 'new_listing_count_lm__48': 40.0, 'price_reduced_count_lm__48': 24.0, 'median_listing_price_ly__48': 1228295.0, 'quality_flag__48': 0, 'cbsa_title__48': 'Hailey, ID', 'median_days_on_market_lm__48': 97.0, 'price_increased_count__48': 0.0, 'pending_listing_count_lm__48': 48.0, 'pending_ratio_lm__48': 0.21733858745074267, 'pending_listing_count_ly__48': 44.0, 'pending_ratio__48': 0.2151, 'HouseholdRank__48': 795.0, 'pending_listing_count__48': 46.0, 'price_increased_count_lm__48': 0.0, 'price_reduced_count_ly__48': 26.0, 'median_square_feet_ly__48': 2234.0, 'total_listing_count__48': 255.0, 'median_square_feet_lm__48': 1980.0, 'median_days_on_market_ly__48': 82.0, 'median_listing_price_lm__48': 1373725.0, 'average_listing_price_ly__48': 2903795.0, 'cbsa_code__48': 25200.0, 'total_listing_count_lm__48': 256.0, 'median_days_on_market__48': 76.0, 'pending_ratio_ly__48': 0.0, 'price_increased_count_ly__48': 0.0, 'price_reduced_count__48': 24.0, 'active_listing_count__48': 212, 'total_listing_count_ly__48': 224.0, 'median_listing_price_per_square_foot_lm__48': 907.0, 'average_listing_price_lm__48': 3236185.0, 'average_listing_price__48': 3460453.0, 'median_listing_price_per_square_foot_ly__48': 826.0, 'median_listing_price__48': 1535000.0, 'new_listing_count__48': 74.0, 'median_square_feet__48': 2029.0, 'active_listing_count_lm__48': 209.0, 'active_listing_count_ly__48': 180.0}]
+(Background on this error at: https://sqlalche.me/e/20/e3q8)
+Traceback (most recent call last):
+  File "src\\pymssql\\_pymssql.pyx", line 447, in pymssql._pymssql.Cursor.execute
+  File "src\\pymssql\\_mssql.pyx", line 1125, in pymssql._mssql.MSSQLConnection.execute_query
+  File "src\\pymssql\\_mssql.pyx", line 1156, in pymssql._mssql.MSSQLConnection.execute_query
+  File "src\\pymssql\\_mssql.pyx", line 1289, in pymssql._mssql.MSSQLConnection.format_and_run_query
+  File "src\\pymssql\\_mssql.pyx", line 1855, in pymssql._mssql.check_cancel_and_raise
+  File "src\\pymssql\\_mssql.pyx", line 1901, in pymssql._mssql.raise_MSSQLDatabaseException
+pymssql._mssql.MSSQLDatabaseException: (245, b"Conversion failed when converting the nvarchar value 'Pottsville, PA' to data type int.DB-Lib error message 20018, severity 16:\nGeneral SQL Server error: Check messages from the SQL Server\n")
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "C:\Users\nickk\PycharmProjects\Data_Pipelines\venv\Lib\site-packages\sqlalchemy\engine\base.py", line 2118, in _exec_insertmany_context
+    dialect.do_execute(
+  File "C:\Users\nickk\PycharmProjects\Data_Pipelines\venv\Lib\site-packages\sqlalchemy\engine\default.py", line 941, in do_execute
+    cursor.execute(statement, parameters)
+  File "src\\pymssql\\_pymssql.pyx", line 465, in pymssql._pymssql.Cursor.execute
+pymssql.exceptions.OperationalError: (245, b"Conversion failed when converting the nvarchar value 'Pottsville, PA' to data type int.DB-Lib error message 20018, severity 16:\nGeneral SQL Server error: Check messages from the SQL Server\n")
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "C:\Users\nickk\PycharmProjects\Data_Pipelines\Realtor_Monthly_Inventory_Metro.py", line 227, in <module>
+    main_run()
+  File "C:\Users\nickk\PycharmProjects\Data_Pipelines\Realtor_Monthly_Inventory_Metro.py", line 212, in main_run
+    redfin_df_v3.to_sql(sql_table_name, con=connection, if_exists='fail', index=False)
+  File "C:\Users\nickk\PycharmProjects\Data_Pipelines\venv\Lib\site-packages\pandas\util\_decorators.py", line 333, in wrapper
+    return func(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\nickk\PycharmProjects\Data_Pipelines\venv\Lib\site-packages\pandas\core\generic.py", line 3087, in to_sql
+    return sql.to_sql(
+           ^^^^^^^^^^^
+  File "C:\Users\nickk\PycharmProjects\Data_Pipelines\venv\Lib\site-packages\pandas\io\sql.py", line 842, in to_sql
+    return pandas_sql.to_sql(
+           ^^^^^^^^^^^^^^^^^^
+  File "C:\Users\nickk\PycharmProjects\Data_Pipelines\venv\Lib\site-packages\pandas\io\sql.py", line 2018, in to_sql
+    total_inserted = sql_engine.insert_records(
+                     ^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\nickk\PycharmProjects\Data_Pipelines\venv\Lib\site-packages\pandas\io\sql.py", line 1567, in insert_records
+    raise err
+  File "C:\Users\nickk\PycharmProjects\Data_Pipelines\venv\Lib\site-packages\pandas\io\sql.py", line 1558, in insert_records
+    return table.insert(chunksize=chunksize, method=method)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\nickk\PycharmProjects\Data_Pipelines\venv\Lib\site-packages\pandas\io\sql.py", line 1119, in insert
+    num_inserted = exec_insert(conn, keys, chunk_iter)
+                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\nickk\PycharmProjects\Data_Pipelines\venv\Lib\site-packages\pandas\io\sql.py", line 1010, in _execute_insert
+    result = conn.execute(self.table.insert(), data)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\nickk\PycharmProjects\Data_Pipelines\venv\Lib\site-packages\sqlalchemy\engine\base.py", line 1418, in execute
+    return meth(
+           ^^^^^
+  File "C:\Users\nickk\PycharmProjects\Data_Pipelines\venv\Lib\site-packages\sqlalchemy\sql\elements.py", line 515, in _execute_on_connection
+    return connection._execute_clauseelement(
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\nickk\PycharmProjects\Data_Pipelines\venv\Lib\site-packages\sqlalchemy\engine\base.py", line 1640, in _execute_clauseelement
+    ret = self._execute_context(
+          ^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\nickk\PycharmProjects\Data_Pipelines\venv\Lib\site-packages\sqlalchemy\engine\base.py", line 1844, in _execute_context
+    return self._exec_insertmany_context(dialect, context)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\nickk\PycharmProjects\Data_Pipelines\venv\Lib\site-packages\sqlalchemy\engine\base.py", line 2126, in _exec_insertmany_context
+    self._handle_dbapi_exception(
+  File "C:\Users\nickk\PycharmProjects\Data_Pipelines\venv\Lib\site-packages\sqlalchemy\engine\base.py", line 2355, in _handle_dbapi_exception
+    raise sqlalchemy_exception.with_traceback(exc_info[2]) from e
+  File "C:\Users\nickk\PycharmProjects\Data_Pipelines\venv\Lib\site-packages\sqlalchemy\engine\base.py", line 2118, in _exec_insertmany_context
+    dialect.do_execute(
+  File "C:\Users\nickk\PycharmProjects\Data_Pipelines\venv\Lib\site-packages\sqlalchemy\engine\default.py", line 941, in do_execute
+    cursor.execute(statement, parameters)
+  File "src\\pymssql\\_pymssql.pyx", line 465, in pymssql._pymssql.Cursor.execute
+sqlalchemy.exc.OperationalError: (pymssql.exceptions.OperationalError) (245, b"Conversion failed when converting the nvarchar value 'Pottsville, PA' to data type int.DB-Lib error message 20018, severity 16:\nGeneral SQL Server error: Check messages from the SQL Server\n")
+[SQL: INSERT INTO [REALTOR_MNTHLY_METRO] (month_date_yyyymm, cbsa_code, cbsa_title, [HouseholdRank], median_listing_price, active_listing_count, median_days_on_market, new_listing_count, price_increased_count, price_reduced_count, pending_listing_count, me ... 64137 characters truncated ... sting_price_lm__48)s, %(total_listing_count_lm__48)s, %(pending_ratio_lm__48)s, %(Update_Date__48)s)]
+[parameters: {'Update_Date__0': '2025-03-15 12:53:18', 'new_listing_count_ly__0': 108.0, 'month_date_yyyymm__0': 202502, 'median_listing_price_per_square_foot__0': 94.0, 'new_listing_count_lm__0': 118.0, 'price_reduced_count_lm__0': 68.0, 'median_listing_price_ly__0': 138994.0, 'quality_flag__0': 0, 'cbsa_title__0': 'Pottsville, PA', 'median_days_on_market_lm__0': 77.0, 'price_increased_count__0': 2.0, 'pending_listing_count_lm__0': 127.0, 'pending_ratio_lm__0': 0.4989759821262335, 'pending_listing_count_ly__0': 140.0, 'pending_ratio__0': 0.536, 'HouseholdRank__0': 292.0, 'pending_listing_count__0': 142.0, 'price_increased_count_lm__0': 0.0, 'price_reduced_count_ly__0': 66.0, 'median_square_feet_ly__0': 1439.0, 'total_listing_count__0': 407.0, 'median_square_feet_lm__0': 1595.0, 'median_days_on_market_ly__0': 62.0, 'median_listing_price_lm__0': 149924.0, 'average_listing_price_ly__0': 187567.0, 'cbsa_code__0': 39060.0, 'total_listing_count_lm__0': 399.0, 'median_days_on_market__0': 72.0, 'pending_ratio_ly__0': 1.0, 'price_increased_count_ly__0': 0.0, 'price_reduced_count__0': 68.0, 'active_listing_count__0': 264, 'total_listing_count_ly__0': 324.0, 'median_listing_price_per_square_foot_lm__0': 94.0, 'average_listing_price_lm__0': 223794.0, 'average_listing_price__0': 227800.0, 'median_listing_price_per_square_foot_ly__0': 99.0, 'median_listing_price__0': 147000.0, 'new_listing_count__0': 126.0, 'median_square_feet__0': 1654.0, 'active_listing_count_lm__0': 275.0, 'active_listing_count_ly__0': 186.0, 'Update_Date__1': '2025-03-15 12:53:18', 'new_listing_count_ly__1': 32.0, 'month_date_yyyymm__1': 202502, 'median_listing_price_per_square_foot__1': 127.0, 'new_listing_count_lm__1': 24.0, 'price_reduced_count_lm__1': 20.0, 'median_listing_price_ly__1': 226227.0, 'quality_flag__1': 0 ... 1958 parameters truncated ... 'average_listing_price_lm__47': 764861.0, 'average_listing_price__47': 780770.0, 'median_listing_price_per_square_foot_ly__47': 268.0, 'median_listing_price__47': 499000.0, 'new_listing_count__47': 3260.0, 'median_square_feet__47': 2017.0, 'active_listing_count_lm__47': 7489.0, 'active_listing_count_ly__47': 6608.0, 'Update_Date__48': '2025-03-15 12:53:18', 'new_listing_count_ly__48': 54.0, 'month_date_yyyymm__48': 202502, 'median_listing_price_per_square_foot__48': 900.0, 'new_listing_count_lm__48': 40.0, 'price_reduced_count_lm__48': 24.0, 'median_listing_price_ly__48': 1228295.0, 'quality_flag__48': 0, 'cbsa_title__48': 'Hailey, ID', 'median_days_on_market_lm__48': 97.0, 'price_increased_count__48': 0.0, 'pending_listing_count_lm__48': 48.0, 'pending_ratio_lm__48': 0.21733858745074267, 'pending_listing_count_ly__48': 44.0, 'pending_ratio__48': 0.2151, 'HouseholdRank__48': 795.0, 'pending_listing_count__48': 46.0, 'price_increased_count_lm__48': 0.0, 'price_reduced_count_ly__48': 26.0, 'median_square_feet_ly__48': 2234.0, 'total_listing_count__48': 255.0, 'median_square_feet_lm__48': 1980.0, 'median_days_on_market_ly__48': 82.0, 'median_listing_price_lm__48': 1373725.0, 'average_listing_price_ly__48': 2903795.0, 'cbsa_code__48': 25200.0, 'total_listing_count_lm__48': 256.0, 'median_days_on_market__48': 76.0, 'pending_ratio_ly__48': 0.0, 'price_increased_count_ly__48': 0.0, 'price_reduced_count__48': 24.0, 'active_listing_count__48': 212, 'total_listing_count_ly__48': 224.0, 'median_listing_price_per_square_foot_lm__48': 907.0, 'average_listing_price_lm__48': 3236185.0, 'average_listing_price__48': 3460453.0, 'median_listing_price_per_square_foot_ly__48': 826.0, 'median_listing_price__48': 1535000.0, 'new_listing_count__48': 74.0, 'median_square_feet__48': 2029.0, 'active_listing_count_lm__48': 209.0, 'active_listing_count_ly__48': 180.0}]
+(Background on this error at: https://sqlalche.me/e/20/e3q8)
+
+2025-03-15 12:53:19,544 - INFO - Main Function took 0 minutes and 2.26 seconds to run.
+2025-03-15 12:53:19,544 - INFO - ******************************************
+2025-03-15 12:55:02,514 - INFO - ******************************************
+2025-03-15 12:55:02,772 - INFO - Get Latest Yearmonth called, results for max date is None for table REALTOR_MNTHLY_METRO
+2025-03-15 12:55:03,531 - INFO - Successfully requested and received data from: https://econdata.s3-us-west-2.amazonaws.com/Reports/Core/RDC_Inventory_Core_Metrics_Metro.csv
+2025-03-15 12:55:04,792 - ERROR - An error occurred: (pymssql.exceptions.OperationalError) (245, b"Conversion failed when converting the nvarchar value 'Pottsville, PA' to data type int.DB-Lib error message 20018, severity 16:\nGeneral SQL Server error: Check messages from the SQL Server\n")
+[SQL: INSERT INTO [REALTOR_MNTHLY_METRO] (month_date_yyyymm, cbsa_code, cbsa_title, [HouseholdRank], median_listing_price, active_listing_count, median_days_on_market, new_listing_count, price_increased_count, price_reduced_count, pending_listing_count, me ... 64137 characters truncated ... sting_price_lm__48)s, %(total_listing_count_lm__48)s, %(pending_ratio_lm__48)s, %(Update_Date__48)s)]
+[parameters: {'new_listing_count__0': 126.0, 'total_listing_count_lm__0': 399.0, 'average_listing_price_ly__0': 187567.0, 'price_increased_count__0': 2.0, 'median_listing_price_ly__0': 138994.0, 'new_listing_count_ly__0': 108.0, 'median_listing_price_per_square_foot__0': 94.0, 'month_date_yyyymm__0': 202502, 'price_increased_count_ly__0': 0.0, 'median_days_on_market__0': 72.0, 'HouseholdRank__0': 292.0, 'median_square_feet__0': 1654.0, 'price_reduced_count__0': 68.0, 'average_listing_price__0': 227800.0, 'new_listing_count_lm__0': 118.0, 'median_square_feet_ly__0': 1439.0, 'pending_ratio__0': 0.536, 'price_increased_count_lm__0': 0.0, 'median_square_feet_lm__0': 1595.0, 'pending_ratio_ly__0': 1.0, 'total_listing_count__0': 407.0, 'cbsa_title__0': 'Pottsville, PA', 'price_reduced_count_lm__0': 68.0, 'median_listing_price_per_square_foot_ly__0': 99.0, 'median_days_on_market_ly__0': 62.0, 'pending_listing_count_lm__0': 127.0, 'active_listing_count_lm__0': 275.0, 'cbsa_code__0': 39060.0, 'active_listing_count_ly__0': 186.0, 'Update_Date__0': '2025-03-15 12:55:03', 'median_days_on_market_lm__0': 77.0, 'price_reduced_count_ly__0': 66.0, 'pending_ratio_lm__0': 0.4989759821262335, 'pending_listing_count_ly__0': 140.0, 'median_listing_price__0': 147000.0, 'average_listing_price_lm__0': 223794.0, 'quality_flag__0': 0, 'median_listing_price_lm__0': 149924.0, 'total_listing_count_ly__0': 324.0, 'active_listing_count__0': 264, 'pending_listing_count__0': 142.0, 'median_listing_price_per_square_foot_lm__0': 94.0, 'new_listing_count__1': 46.0, 'total_listing_count_lm__1': 150.0, 'average_listing_price_ly__1': 247509.0, 'price_increased_count__1': 0.0, 'median_listing_price_ly__1': 226227.0, 'new_listing_count_ly__1': 32.0, 'median_listing_price_per_square_foot__1': 127.0, 'month_date_yyyymm__1': 202502 ... 1958 parameters truncated ... 'median_listing_price__47': 499000.0, 'average_listing_price_lm__47': 764861.0, 'quality_flag__47': 0, 'median_listing_price_lm__47': 494647.0, 'total_listing_count_ly__47': 7973.0, 'active_listing_count__47': 7905, 'pending_listing_count__47': 3118.0, 'median_listing_price_per_square_foot_lm__47': 251.0, 'new_listing_count__48': 74.0, 'total_listing_count_lm__48': 256.0, 'average_listing_price_ly__48': 2903795.0, 'price_increased_count__48': 0.0, 'median_listing_price_ly__48': 1228295.0, 'new_listing_count_ly__48': 54.0, 'median_listing_price_per_square_foot__48': 900.0, 'month_date_yyyymm__48': 202502, 'price_increased_count_ly__48': 0.0, 'median_days_on_market__48': 76.0, 'HouseholdRank__48': 795.0, 'median_square_feet__48': 2029.0, 'price_reduced_count__48': 24.0, 'average_listing_price__48': 3460453.0, 'new_listing_count_lm__48': 40.0, 'median_square_feet_ly__48': 2234.0, 'pending_ratio__48': 0.2151, 'price_increased_count_lm__48': 0.0, 'median_square_feet_lm__48': 1980.0, 'pending_ratio_ly__48': 0.0, 'total_listing_count__48': 255.0, 'cbsa_title__48': 'Hailey, ID', 'price_reduced_count_lm__48': 24.0, 'median_listing_price_per_square_foot_ly__48': 826.0, 'median_days_on_market_ly__48': 82.0, 'pending_listing_count_lm__48': 48.0, 'active_listing_count_lm__48': 209.0, 'cbsa_code__48': 25200.0, 'active_listing_count_ly__48': 180.0, 'Update_Date__48': '2025-03-15 12:55:03', 'median_days_on_market_lm__48': 97.0, 'price_reduced_count_ly__48': 26.0, 'pending_ratio_lm__48': 0.21733858745074267, 'pending_listing_count_ly__48': 44.0, 'median_listing_price__48': 1535000.0, 'average_listing_price_lm__48': 3236185.0, 'quality_flag__48': 0, 'median_listing_price_lm__48': 1373725.0, 'total_listing_count_ly__48': 224.0, 'active_listing_count__48': 212, 'pending_listing_count__48': 46.0, 'median_listing_price_per_square_foot_lm__48': 907.0}]
+(Background on this error at: https://sqlalche.me/e/20/e3q8)
+Traceback (most recent call last):
+  File "src\\pymssql\\_pymssql.pyx", line 447, in pymssql._pymssql.Cursor.execute
+  File "src\\pymssql\\_mssql.pyx", line 1125, in pymssql._mssql.MSSQLConnection.execute_query
+  File "src\\pymssql\\_mssql.pyx", line 1156, in pymssql._mssql.MSSQLConnection.execute_query
+  File "src\\pymssql\\_mssql.pyx", line 1289, in pymssql._mssql.MSSQLConnection.format_and_run_query
+  File "src\\pymssql\\_mssql.pyx", line 1855, in pymssql._mssql.check_cancel_and_raise
+  File "src\\pymssql\\_mssql.pyx", line 1901, in pymssql._mssql.raise_MSSQLDatabaseException
+pymssql._mssql.MSSQLDatabaseException: (245, b"Conversion failed when converting the nvarchar value 'Pottsville, PA' to data type int.DB-Lib error message 20018, severity 16:\nGeneral SQL Server error: Check messages from the SQL Server\n")
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "C:\Users\nickk\PycharmProjects\Data_Pipelines\venv\Lib\site-packages\sqlalchemy\engine\base.py", line 2118, in _exec_insertmany_context
+    dialect.do_execute(
+  File "C:\Users\nickk\PycharmProjects\Data_Pipelines\venv\Lib\site-packages\sqlalchemy\engine\default.py", line 941, in do_execute
+    cursor.execute(statement, parameters)
+  File "src\\pymssql\\_pymssql.pyx", line 465, in pymssql._pymssql.Cursor.execute
+pymssql.exceptions.OperationalError: (245, b"Conversion failed when converting the nvarchar value 'Pottsville, PA' to data type int.DB-Lib error message 20018, severity 16:\nGeneral SQL Server error: Check messages from the SQL Server\n")
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "C:\Users\nickk\PycharmProjects\Data_Pipelines\Realtor_Monthly_Inventory_Metro.py", line 229, in <module>
+    main_run()
+  File "C:\Users\nickk\PycharmProjects\Data_Pipelines\Realtor_Monthly_Inventory_Metro.py", line 214, in main_run
+    redfin_df_v3.to_sql(sql_table_name, con=connection, if_exists='fail', index=False)
+  File "C:\Users\nickk\PycharmProjects\Data_Pipelines\venv\Lib\site-packages\pandas\util\_decorators.py", line 333, in wrapper
+    return func(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\nickk\PycharmProjects\Data_Pipelines\venv\Lib\site-packages\pandas\core\generic.py", line 3087, in to_sql
+    return sql.to_sql(
+           ^^^^^^^^^^^
+  File "C:\Users\nickk\PycharmProjects\Data_Pipelines\venv\Lib\site-packages\pandas\io\sql.py", line 842, in to_sql
+    return pandas_sql.to_sql(
+           ^^^^^^^^^^^^^^^^^^
+  File "C:\Users\nickk\PycharmProjects\Data_Pipelines\venv\Lib\site-packages\pandas\io\sql.py", line 2018, in to_sql
+    total_inserted = sql_engine.insert_records(
+                     ^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\nickk\PycharmProjects\Data_Pipelines\venv\Lib\site-packages\pandas\io\sql.py", line 1567, in insert_records
+    raise err
+  File "C:\Users\nickk\PycharmProjects\Data_Pipelines\venv\Lib\site-packages\pandas\io\sql.py", line 1558, in insert_records
+    return table.insert(chunksize=chunksize, method=method)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\nickk\PycharmProjects\Data_Pipelines\venv\Lib\site-packages\pandas\io\sql.py", line 1119, in insert
+    num_inserted = exec_insert(conn, keys, chunk_iter)
+                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\nickk\PycharmProjects\Data_Pipelines\venv\Lib\site-packages\pandas\io\sql.py", line 1010, in _execute_insert
+    result = conn.execute(self.table.insert(), data)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\nickk\PycharmProjects\Data_Pipelines\venv\Lib\site-packages\sqlalchemy\engine\base.py", line 1418, in execute
+    return meth(
+           ^^^^^
+  File "C:\Users\nickk\PycharmProjects\Data_Pipelines\venv\Lib\site-packages\sqlalchemy\sql\elements.py", line 515, in _execute_on_connection
+    return connection._execute_clauseelement(
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\nickk\PycharmProjects\Data_Pipelines\venv\Lib\site-packages\sqlalchemy\engine\base.py", line 1640, in _execute_clauseelement
+    ret = self._execute_context(
+          ^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\nickk\PycharmProjects\Data_Pipelines\venv\Lib\site-packages\sqlalchemy\engine\base.py", line 1844, in _execute_context
+    return self._exec_insertmany_context(dialect, context)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\nickk\PycharmProjects\Data_Pipelines\venv\Lib\site-packages\sqlalchemy\engine\base.py", line 2126, in _exec_insertmany_context
+    self._handle_dbapi_exception(
+  File "C:\Users\nickk\PycharmProjects\Data_Pipelines\venv\Lib\site-packages\sqlalchemy\engine\base.py", line 2355, in _handle_dbapi_exception
+    raise sqlalchemy_exception.with_traceback(exc_info[2]) from e
+  File "C:\Users\nickk\PycharmProjects\Data_Pipelines\venv\Lib\site-packages\sqlalchemy\engine\base.py", line 2118, in _exec_insertmany_context
+    dialect.do_execute(
+  File "C:\Users\nickk\PycharmProjects\Data_Pipelines\venv\Lib\site-packages\sqlalchemy\engine\default.py", line 941, in do_execute
+    cursor.execute(statement, parameters)
+  File "src\\pymssql\\_pymssql.pyx", line 465, in pymssql._pymssql.Cursor.execute
+sqlalchemy.exc.OperationalError: (pymssql.exceptions.OperationalError) (245, b"Conversion failed when converting the nvarchar value 'Pottsville, PA' to data type int.DB-Lib error message 20018, severity 16:\nGeneral SQL Server error: Check messages from the SQL Server\n")
+[SQL: INSERT INTO [REALTOR_MNTHLY_METRO] (month_date_yyyymm, cbsa_code, cbsa_title, [HouseholdRank], median_listing_price, active_listing_count, median_days_on_market, new_listing_count, price_increased_count, price_reduced_count, pending_listing_count, me ... 64137 characters truncated ... sting_price_lm__48)s, %(total_listing_count_lm__48)s, %(pending_ratio_lm__48)s, %(Update_Date__48)s)]
+[parameters: {'new_listing_count__0': 126.0, 'total_listing_count_lm__0': 399.0, 'average_listing_price_ly__0': 187567.0, 'price_increased_count__0': 2.0, 'median_listing_price_ly__0': 138994.0, 'new_listing_count_ly__0': 108.0, 'median_listing_price_per_square_foot__0': 94.0, 'month_date_yyyymm__0': 202502, 'price_increased_count_ly__0': 0.0, 'median_days_on_market__0': 72.0, 'HouseholdRank__0': 292.0, 'median_square_feet__0': 1654.0, 'price_reduced_count__0': 68.0, 'average_listing_price__0': 227800.0, 'new_listing_count_lm__0': 118.0, 'median_square_feet_ly__0': 1439.0, 'pending_ratio__0': 0.536, 'price_increased_count_lm__0': 0.0, 'median_square_feet_lm__0': 1595.0, 'pending_ratio_ly__0': 1.0, 'total_listing_count__0': 407.0, 'cbsa_title__0': 'Pottsville, PA', 'price_reduced_count_lm__0': 68.0, 'median_listing_price_per_square_foot_ly__0': 99.0, 'median_days_on_market_ly__0': 62.0, 'pending_listing_count_lm__0': 127.0, 'active_listing_count_lm__0': 275.0, 'cbsa_code__0': 39060.0, 'active_listing_count_ly__0': 186.0, 'Update_Date__0': '2025-03-15 12:55:03', 'median_days_on_market_lm__0': 77.0, 'price_reduced_count_ly__0': 66.0, 'pending_ratio_lm__0': 0.4989759821262335, 'pending_listing_count_ly__0': 140.0, 'median_listing_price__0': 147000.0, 'average_listing_price_lm__0': 223794.0, 'quality_flag__0': 0, 'median_listing_price_lm__0': 149924.0, 'total_listing_count_ly__0': 324.0, 'active_listing_count__0': 264, 'pending_listing_count__0': 142.0, 'median_listing_price_per_square_foot_lm__0': 94.0, 'new_listing_count__1': 46.0, 'total_listing_count_lm__1': 150.0, 'average_listing_price_ly__1': 247509.0, 'price_increased_count__1': 0.0, 'median_listing_price_ly__1': 226227.0, 'new_listing_count_ly__1': 32.0, 'median_listing_price_per_square_foot__1': 127.0, 'month_date_yyyymm__1': 202502 ... 1958 parameters truncated ... 'median_listing_price__47': 499000.0, 'average_listing_price_lm__47': 764861.0, 'quality_flag__47': 0, 'median_listing_price_lm__47': 494647.0, 'total_listing_count_ly__47': 7973.0, 'active_listing_count__47': 7905, 'pending_listing_count__47': 3118.0, 'median_listing_price_per_square_foot_lm__47': 251.0, 'new_listing_count__48': 74.0, 'total_listing_count_lm__48': 256.0, 'average_listing_price_ly__48': 2903795.0, 'price_increased_count__48': 0.0, 'median_listing_price_ly__48': 1228295.0, 'new_listing_count_ly__48': 54.0, 'median_listing_price_per_square_foot__48': 900.0, 'month_date_yyyymm__48': 202502, 'price_increased_count_ly__48': 0.0, 'median_days_on_market__48': 76.0, 'HouseholdRank__48': 795.0, 'median_square_feet__48': 2029.0, 'price_reduced_count__48': 24.0, 'average_listing_price__48': 3460453.0, 'new_listing_count_lm__48': 40.0, 'median_square_feet_ly__48': 2234.0, 'pending_ratio__48': 0.2151, 'price_increased_count_lm__48': 0.0, 'median_square_feet_lm__48': 1980.0, 'pending_ratio_ly__48': 0.0, 'total_listing_count__48': 255.0, 'cbsa_title__48': 'Hailey, ID', 'price_reduced_count_lm__48': 24.0, 'median_listing_price_per_square_foot_ly__48': 826.0, 'median_days_on_market_ly__48': 82.0, 'pending_listing_count_lm__48': 48.0, 'active_listing_count_lm__48': 209.0, 'cbsa_code__48': 25200.0, 'active_listing_count_ly__48': 180.0, 'Update_Date__48': '2025-03-15 12:55:03', 'median_days_on_market_lm__48': 97.0, 'price_reduced_count_ly__48': 26.0, 'pending_ratio_lm__48': 0.21733858745074267, 'pending_listing_count_ly__48': 44.0, 'median_listing_price__48': 1535000.0, 'average_listing_price_lm__48': 3236185.0, 'quality_flag__48': 0, 'median_listing_price_lm__48': 1373725.0, 'total_listing_count_ly__48': 224.0, 'active_listing_count__48': 212, 'pending_listing_count__48': 46.0, 'median_listing_price_per_square_foot_lm__48': 907.0}]
+(Background on this error at: https://sqlalche.me/e/20/e3q8)
+
+2025-03-15 12:55:04,793 - INFO - Main Function took 0 minutes and 2.28 seconds to run.
+2025-03-15 12:55:04,793 - INFO - ******************************************
+2025-03-15 12:59:16,985 - INFO - ******************************************
+2025-03-15 12:59:17,235 - INFO - Get Latest Yearmonth called, results for max date is None for table REALTOR_MNTHLY_METRO
+2025-03-15 12:59:18,102 - INFO - Successfully requested and received data from: https://econdata.s3-us-west-2.amazonaws.com/Reports/Core/RDC_Inventory_Core_Metrics_Metro.csv
+2025-03-15 12:59:18,150 - INFO - Writing historical data to REALTOR_MNTHLY_METRO.
+2025-03-15 12:59:19,795 - ERROR - An error occurred: (pymssql.exceptions.OperationalError) Cannot commit transaction: (3902, b'The COMMIT TRANSACTION request has no corresponding BEGIN TRANSACTION.DB-Lib error message 20018, severity 16:\nGeneral SQL Server error: Check messages from the SQL Server\n')
+(Background on this error at: https://sqlalche.me/e/20/e3q8)
+Traceback (most recent call last):
+  File "src\\pymssql\\_pymssql.pyx", line 254, in pymssql._pymssql.Connection.commit
+  File "src\\pymssql\\_mssql.pyx", line 1094, in pymssql._mssql.MSSQLConnection.execute_non_query
+  File "src\\pymssql\\_mssql.pyx", line 1115, in pymssql._mssql.MSSQLConnection.execute_non_query
+  File "src\\pymssql\\_mssql.pyx", line 1289, in pymssql._mssql.MSSQLConnection.format_and_run_query
+  File "src\\pymssql\\_mssql.pyx", line 1855, in pymssql._mssql.check_cancel_and_raise
+  File "src\\pymssql\\_mssql.pyx", line 1901, in pymssql._mssql.raise_MSSQLDatabaseException
+pymssql._mssql.MSSQLDatabaseException: (3902, b'The COMMIT TRANSACTION request has no corresponding BEGIN TRANSACTION.DB-Lib error message 20018, severity 16:\nGeneral SQL Server error: Check messages from the SQL Server\n')
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "C:\Users\nickk\PycharmProjects\Data_Pipelines\venv\Lib\site-packages\sqlalchemy\engine\base.py", line 1144, in _commit_impl
+    self.engine.dialect.do_commit(self.connection)
+  File "C:\Users\nickk\PycharmProjects\Data_Pipelines\venv\Lib\site-packages\sqlalchemy\engine\default.py", line 702, in do_commit
+    dbapi_connection.commit()
+  File "src\\pymssql\\_pymssql.pyx", line 257, in pymssql._pymssql.Connection.commit
+pymssql.exceptions.OperationalError: Cannot commit transaction: (3902, b'The COMMIT TRANSACTION request has no corresponding BEGIN TRANSACTION.DB-Lib error message 20018, severity 16:\nGeneral SQL Server error: Check messages from the SQL Server\n')
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "C:\Users\nickk\PycharmProjects\Data_Pipelines\Realtor_Monthly_Inventory_Metro.py", line 249, in <module>
+    main_run()
+  File "C:\Users\nickk\PycharmProjects\Data_Pipelines\Realtor_Monthly_Inventory_Metro.py", line 239, in main_run
+    redfin_df_v3.to_sql(sql_table_name, con=conn, if_exists='replace', index=False)
+  File "C:\Users\nickk\PycharmProjects\Data_Pipelines\venv\Lib\site-packages\pandas\util\_decorators.py", line 333, in wrapper
+    return func(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\nickk\PycharmProjects\Data_Pipelines\venv\Lib\site-packages\pandas\core\generic.py", line 3087, in to_sql
+    return sql.to_sql(
+           ^^^^^^^^^^^
+  File "C:\Users\nickk\PycharmProjects\Data_Pipelines\venv\Lib\site-packages\pandas\io\sql.py", line 841, in to_sql
+    with pandasSQL_builder(con, schema=schema, need_transaction=True) as pandas_sql:
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\nickk\PycharmProjects\Data_Pipelines\venv\Lib\site-packages\pandas\io\sql.py", line 1645, in __exit__
+    self.exit_stack.close()
+  File "C:\Program Files\WindowsApps\PythonSoftwareFoundation.Python.3.12_3.12.2544.0_x64__qbz5n2kfra8p0\Lib\contextlib.py", line 618, in close
+    self.__exit__(None, None, None)
+  File "C:\Program Files\WindowsApps\PythonSoftwareFoundation.Python.3.12_3.12.2544.0_x64__qbz5n2kfra8p0\Lib\contextlib.py", line 610, in __exit__
+    raise exc_details[1]
+  File "C:\Program Files\WindowsApps\PythonSoftwareFoundation.Python.3.12_3.12.2544.0_x64__qbz5n2kfra8p0\Lib\contextlib.py", line 595, in __exit__
+    if cb(*exc_details):
+       ^^^^^^^^^^^^^^^^
+  File "C:\Users\nickk\PycharmProjects\Data_Pipelines\venv\Lib\site-packages\sqlalchemy\engine\util.py", line 147, in __exit__
+    with util.safe_reraise():
+         ^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\nickk\PycharmProjects\Data_Pipelines\venv\Lib\site-packages\sqlalchemy\util\langhelpers.py", line 146, in __exit__
+    raise exc_value.with_traceback(exc_tb)
+  File "C:\Users\nickk\PycharmProjects\Data_Pipelines\venv\Lib\site-packages\sqlalchemy\engine\util.py", line 145, in __exit__
+    self.commit()
+  File "C:\Users\nickk\PycharmProjects\Data_Pipelines\venv\Lib\site-packages\sqlalchemy\engine\base.py", line 2631, in commit
+    self._do_commit()
+  File "C:\Users\nickk\PycharmProjects\Data_Pipelines\venv\Lib\site-packages\sqlalchemy\engine\base.py", line 2736, in _do_commit
+    self._connection_commit_impl()
+  File "C:\Users\nickk\PycharmProjects\Data_Pipelines\venv\Lib\site-packages\sqlalchemy\engine\base.py", line 2707, in _connection_commit_impl
+    self.connection._commit_impl()
+  File "C:\Users\nickk\PycharmProjects\Data_Pipelines\venv\Lib\site-packages\sqlalchemy\engine\base.py", line 1146, in _commit_impl
+    self._handle_dbapi_exception(e, None, None, None, None)
+  File "C:\Users\nickk\PycharmProjects\Data_Pipelines\venv\Lib\site-packages\sqlalchemy\engine\base.py", line 2355, in _handle_dbapi_exception
+    raise sqlalchemy_exception.with_traceback(exc_info[2]) from e
+  File "C:\Users\nickk\PycharmProjects\Data_Pipelines\venv\Lib\site-packages\sqlalchemy\engine\base.py", line 1144, in _commit_impl
+    self.engine.dialect.do_commit(self.connection)
+  File "C:\Users\nickk\PycharmProjects\Data_Pipelines\venv\Lib\site-packages\sqlalchemy\engine\default.py", line 702, in do_commit
+    dbapi_connection.commit()
+  File "src\\pymssql\\_pymssql.pyx", line 257, in pymssql._pymssql.Connection.commit
+sqlalchemy.exc.OperationalError: (pymssql.exceptions.OperationalError) Cannot commit transaction: (3902, b'The COMMIT TRANSACTION request has no corresponding BEGIN TRANSACTION.DB-Lib error message 20018, severity 16:\nGeneral SQL Server error: Check messages from the SQL Server\n')
+(Background on this error at: https://sqlalche.me/e/20/e3q8)
+
+2025-03-15 12:59:19,795 - INFO - Main Function took 0 minutes and 2.81 seconds to run.
+2025-03-15 12:59:19,795 - INFO - ******************************************
+2025-03-15 12:59:31,684 - INFO - ******************************************
+2025-03-15 12:59:31,914 - INFO - Get Latest Yearmonth called, results for max date is None for table REALTOR_MNTHLY_METRO
+2025-03-15 12:59:32,767 - INFO - Successfully requested and received data from: https://econdata.s3-us-west-2.amazonaws.com/Reports/Core/RDC_Inventory_Core_Metrics_Metro.csv
+2025-03-15 12:59:34,066 - ERROR - An error occurred: (pymssql.exceptions.OperationalError) (245, b"Conversion failed when converting the nvarchar value 'Pottsville, PA' to data type int.DB-Lib error message 20018, severity 16:\nGeneral SQL Server error: Check messages from the SQL Server\n")
+[SQL: INSERT INTO [REALTOR_MNTHLY_METRO] (month_date_yyyymm, cbsa_code, cbsa_title, [HouseholdRank], median_listing_price, active_listing_count, median_days_on_market, new_listing_count, price_increased_count, price_reduced_count, pending_listing_count, me ... 64137 characters truncated ... sting_price_lm__48)s, %(total_listing_count_lm__48)s, %(pending_ratio_lm__48)s, %(Update_Date__48)s)]
+[parameters: {'active_listing_count__0': 264, 'cbsa_title__0': 'Pottsville, PA', 'pending_ratio_ly__0': 1.0, 'HouseholdRank__0': 292.0, 'total_listing_count_ly__0': 324.0, 'median_days_on_market_ly__0': 62.0, 'new_listing_count_ly__0': 108.0, 'pending_listing_count_lm__0': 127.0, 'pending_ratio_lm__0': 0.4989759821262335, 'pending_ratio__0': 0.536, 'active_listing_count_lm__0': 275.0, 'pending_listing_count__0': 142.0, 'total_listing_count_lm__0': 399.0, 'median_days_on_market__0': 72.0, 'average_listing_price_ly__0': 187567.0, 'average_listing_price_lm__0': 223794.0, 'average_listing_price__0': 227800.0, 'active_listing_count_ly__0': 186.0, 'median_listing_price__0': 147000.0, 'pending_listing_count_ly__0': 140.0, 'price_reduced_count__0': 68.0, 'price_reduced_count_lm__0': 68.0, 'total_listing_count__0': 407.0, 'median_square_feet_lm__0': 1595.0, 'median_listing_price_ly__0': 138994.0, 'Update_Date__0': '2025-03-15 12:59:32', 'price_reduced_count_ly__0': 66.0, 'median_listing_price_per_square_foot_lm__0': 94.0, 'median_days_on_market_lm__0': 77.0, 'price_increased_count_lm__0': 0.0, 'new_listing_count__0': 126.0, 'median_listing_price_per_square_foot_ly__0': 99.0, 'median_square_feet_ly__0': 1439.0, 'new_listing_count_lm__0': 118.0, 'price_increased_count__0': 2.0, 'price_increased_count_ly__0': 0.0, 'quality_flag__0': 0, 'cbsa_code__0': 39060.0, 'median_square_feet__0': 1654.0, 'month_date_yyyymm__0': 202502, 'median_listing_price_per_square_foot__0': 94.0, 'median_listing_price_lm__0': 149924.0, 'active_listing_count__1': 143, 'cbsa_title__1': 'Big Spring, TX', 'pending_ratio_ly__1': 0.0, 'HouseholdRank__1': 841.0, 'total_listing_count_ly__1': 149.0, 'median_days_on_market_ly__1': 86.0, 'new_listing_count_ly__1': 32.0, 'pending_listing_count_lm__1': 13.0 ... 1958 parameters truncated ... 'price_increased_count__47': 178.0, 'price_increased_count_ly__47': 218.0, 'quality_flag__47': 0, 'cbsa_code__47': 12420.0, 'median_square_feet__47': 2017.0, 'month_date_yyyymm__47': 202502, 'median_listing_price_per_square_foot__47': 252.0, 'median_listing_price_lm__47': 494647.0, 'active_listing_count__48': 212, 'cbsa_title__48': 'Hailey, ID', 'pending_ratio_ly__48': 0.0, 'HouseholdRank__48': 795.0, 'total_listing_count_ly__48': 224.0, 'median_days_on_market_ly__48': 82.0, 'new_listing_count_ly__48': 54.0, 'pending_listing_count_lm__48': 48.0, 'pending_ratio_lm__48': 0.21733858745074267, 'pending_ratio__48': 0.2151, 'active_listing_count_lm__48': 209.0, 'pending_listing_count__48': 46.0, 'total_listing_count_lm__48': 256.0, 'median_days_on_market__48': 76.0, 'average_listing_price_ly__48': 2903795.0, 'average_listing_price_lm__48': 3236185.0, 'average_listing_price__48': 3460453.0, 'active_listing_count_ly__48': 180.0, 'median_listing_price__48': 1535000.0, 'pending_listing_count_ly__48': 44.0, 'price_reduced_count__48': 24.0, 'price_reduced_count_lm__48': 24.0, 'total_listing_count__48': 255.0, 'median_square_feet_lm__48': 1980.0, 'median_listing_price_ly__48': 1228295.0, 'Update_Date__48': '2025-03-15 12:59:32', 'price_reduced_count_ly__48': 26.0, 'median_listing_price_per_square_foot_lm__48': 907.0, 'median_days_on_market_lm__48': 97.0, 'price_increased_count_lm__48': 0.0, 'new_listing_count__48': 74.0, 'median_listing_price_per_square_foot_ly__48': 826.0, 'median_square_feet_ly__48': 2234.0, 'new_listing_count_lm__48': 40.0, 'price_increased_count__48': 0.0, 'price_increased_count_ly__48': 0.0, 'quality_flag__48': 0, 'cbsa_code__48': 25200.0, 'median_square_feet__48': 2029.0, 'month_date_yyyymm__48': 202502, 'median_listing_price_per_square_foot__48': 900.0, 'median_listing_price_lm__48': 1373725.0}]
+(Background on this error at: https://sqlalche.me/e/20/e3q8)
+Traceback (most recent call last):
+  File "src\\pymssql\\_pymssql.pyx", line 447, in pymssql._pymssql.Cursor.execute
+  File "src\\pymssql\\_mssql.pyx", line 1125, in pymssql._mssql.MSSQLConnection.execute_query
+  File "src\\pymssql\\_mssql.pyx", line 1156, in pymssql._mssql.MSSQLConnection.execute_query
+  File "src\\pymssql\\_mssql.pyx", line 1289, in pymssql._mssql.MSSQLConnection.format_and_run_query
+  File "src\\pymssql\\_mssql.pyx", line 1855, in pymssql._mssql.check_cancel_and_raise
+  File "src\\pymssql\\_mssql.pyx", line 1901, in pymssql._mssql.raise_MSSQLDatabaseException
+pymssql._mssql.MSSQLDatabaseException: (245, b"Conversion failed when converting the nvarchar value 'Pottsville, PA' to data type int.DB-Lib error message 20018, severity 16:\nGeneral SQL Server error: Check messages from the SQL Server\n")
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "C:\Users\nickk\PycharmProjects\Data_Pipelines\venv\Lib\site-packages\sqlalchemy\engine\base.py", line 2118, in _exec_insertmany_context
+    dialect.do_execute(
+  File "C:\Users\nickk\PycharmProjects\Data_Pipelines\venv\Lib\site-packages\sqlalchemy\engine\default.py", line 941, in do_execute
+    cursor.execute(statement, parameters)
+  File "src\\pymssql\\_pymssql.pyx", line 465, in pymssql._pymssql.Cursor.execute
+pymssql.exceptions.OperationalError: (245, b"Conversion failed when converting the nvarchar value 'Pottsville, PA' to data type int.DB-Lib error message 20018, severity 16:\nGeneral SQL Server error: Check messages from the SQL Server\n")
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "C:\Users\nickk\PycharmProjects\Data_Pipelines\Realtor_Monthly_Inventory_Metro.py", line 248, in <module>
+    main_run()
+  File "C:\Users\nickk\PycharmProjects\Data_Pipelines\Realtor_Monthly_Inventory_Metro.py", line 233, in main_run
+    redfin_df_v3.to_sql(sql_table_name, con=connection, if_exists='fail', index=False)
+  File "C:\Users\nickk\PycharmProjects\Data_Pipelines\venv\Lib\site-packages\pandas\util\_decorators.py", line 333, in wrapper
+    return func(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\nickk\PycharmProjects\Data_Pipelines\venv\Lib\site-packages\pandas\core\generic.py", line 3087, in to_sql
+    return sql.to_sql(
+           ^^^^^^^^^^^
+  File "C:\Users\nickk\PycharmProjects\Data_Pipelines\venv\Lib\site-packages\pandas\io\sql.py", line 842, in to_sql
+    return pandas_sql.to_sql(
+           ^^^^^^^^^^^^^^^^^^
+  File "C:\Users\nickk\PycharmProjects\Data_Pipelines\venv\Lib\site-packages\pandas\io\sql.py", line 2018, in to_sql
+    total_inserted = sql_engine.insert_records(
+                     ^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\nickk\PycharmProjects\Data_Pipelines\venv\Lib\site-packages\pandas\io\sql.py", line 1567, in insert_records
+    raise err
+  File "C:\Users\nickk\PycharmProjects\Data_Pipelines\venv\Lib\site-packages\pandas\io\sql.py", line 1558, in insert_records
+    return table.insert(chunksize=chunksize, method=method)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\nickk\PycharmProjects\Data_Pipelines\venv\Lib\site-packages\pandas\io\sql.py", line 1119, in insert
+    num_inserted = exec_insert(conn, keys, chunk_iter)
+                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\nickk\PycharmProjects\Data_Pipelines\venv\Lib\site-packages\pandas\io\sql.py", line 1010, in _execute_insert
+    result = conn.execute(self.table.insert(), data)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\nickk\PycharmProjects\Data_Pipelines\venv\Lib\site-packages\sqlalchemy\engine\base.py", line 1418, in execute
+    return meth(
+           ^^^^^
+  File "C:\Users\nickk\PycharmProjects\Data_Pipelines\venv\Lib\site-packages\sqlalchemy\sql\elements.py", line 515, in _execute_on_connection
+    return connection._execute_clauseelement(
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\nickk\PycharmProjects\Data_Pipelines\venv\Lib\site-packages\sqlalchemy\engine\base.py", line 1640, in _execute_clauseelement
+    ret = self._execute_context(
+          ^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\nickk\PycharmProjects\Data_Pipelines\venv\Lib\site-packages\sqlalchemy\engine\base.py", line 1844, in _execute_context
+    return self._exec_insertmany_context(dialect, context)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\nickk\PycharmProjects\Data_Pipelines\venv\Lib\site-packages\sqlalchemy\engine\base.py", line 2126, in _exec_insertmany_context
+    self._handle_dbapi_exception(
+  File "C:\Users\nickk\PycharmProjects\Data_Pipelines\venv\Lib\site-packages\sqlalchemy\engine\base.py", line 2355, in _handle_dbapi_exception
+    raise sqlalchemy_exception.with_traceback(exc_info[2]) from e
+  File "C:\Users\nickk\PycharmProjects\Data_Pipelines\venv\Lib\site-packages\sqlalchemy\engine\base.py", line 2118, in _exec_insertmany_context
+    dialect.do_execute(
+  File "C:\Users\nickk\PycharmProjects\Data_Pipelines\venv\Lib\site-packages\sqlalchemy\engine\default.py", line 941, in do_execute
+    cursor.execute(statement, parameters)
+  File "src\\pymssql\\_pymssql.pyx", line 465, in pymssql._pymssql.Cursor.execute
+sqlalchemy.exc.OperationalError: (pymssql.exceptions.OperationalError) (245, b"Conversion failed when converting the nvarchar value 'Pottsville, PA' to data type int.DB-Lib error message 20018, severity 16:\nGeneral SQL Server error: Check messages from the SQL Server\n")
+[SQL: INSERT INTO [REALTOR_MNTHLY_METRO] (month_date_yyyymm, cbsa_code, cbsa_title, [HouseholdRank], median_listing_price, active_listing_count, median_days_on_market, new_listing_count, price_increased_count, price_reduced_count, pending_listing_count, me ... 64137 characters truncated ... sting_price_lm__48)s, %(total_listing_count_lm__48)s, %(pending_ratio_lm__48)s, %(Update_Date__48)s)]
+[parameters: {'active_listing_count__0': 264, 'cbsa_title__0': 'Pottsville, PA', 'pending_ratio_ly__0': 1.0, 'HouseholdRank__0': 292.0, 'total_listing_count_ly__0': 324.0, 'median_days_on_market_ly__0': 62.0, 'new_listing_count_ly__0': 108.0, 'pending_listing_count_lm__0': 127.0, 'pending_ratio_lm__0': 0.4989759821262335, 'pending_ratio__0': 0.536, 'active_listing_count_lm__0': 275.0, 'pending_listing_count__0': 142.0, 'total_listing_count_lm__0': 399.0, 'median_days_on_market__0': 72.0, 'average_listing_price_ly__0': 187567.0, 'average_listing_price_lm__0': 223794.0, 'average_listing_price__0': 227800.0, 'active_listing_count_ly__0': 186.0, 'median_listing_price__0': 147000.0, 'pending_listing_count_ly__0': 140.0, 'price_reduced_count__0': 68.0, 'price_reduced_count_lm__0': 68.0, 'total_listing_count__0': 407.0, 'median_square_feet_lm__0': 1595.0, 'median_listing_price_ly__0': 138994.0, 'Update_Date__0': '2025-03-15 12:59:32', 'price_reduced_count_ly__0': 66.0, 'median_listing_price_per_square_foot_lm__0': 94.0, 'median_days_on_market_lm__0': 77.0, 'price_increased_count_lm__0': 0.0, 'new_listing_count__0': 126.0, 'median_listing_price_per_square_foot_ly__0': 99.0, 'median_square_feet_ly__0': 1439.0, 'new_listing_count_lm__0': 118.0, 'price_increased_count__0': 2.0, 'price_increased_count_ly__0': 0.0, 'quality_flag__0': 0, 'cbsa_code__0': 39060.0, 'median_square_feet__0': 1654.0, 'month_date_yyyymm__0': 202502, 'median_listing_price_per_square_foot__0': 94.0, 'median_listing_price_lm__0': 149924.0, 'active_listing_count__1': 143, 'cbsa_title__1': 'Big Spring, TX', 'pending_ratio_ly__1': 0.0, 'HouseholdRank__1': 841.0, 'total_listing_count_ly__1': 149.0, 'median_days_on_market_ly__1': 86.0, 'new_listing_count_ly__1': 32.0, 'pending_listing_count_lm__1': 13.0 ... 1958 parameters truncated ... 'price_increased_count__47': 178.0, 'price_increased_count_ly__47': 218.0, 'quality_flag__47': 0, 'cbsa_code__47': 12420.0, 'median_square_feet__47': 2017.0, 'month_date_yyyymm__47': 202502, 'median_listing_price_per_square_foot__47': 252.0, 'median_listing_price_lm__47': 494647.0, 'active_listing_count__48': 212, 'cbsa_title__48': 'Hailey, ID', 'pending_ratio_ly__48': 0.0, 'HouseholdRank__48': 795.0, 'total_listing_count_ly__48': 224.0, 'median_days_on_market_ly__48': 82.0, 'new_listing_count_ly__48': 54.0, 'pending_listing_count_lm__48': 48.0, 'pending_ratio_lm__48': 0.21733858745074267, 'pending_ratio__48': 0.2151, 'active_listing_count_lm__48': 209.0, 'pending_listing_count__48': 46.0, 'total_listing_count_lm__48': 256.0, 'median_days_on_market__48': 76.0, 'average_listing_price_ly__48': 2903795.0, 'average_listing_price_lm__48': 3236185.0, 'average_listing_price__48': 3460453.0, 'active_listing_count_ly__48': 180.0, 'median_listing_price__48': 1535000.0, 'pending_listing_count_ly__48': 44.0, 'price_reduced_count__48': 24.0, 'price_reduced_count_lm__48': 24.0, 'total_listing_count__48': 255.0, 'median_square_feet_lm__48': 1980.0, 'median_listing_price_ly__48': 1228295.0, 'Update_Date__48': '2025-03-15 12:59:32', 'price_reduced_count_ly__48': 26.0, 'median_listing_price_per_square_foot_lm__48': 907.0, 'median_days_on_market_lm__48': 97.0, 'price_increased_count_lm__48': 0.0, 'new_listing_count__48': 74.0, 'median_listing_price_per_square_foot_ly__48': 826.0, 'median_square_feet_ly__48': 2234.0, 'new_listing_count_lm__48': 40.0, 'price_increased_count__48': 0.0, 'price_increased_count_ly__48': 0.0, 'quality_flag__48': 0, 'cbsa_code__48': 25200.0, 'median_square_feet__48': 2029.0, 'month_date_yyyymm__48': 202502, 'median_listing_price_per_square_foot__48': 900.0, 'median_listing_price_lm__48': 1373725.0}]
+(Background on this error at: https://sqlalche.me/e/20/e3q8)
+
+2025-03-15 12:59:34,067 - INFO - Main Function took 0 minutes and 2.38 seconds to run.
+2025-03-15 12:59:34,067 - INFO - ******************************************
+2025-03-15 13:01:57,528 - INFO - ******************************************
+2025-03-15 13:01:57,819 - INFO - Get Latest Yearmonth called, results for max date is None for table REALTOR_MNTHLY_METRO
+2025-03-15 13:01:58,604 - INFO - Successfully requested and received data from: https://econdata.s3-us-west-2.amazonaws.com/Reports/Core/RDC_Inventory_Core_Metrics_Metro.csv
+2025-03-15 13:02:02,603 - INFO - Writing historical data to REALTOR_MNTHLY_METRO.
+2025-03-15 13:02:02,604 - INFO - Main Function took 0 minutes and 5.08 seconds to run.
+2025-03-15 13:02:02,604 - INFO - ******************************************
+2025-03-15 13:03:07,354 - INFO - ******************************************
+2025-03-15 13:03:07,632 - INFO - Get Latest Yearmonth called, results for max date is 202502 for table REALTOR_MNTHLY_METRO
+2025-03-15 13:03:17,162 - INFO - Successfully requested and received data from: https://econdata.s3-us-west-2.amazonaws.com/Reports/Core/RDC_Inventory_Core_Metrics_Metro_History.csv
+2025-03-15 13:03:17,171 - INFO - Current data extract YearPeriod is already in SQL table REALTOR_MNTHLY_METRO.
+2025-03-15 13:03:17,171 - INFO - SQL table max date = 202502 ---- Current data extract max date = 202502
+2025-03-15 13:03:17,174 - INFO - Main Function took 0 minutes and 9.82 seconds to run.
+2025-03-15 13:03:17,174 - INFO - ******************************************
+2025-03-17 20:18:21,884 - INFO - ******************************************
+2025-03-17 20:18:22,441 - INFO - Get Latest Yearmonth called, results for max date is 202502 for table REALTOR_MNTHLY_METRO
+2025-03-17 20:18:29,007 - INFO - Successfully requested and received data from: https://econdata.s3-us-west-2.amazonaws.com/Reports/Core/RDC_Inventory_Core_Metrics_Metro_History.csv
+2025-03-17 20:18:29,019 - INFO - Current data extract YearPeriod is already in SQL table REALTOR_MNTHLY_METRO.
+2025-03-17 20:18:29,020 - INFO - SQL table max date = 202502 ---- Current data extract max date = 202502
+2025-03-17 20:18:29,022 - INFO - Main Function took 0 minutes and 7.14 seconds to run.
+2025-03-17 20:18:29,022 - INFO - ******************************************
+2025-03-17 20:23:23,191 - INFO - ******************************************
+2025-03-17 20:23:23,469 - INFO - Get Latest Yearmonth called, results for max date is None for table REALTOR_MNTHLY_METRO
+2025-03-17 20:23:24,223 - INFO - Successfully requested and received data from: https://econdata.s3-us-west-2.amazonaws.com/Reports/Core/RDC_Inventory_Core_Metrics_Metro.csv
+2025-03-17 20:23:24,315 - INFO - DataFrame head:
+   month_date_yyyymm  cbsa_code    cbsa_title  HouseholdRank  median_listing_price  active_listing_count  median_days_on_market  new_listing_count  price_increased_count  price_reduced_count  pending_listing_count  median_listing_price_per_square_foot  median_square_feet  average_listing_price  total_listing_count  pending_ratio  quality_flag  median_listing_price_ly  active_listing_count_ly  median_days_on_market_ly  new_listing_count_ly  price_increased_count_ly  price_reduced_count_ly  pending_listing_count_ly  median_listing_price_per_square_foot_ly  median_square_feet_ly  average_listing_price_ly  total_listing_count_ly  pending_ratio_ly  median_listing_price_lm  active_listing_count_lm  median_days_on_market_lm  new_listing_count_lm  price_increased_count_lm  price_reduced_count_lm  pending_listing_count_lm  median_listing_price_per_square_foot_lm  median_square_feet_lm  average_listing_price_lm  total_listing_count_lm  pending_ratio_lm          Update_Date
+0             202502      48820   Willmar, MN            666                344500                    71                   87.0               36.0                    0.0                 14.0                   31.0                                 162.0              1949.0               476086.0                100.0         0.4326             1                 385433.0                     51.0                      49.0                  20.0                       0.0                    12.0                      34.0                                    162.0                 2002.0                  506367.0                    84.0               1.0                 346894.0                     65.0                     101.0                  22.0                       0.0                     4.0                      32.0                                    167.0                 1956.0                  454541.0                    94.0          0.458117  2025-03-17 20:23:24
+1             202502      40820    Ruston, LA            656                255900                    80                  141.0               12.0                    0.0                  8.0                   25.0                                 153.0              1744.0               350296.0                105.0         0.3145             0                 268746.0                     80.0                      95.0                  24.0                       0.0                    26.0                      26.0                                    149.0                 1877.0                  346862.0                   105.0               0.0                 263733.0                     91.0                     118.0                   8.0                       0.0                    18.0                      13.0                                    155.0                 1813.0                  346725.0                   106.0          0.269888  2025-03-17 20:23:24
+2             202502      33500     Minot, ND            465                318725                   123                   75.0               64.0                    2.0                 22.0                   93.0                                 138.0              2339.0               343400.0                215.0         0.7592             0                 249452.0                    135.0                      62.0                  80.0                       6.0                    36.0                      84.0                                    128.0                 2196.0                  307348.0                   223.0               1.0                 302453.0                    145.0                      80.0                  44.0                       0.0                    28.0                      87.0                                    137.0                 2240.0                  331980.0                   230.0          0.654144  2025-03-17 20:23:24
+3             202502      13100  Beatrice, NE            871                248675                    58                   67.0               20.0                    0.0                 10.0                   19.0                                 142.0              1735.0               297371.0                 76.0         0.3217             0                 232255.0                     24.0                      86.0                  14.0                       0.0                     8.0                      26.0                                    119.0                 1669.0                  235020.0                    50.0               1.0                 264999.0                     55.0                      69.0                  14.0                       0.0                    10.0                      18.0                                    143.0                 1824.0                  321274.0                    72.0          0.321507  2025-03-17 20:23:24
+4             202502      12140    Auburn, IN            661                308900                    54                   52.0               44.0                    0.0                 24.0                   48.0                                 172.0              1850.0               348131.0                101.0         0.8972             0                 293018.0                     55.0                      52.0                  36.0                       0.0                    26.0                      63.0                                    168.0                 1725.0                  337206.0                   118.0               1.0                 319905.0                     60.0                      54.0                  30.0                       0.0                    24.0                      38.0                                    163.0                 1957.0                  386383.0                    98.0          0.720816  2025-03-17 20:23:24
+2025-03-17 20:23:24,316 - INFO - Writing historical data to REALTOR_MNTHLY_METRO.
+2025-03-17 20:23:28,246 - INFO - Main Function took 0 minutes and 5.06 seconds to run.
+2025-03-17 20:23:28,246 - INFO - ******************************************
+2025-03-17 20:25:34,826 - INFO - ******************************************
+2025-03-17 20:25:35,132 - INFO - Get Latest Yearmonth called, results for max date is None for table REALTOR_MNTHLY_METRO
+2025-03-17 20:25:41,262 - INFO - Successfully requested and received data from: https://econdata.s3-us-west-2.amazonaws.com/Reports/Core/RDC_Inventory_Core_Metrics_Metro_History.csv
+2025-03-17 20:25:41,616 - INFO - DataFrame head:
+   month_date_yyyymm  cbsa_code                          cbsa_title  HouseholdRank  median_listing_price  active_listing_count  median_days_on_market  new_listing_count  price_increased_count  price_reduced_count  pending_listing_count  median_listing_price_per_square_foot  median_square_feet  average_listing_price  total_listing_count  pending_ratio  quality_flag  median_listing_price_ly  active_listing_count_ly  median_days_on_market_ly  new_listing_count_ly  price_increased_count_ly  price_reduced_count_ly  pending_listing_count_ly  median_listing_price_per_square_foot_ly  median_square_feet_ly  average_listing_price_ly  total_listing_count_ly  pending_ratio_ly  median_listing_price_lm  active_listing_count_lm  median_days_on_market_lm  new_listing_count_lm  price_increased_count_lm  price_reduced_count_lm  pending_listing_count_lm  median_listing_price_per_square_foot_lm  median_square_feet_lm  average_listing_price_lm  total_listing_count_lm  pending_ratio_lm          Update_Date
+0             202502      35620  New York-Newark-Jersey City, NY-NJ              1                766889                 27148                   68.0              11736                    340                 3356                18231.0                                   538                1473                1686342                45010         0.6715           0.0                 752516.0                  26866.0                      69.0               11732.0                     378.0                  3384.0                   13722.0                                    551.0                 1496.0                 1702344.0                 40270.0               1.0                 750014.0                  26692.0                      76.0               11028.0                     238.0                  3244.0                   18700.0                                    536.0                 1481.0                 1679456.0                 45001.0          0.691626  2025-03-17 20:25:41
+1             202502      31080  Los Angeles-Long Beach-Anaheim, CA              2               1119000                 13455                   39.0               8440                    348                 3278                 6487.0                                   683                1756                2507130                19919         0.4821           0.0                1136964.0                   9411.0                      40.0                6642.0                     354.0                  2034.0                    6463.0                                    674.0                 1795.0                 2700776.0                 15711.0               1.0                1089475.0                  12175.0                      64.0                8218.0                     300.0                  2190.0                    5391.0                                    670.0                 1738.0                 2392300.0                 17456.0          0.463870  2025-03-17 20:25:41
+2             202502      16980     Chicago-Naperville-Elgin, IL-IN              3                349450                 11960                   43.0               8106                    290                 3156                 9536.0                                   207                1705                 539603                21457         0.7974           0.0                 359961.0                  10969.0                      41.0                8114.0                     274.0                  2646.0                    9506.0                                    208.0                 1765.0                  575699.0                 20381.0               1.0                 343507.0                  12423.0                      58.0                6702.0                     350.0                  2930.0                    7367.0                                    204.0                 1698.0                  519099.0                 19860.0          0.662127  2025-03-17 20:25:41
+3             202502      19100     Dallas-Fort Worth-Arlington, TX              4                415950                 21794                   56.0               9204                    432                 8924                 9205.0                                   204                2100                 595119                31001         0.4224           0.0                 435003.0                  16017.0                      48.0                9186.0                     636.0                  6626.0                    9511.0                                    205.0                 2158.0                  618305.0                 25519.0               1.0                 415493.0                  21421.0                      69.0                8520.0                     496.0                  7834.0                    7466.0                                    203.0                 2100.0                  591158.0                 28721.0          0.393333  2025-03-17 20:25:41
+4             202502      26420  Houston-Pasadena-The Woodlands, TX              5                358000                 26655                   54.0               9700                   1328                 7954                 8937.0                                   175                2047                 483780                35572         0.3353           0.0                 359908.0                  20803.0                      48.0                8918.0                    1064.0                  6528.0                    9573.0                                    177.0                 2035.0                  505412.0                 30362.0               0.0                 359005.0                  25879.0                      62.0                8098.0                    1158.0                  6838.0                    7652.0                                    175.0                 2050.0                  482863.0                 33517.0          0.322528  2025-03-17 20:25:41
+2025-03-17 20:25:41,616 - INFO - Writing historical data to REALTOR_MNTHLY_METRO.
+2025-03-17 20:30:38,241 - INFO - Main Function took 5 minutes and 3.42 seconds to run.
+2025-03-17 20:30:38,241 - INFO - ******************************************
+2025-03-17 20:34:12,377 - INFO - ******************************************
+2025-03-17 20:34:12,724 - INFO - Get Latest Yearmonth called, results for max date is 202501 for table REALTOR_MNTHLY_METRO
+2025-03-17 20:34:13,473 - INFO - Successfully requested and received data from: https://econdata.s3-us-west-2.amazonaws.com/Reports/Core/RDC_Inventory_Core_Metrics_Metro.csv
+2025-03-17 20:34:13,519 - INFO - DataFrame head:
+   month_date_yyyymm  cbsa_code    cbsa_title  HouseholdRank  median_listing_price  active_listing_count  median_days_on_market  new_listing_count  price_increased_count  price_reduced_count  pending_listing_count  median_listing_price_per_square_foot  median_square_feet  average_listing_price  total_listing_count  pending_ratio  quality_flag  median_listing_price_ly  active_listing_count_ly  median_days_on_market_ly  new_listing_count_ly  price_increased_count_ly  price_reduced_count_ly  pending_listing_count_ly  median_listing_price_per_square_foot_ly  median_square_feet_ly  average_listing_price_ly  total_listing_count_ly  pending_ratio_ly  median_listing_price_lm  active_listing_count_lm  median_days_on_market_lm  new_listing_count_lm  price_increased_count_lm  price_reduced_count_lm  pending_listing_count_lm  median_listing_price_per_square_foot_lm  median_square_feet_lm  average_listing_price_lm  total_listing_count_lm  pending_ratio_lm          Update_Date
+0             202502      48820   Willmar, MN            666                344500                    71                   87.0               36.0                    0.0                 14.0                   31.0                                 162.0              1949.0               476086.0                100.0         0.4326             1                 385433.0                     51.0                      49.0                  20.0                       0.0                    12.0                      34.0                                    162.0                 2002.0                  506367.0                    84.0               1.0                 346894.0                     65.0                     101.0                  22.0                       0.0                     4.0                      32.0                                    167.0                 1956.0                  454541.0                    94.0          0.458117  2025-03-17 20:34:13
+1             202502      40820    Ruston, LA            656                255900                    80                  141.0               12.0                    0.0                  8.0                   25.0                                 153.0              1744.0               350296.0                105.0         0.3145             0                 268746.0                     80.0                      95.0                  24.0                       0.0                    26.0                      26.0                                    149.0                 1877.0                  346862.0                   105.0               0.0                 263733.0                     91.0                     118.0                   8.0                       0.0                    18.0                      13.0                                    155.0                 1813.0                  346725.0                   106.0          0.269888  2025-03-17 20:34:13
+2             202502      33500     Minot, ND            465                318725                   123                   75.0               64.0                    2.0                 22.0                   93.0                                 138.0              2339.0               343400.0                215.0         0.7592             0                 249452.0                    135.0                      62.0                  80.0                       6.0                    36.0                      84.0                                    128.0                 2196.0                  307348.0                   223.0               1.0                 302453.0                    145.0                      80.0                  44.0                       0.0                    28.0                      87.0                                    137.0                 2240.0                  331980.0                   230.0          0.654144  2025-03-17 20:34:13
+3             202502      13100  Beatrice, NE            871                248675                    58                   67.0               20.0                    0.0                 10.0                   19.0                                 142.0              1735.0               297371.0                 76.0         0.3217             0                 232255.0                     24.0                      86.0                  14.0                       0.0                     8.0                      26.0                                    119.0                 1669.0                  235020.0                    50.0               1.0                 264999.0                     55.0                      69.0                  14.0                       0.0                    10.0                      18.0                                    143.0                 1824.0                  321274.0                    72.0          0.321507  2025-03-17 20:34:13
+4             202502      12140    Auburn, IN            661                308900                    54                   52.0               44.0                    0.0                 24.0                   48.0                                 172.0              1850.0               348131.0                101.0         0.8972             0                 293018.0                     55.0                      52.0                  36.0                       0.0                    26.0                      63.0                                    168.0                 1725.0                  337206.0                   118.0               1.0                 319905.0                     60.0                      54.0                  30.0                       0.0                    24.0                      38.0                                    163.0                 1957.0                  386383.0                    98.0          0.720816  2025-03-17 20:34:13
+2025-03-17 20:34:17,387 - INFO - Main Function took 0 minutes and 5.01 seconds to run.
+2025-03-17 20:34:17,387 - INFO - ******************************************

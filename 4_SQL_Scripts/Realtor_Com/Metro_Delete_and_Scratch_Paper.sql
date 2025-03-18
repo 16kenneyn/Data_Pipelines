@@ -1,0 +1,50 @@
+SELECT DISTINCT month_date_yyyymm FROM dbo.REALTOR_MNTHLY_METRO
+ORDER BY month_date_yyyymm ASC
+
+DELETE FROM dbo.REALTOR_MNTHLY_METRO
+WHERE month_date_yyyymm = 202502
+
+SELECT TOP (1000)
+month_date_yyyymm
+,cbsa_code
+,cbsa_title
+,HouseholdRank
+,median_listing_price
+,active_listing_count
+,median_days_on_market
+,new_listing_count
+,price_increased_count
+,price_reduced_count
+,pending_listing_count
+,median_listing_price_per_square_foot
+,median_square_feet
+,average_listing_price
+,total_listing_count
+,pending_ratio
+,quality_flag
+,median_listing_price_ly
+,active_listing_count_ly
+,median_days_on_market_ly
+,new_listing_count_ly
+,price_increased_count_ly
+,price_reduced_count_ly
+,pending_listing_count_ly
+,median_listing_price_per_square_foot_ly
+,median_square_feet_ly
+,average_listing_price_ly
+,total_listing_count_ly
+,pending_ratio_ly
+,median_listing_price_lm
+,active_listing_count_lm
+,median_days_on_market_lm
+,new_listing_count_lm
+,price_increased_count_lm
+,price_reduced_count_lm
+,pending_listing_count_lm
+,median_listing_price_per_square_foot_lm
+,median_square_feet_lm
+,average_listing_price_lm
+,total_listing_count_lm
+,pending_ratio_lm
+,CAST(Update_Date AS DATETIME) AS UPDATE_DATE
+FROM dbo.REALTOR_MNTHLY_METRO
