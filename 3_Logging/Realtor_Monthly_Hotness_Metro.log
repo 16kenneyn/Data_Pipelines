@@ -1,0 +1,97 @@
+2025-03-18 06:39:35,116 - INFO - Successfully requested and received data from: https://econdata.s3-us-west-2.amazonaws.com/Reports/Hotness/RDC_Inventory_Hotness_Metrics_Metro_History.csv
+2025-03-18 06:44:37,795 - INFO - Successfully requested and received data from: https://econdata.s3-us-west-2.amazonaws.com/Reports/Hotness/RDC_Inventory_Hotness_Metrics_Metro_History.csv
+2025-03-20 07:12:21,096 - INFO - Successfully requested and received data from: https://econdata.s3-us-west-2.amazonaws.com/Reports/Hotness/RDC_Inventory_Hotness_Metrics_Metro_History.csv
+2025-03-20 07:13:19,797 - INFO - ******************************************
+2025-03-20 07:13:20,277 - INFO - Get Latest Yearmonth called, results for max date is None for table REALTOR_MNTHLY_HOT_METRO
+2025-03-20 07:13:24,143 - INFO - Successfully requested and received data from: https://econdata.s3-us-west-2.amazonaws.com/Reports/Hotness/RDC_Inventory_Hotness_Metrics_Metro_History.csv
+2025-03-20 07:13:24,218 - INFO - DataFrame head:
+   month_date_yyyymm  cbsa_code                                cbsa_title  household_count_rank  hotness_rank  hotness_score  supply_score  demand_score  median_days_on_market  page_view_count_per_property_mm  page_view_count_per_property_yy  page_view_count_per_property_vs_us  median_listing_price  quality_flag  hotness_rank_lm  hotness_rank_ly  median_days_on_market_ly  median_days_on_market_lm  median_days_on_market_us  median_listing_price_lm  median_listing_price_ly  median_listing_price_us          Update_Date
+0             202502      25540  Hartford-West Hartford-East Hartford, CT                    48             1        97.8261       95.6522        100.00                  38.00                          -0.0092                          -0.0950                              4.1818                433699             0                2                7                     41.25                     51.25                      66.0                   408375                   407000                   211285  2025-03-20 07:13:24
+1             202502      31700                     Manchester-Nashua, NH                   124             2        96.9900       94.3144         99.67                  38.50                          -0.0276                          -0.2635                              3.5202                576225             0                4                1                     23.00                     46.25                      66.0                   578975                   572200                   240233  2025-03-20 07:13:24
+2             202502      40420                              Rockford, IL                   159             3        94.9833       92.3077         97.66                  39.50                           0.0086                          -0.1219                              3.0343                242950             0                6               30                     49.75                     52.50                      66.0                   235450                   234150                   152829  2025-03-20 07:13:24
+3             202502      28450                               Kenosha, WI                   265             3        94.9833       97.3244         92.64                  36.25                          -0.1431                          -0.1892                              2.5203                338225             0                6                5                     34.50                     45.00                      66.0                   334675                   338750                   185742  2025-03-20 07:13:24
+4             202502      29540                             Lancaster, PA                   109             5        94.3144       96.6555         91.97                  36.50                           0.0126                          -0.1341                              2.4496                425000             0               10               12                     39.00                     50.25                      66.0                   408640                   420250                   209199  2025-03-20 07:13:24
+2025-03-20 07:13:24,219 - INFO - Writing historical data to REALTOR_MNTHLY_HOT_METRO.
+2025-03-20 07:14:50,776 - INFO - Main Function took 1 minutes and 30.98 seconds to run.
+2025-03-20 07:14:50,776 - INFO - ******************************************
+2025-03-20 07:29:31,797 - INFO - ******************************************
+2025-03-20 07:29:32,194 - INFO - Get Latest Yearmonth called, results for max date is 202501 for table REALTOR_MNTHLY_HOT_METRO
+2025-03-20 07:29:35,517 - INFO - Successfully requested and received data from: https://econdata.s3-us-west-2.amazonaws.com/Reports/Hotness/RDC_Inventory_Hotness_Metrics_Metro_History.csv
+2025-03-20 07:29:35,682 - ERROR - An error occurred: False
+Traceback (most recent call last):
+  File "C:\Users\nickk\PycharmProjects\Data_Pipelines\venv\Lib\site-packages\pandas\core\indexes\base.py", line 3805, in get_loc
+    return self._engine.get_loc(casted_key)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "index.pyx", line 167, in pandas._libs.index.IndexEngine.get_loc
+  File "index.pyx", line 196, in pandas._libs.index.IndexEngine.get_loc
+  File "pandas\\_libs\\hashtable_class_helper.pxi", line 7081, in pandas._libs.hashtable.PyObjectHashTable.get_item
+  File "pandas\\_libs\\hashtable_class_helper.pxi", line 7089, in pandas._libs.hashtable.PyObjectHashTable.get_item
+KeyError: False
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "C:\Users\nickk\PycharmProjects\Data_Pipelines\Realtor_Monthly_Hotness_Metro.py", line 277, in <module>
+    main_run()
+  File "C:\Users\nickk\PycharmProjects\Data_Pipelines\Realtor_Monthly_Hotness_Metro.py", line 228, in main_run
+    redfin_df_v0 = redfin_df[['month_date_yyyymm'] == redfin_df_max_date]
+                   ~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\nickk\PycharmProjects\Data_Pipelines\venv\Lib\site-packages\pandas\core\frame.py", line 4102, in __getitem__
+    indexer = self.columns.get_loc(key)
+              ^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\nickk\PycharmProjects\Data_Pipelines\venv\Lib\site-packages\pandas\core\indexes\base.py", line 3812, in get_loc
+    raise KeyError(key) from err
+KeyError: False
+
+2025-03-20 07:29:35,683 - INFO - Main Function took 0 minutes and 3.89 seconds to run.
+2025-03-20 07:29:35,683 - INFO - ******************************************
+2025-03-20 07:30:56,291 - INFO - ******************************************
+2025-03-20 07:30:56,656 - INFO - Get Latest Yearmonth called, results for max date is 202501 for table REALTOR_MNTHLY_HOT_METRO
+2025-03-20 07:31:00,493 - INFO - Successfully requested and received data from: https://econdata.s3-us-west-2.amazonaws.com/Reports/Hotness/RDC_Inventory_Hotness_Metrics_Metro_History.csv
+2025-03-20 07:31:00,524 - ERROR - An error occurred: False
+Traceback (most recent call last):
+  File "C:\Users\nickk\PycharmProjects\Data_Pipelines\venv\Lib\site-packages\pandas\core\indexes\base.py", line 3805, in get_loc
+    return self._engine.get_loc(casted_key)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "index.pyx", line 167, in pandas._libs.index.IndexEngine.get_loc
+  File "index.pyx", line 196, in pandas._libs.index.IndexEngine.get_loc
+  File "pandas\\_libs\\hashtable_class_helper.pxi", line 7081, in pandas._libs.hashtable.PyObjectHashTable.get_item
+  File "pandas\\_libs\\hashtable_class_helper.pxi", line 7089, in pandas._libs.hashtable.PyObjectHashTable.get_item
+KeyError: False
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "C:\Users\nickk\PycharmProjects\Data_Pipelines\Realtor_Monthly_Hotness_Metro.py", line 278, in <module>
+    main_run()
+  File "C:\Users\nickk\PycharmProjects\Data_Pipelines\Realtor_Monthly_Hotness_Metro.py", line 229, in main_run
+    redfin_df_v0 = redfin_df[['month_date_yyyymm'] == redfin_df_max_date]
+                   ~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\nickk\PycharmProjects\Data_Pipelines\venv\Lib\site-packages\pandas\core\frame.py", line 4102, in __getitem__
+    indexer = self.columns.get_loc(key)
+              ^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\nickk\PycharmProjects\Data_Pipelines\venv\Lib\site-packages\pandas\core\indexes\base.py", line 3812, in get_loc
+    raise KeyError(key) from err
+KeyError: False
+
+2025-03-20 07:31:00,525 - INFO - Main Function took 0 minutes and 4.23 seconds to run.
+2025-03-20 07:31:00,525 - INFO - ******************************************
+2025-03-20 07:32:41,342 - INFO - ******************************************
+2025-03-20 07:32:41,688 - INFO - Get Latest Yearmonth called, results for max date is 202501 for table REALTOR_MNTHLY_HOT_METRO
+2025-03-20 07:32:47,224 - INFO - Successfully requested and received data from: https://econdata.s3-us-west-2.amazonaws.com/Reports/Hotness/RDC_Inventory_Hotness_Metrics_Metro_History.csv
+2025-03-20 07:32:47,263 - INFO - DataFrame head:
+   month_date_yyyymm  cbsa_code                                cbsa_title  household_count_rank  hotness_rank  hotness_score  supply_score  demand_score  median_days_on_market  page_view_count_per_property_mm  page_view_count_per_property_yy  page_view_count_per_property_vs_us  median_listing_price  quality_flag  hotness_rank_lm  hotness_rank_ly  median_days_on_market_ly  median_days_on_market_lm  median_days_on_market_us  median_listing_price_lm  median_listing_price_ly  median_listing_price_us          Update_Date
+0             202502      25540  Hartford-West Hartford-East Hartford, CT                    48             1        97.8261       95.6522        100.00                  38.00                          -0.0092                          -0.0950                              4.1818                433699             0                2                7                     41.25                     51.25                      66.0                   408375                   407000                   211285  2025-03-20 07:32:47
+1             202502      31700                     Manchester-Nashua, NH                   124             2        96.9900       94.3144         99.67                  38.50                          -0.0276                          -0.2635                              3.5202                576225             0                4                1                     23.00                     46.25                      66.0                   578975                   572200                   240233  2025-03-20 07:32:47
+2             202502      40420                              Rockford, IL                   159             3        94.9833       92.3077         97.66                  39.50                           0.0086                          -0.1219                              3.0343                242950             0                6               30                     49.75                     52.50                      66.0                   235450                   234150                   152829  2025-03-20 07:32:47
+3             202502      28450                               Kenosha, WI                   265             3        94.9833       97.3244         92.64                  36.25                          -0.1431                          -0.1892                              2.5203                338225             0                6                5                     34.50                     45.00                      66.0                   334675                   338750                   185742  2025-03-20 07:32:47
+4             202502      29540                             Lancaster, PA                   109             5        94.3144       96.6555         91.97                  36.50                           0.0126                          -0.1341                              2.4496                425000             0               10               12                     39.00                     50.25                      66.0                   408640                   420250                   209199  2025-03-20 07:32:47
+2025-03-20 07:32:50,530 - INFO - Main Function took 0 minutes and 9.19 seconds to run.
+2025-03-20 07:32:50,530 - INFO - ******************************************
+2025-03-20 07:33:08,637 - INFO - ******************************************
+2025-03-20 07:33:10,034 - INFO - Get Latest Yearmonth called, results for max date is 202502 for table REALTOR_MNTHLY_HOT_METRO
+2025-03-20 07:33:15,227 - INFO - Successfully requested and received data from: https://econdata.s3-us-west-2.amazonaws.com/Reports/Hotness/RDC_Inventory_Hotness_Metrics_Metro_History.csv
+2025-03-20 07:33:15,231 - INFO - Current data extract YearPeriod is already in SQL table REALTOR_MNTHLY_HOT_METRO.
+2025-03-20 07:33:15,231 - INFO - SQL table max date = 202502 ---- Current data extract max date = 202502
+2025-03-20 07:33:15,232 - INFO - Main Function took 0 minutes and 6.60 seconds to run.
+2025-03-20 07:33:15,232 - INFO - ******************************************
