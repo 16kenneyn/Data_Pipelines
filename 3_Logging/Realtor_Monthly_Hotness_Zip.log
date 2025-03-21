@@ -1,0 +1,156 @@
+2025-03-20 17:28:36,754 - INFO - Successfully requested and received data from: https://econdata.s3-us-west-2.amazonaws.com/Reports/Hotness/RDC_Inventory_Hotness_Metrics_Zip_History.csv
+2025-03-20 17:37:58,507 - INFO - ******************************************
+2025-03-20 17:37:58,919 - ERROR - An error occurred: (pymssql.exceptions.ProgrammingError) (208, b"Invalid object name 'DataMining.dbo.REALTOR_MNTHLY_HOT_ZIP'.DB-Lib error message 20018, severity 16:\nGeneral SQL Server error: Check messages from the SQL Server\n")
+[SQL: 
+    SELECT MAX(month_date_yyyymm) FROM [DataMining].[dbo].[REALTOR_MNTHLY_HOT_ZIP]
+    ]
+(Background on this error at: https://sqlalche.me/e/20/f405)
+Traceback (most recent call last):
+  File "src\\pymssql\\_pymssql.pyx", line 447, in pymssql._pymssql.Cursor.execute
+  File "src\\pymssql\\_mssql.pyx", line 1125, in pymssql._mssql.MSSQLConnection.execute_query
+  File "src\\pymssql\\_mssql.pyx", line 1156, in pymssql._mssql.MSSQLConnection.execute_query
+  File "src\\pymssql\\_mssql.pyx", line 1289, in pymssql._mssql.MSSQLConnection.format_and_run_query
+  File "src\\pymssql\\_mssql.pyx", line 1855, in pymssql._mssql.check_cancel_and_raise
+  File "src\\pymssql\\_mssql.pyx", line 1901, in pymssql._mssql.raise_MSSQLDatabaseException
+pymssql._mssql.MSSQLDatabaseException: (208, b"Invalid object name 'DataMining.dbo.REALTOR_MNTHLY_HOT_ZIP'.DB-Lib error message 20018, severity 16:\nGeneral SQL Server error: Check messages from the SQL Server\n")
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "C:\Users\nickk\PycharmProjects\Data_Pipelines\venv\Lib\site-packages\sqlalchemy\engine\base.py", line 1967, in _exec_single_context
+    self.dialect.do_execute(
+  File "C:\Users\nickk\PycharmProjects\Data_Pipelines\venv\Lib\site-packages\sqlalchemy\engine\default.py", line 941, in do_execute
+    cursor.execute(statement, parameters)
+  File "src\\pymssql\\_pymssql.pyx", line 462, in pymssql._pymssql.Cursor.execute
+pymssql.exceptions.ProgrammingError: (208, b"Invalid object name 'DataMining.dbo.REALTOR_MNTHLY_HOT_ZIP'.DB-Lib error message 20018, severity 16:\nGeneral SQL Server error: Check messages from the SQL Server\n")
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "C:\Users\nickk\PycharmProjects\Data_Pipelines\Realtor_Monthly_Hotness_Zip.py", line 281, in <module>
+    main_run()
+  File "C:\Users\nickk\PycharmProjects\Data_Pipelines\Realtor_Monthly_Hotness_Zip.py", line 225, in main_run
+    sql_table_max_date = get_latest_yearmonth(sql_table_name)
+                         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\nickk\PycharmProjects\Data_Pipelines\Realtor_Monthly_Hotness_Zip.py", line 45, in get_latest_yearmonth
+    result = connection.execute(get_max_date)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\nickk\PycharmProjects\Data_Pipelines\venv\Lib\site-packages\sqlalchemy\engine\base.py", line 1418, in execute
+    return meth(
+           ^^^^^
+  File "C:\Users\nickk\PycharmProjects\Data_Pipelines\venv\Lib\site-packages\sqlalchemy\sql\elements.py", line 515, in _execute_on_connection
+    return connection._execute_clauseelement(
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\nickk\PycharmProjects\Data_Pipelines\venv\Lib\site-packages\sqlalchemy\engine\base.py", line 1640, in _execute_clauseelement
+    ret = self._execute_context(
+          ^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\nickk\PycharmProjects\Data_Pipelines\venv\Lib\site-packages\sqlalchemy\engine\base.py", line 1846, in _execute_context
+    return self._exec_single_context(
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\nickk\PycharmProjects\Data_Pipelines\venv\Lib\site-packages\sqlalchemy\engine\base.py", line 1986, in _exec_single_context
+    self._handle_dbapi_exception(
+  File "C:\Users\nickk\PycharmProjects\Data_Pipelines\venv\Lib\site-packages\sqlalchemy\engine\base.py", line 2355, in _handle_dbapi_exception
+    raise sqlalchemy_exception.with_traceback(exc_info[2]) from e
+  File "C:\Users\nickk\PycharmProjects\Data_Pipelines\venv\Lib\site-packages\sqlalchemy\engine\base.py", line 1967, in _exec_single_context
+    self.dialect.do_execute(
+  File "C:\Users\nickk\PycharmProjects\Data_Pipelines\venv\Lib\site-packages\sqlalchemy\engine\default.py", line 941, in do_execute
+    cursor.execute(statement, parameters)
+  File "src\\pymssql\\_pymssql.pyx", line 462, in pymssql._pymssql.Cursor.execute
+sqlalchemy.exc.ProgrammingError: (pymssql.exceptions.ProgrammingError) (208, b"Invalid object name 'DataMining.dbo.REALTOR_MNTHLY_HOT_ZIP'.DB-Lib error message 20018, severity 16:\nGeneral SQL Server error: Check messages from the SQL Server\n")
+[SQL: 
+    SELECT MAX(month_date_yyyymm) FROM [DataMining].[dbo].[REALTOR_MNTHLY_HOT_ZIP]
+    ]
+(Background on this error at: https://sqlalche.me/e/20/f405)
+
+2025-03-20 17:37:58,920 - INFO - Main Function took 0 minutes and 0.41 seconds to run.
+2025-03-20 17:37:58,920 - INFO - ******************************************
+2025-03-20 17:38:31,585 - INFO - ******************************************
+2025-03-20 17:38:31,936 - ERROR - An error occurred: (pymssql.exceptions.ProgrammingError) (208, b"Invalid object name 'DataMining.dbo.REALTOR_MNTHLY_HOT_ZIP'.DB-Lib error message 20018, severity 16:\nGeneral SQL Server error: Check messages from the SQL Server\n")
+[SQL: 
+    SELECT MAX(month_date_yyyymm) FROM [DataMining].[dbo].[REALTOR_MNTHLY_HOT_ZIP]
+    ]
+(Background on this error at: https://sqlalche.me/e/20/f405)
+Traceback (most recent call last):
+  File "src\\pymssql\\_pymssql.pyx", line 447, in pymssql._pymssql.Cursor.execute
+  File "src\\pymssql\\_mssql.pyx", line 1125, in pymssql._mssql.MSSQLConnection.execute_query
+  File "src\\pymssql\\_mssql.pyx", line 1156, in pymssql._mssql.MSSQLConnection.execute_query
+  File "src\\pymssql\\_mssql.pyx", line 1289, in pymssql._mssql.MSSQLConnection.format_and_run_query
+  File "src\\pymssql\\_mssql.pyx", line 1855, in pymssql._mssql.check_cancel_and_raise
+  File "src\\pymssql\\_mssql.pyx", line 1901, in pymssql._mssql.raise_MSSQLDatabaseException
+pymssql._mssql.MSSQLDatabaseException: (208, b"Invalid object name 'DataMining.dbo.REALTOR_MNTHLY_HOT_ZIP'.DB-Lib error message 20018, severity 16:\nGeneral SQL Server error: Check messages from the SQL Server\n")
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "C:\Users\nickk\PycharmProjects\Data_Pipelines\venv\Lib\site-packages\sqlalchemy\engine\base.py", line 1967, in _exec_single_context
+    self.dialect.do_execute(
+  File "C:\Users\nickk\PycharmProjects\Data_Pipelines\venv\Lib\site-packages\sqlalchemy\engine\default.py", line 941, in do_execute
+    cursor.execute(statement, parameters)
+  File "src\\pymssql\\_pymssql.pyx", line 462, in pymssql._pymssql.Cursor.execute
+pymssql.exceptions.ProgrammingError: (208, b"Invalid object name 'DataMining.dbo.REALTOR_MNTHLY_HOT_ZIP'.DB-Lib error message 20018, severity 16:\nGeneral SQL Server error: Check messages from the SQL Server\n")
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "C:\Users\nickk\PycharmProjects\Data_Pipelines\Realtor_Monthly_Hotness_Zip.py", line 281, in <module>
+    main_run()
+  File "C:\Users\nickk\PycharmProjects\Data_Pipelines\Realtor_Monthly_Hotness_Zip.py", line 225, in main_run
+    sql_table_max_date = get_latest_yearmonth(sql_table_name)
+                         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\nickk\PycharmProjects\Data_Pipelines\Realtor_Monthly_Hotness_Zip.py", line 45, in get_latest_yearmonth
+    result = connection.execute(get_max_date)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\nickk\PycharmProjects\Data_Pipelines\venv\Lib\site-packages\sqlalchemy\engine\base.py", line 1418, in execute
+    return meth(
+           ^^^^^
+  File "C:\Users\nickk\PycharmProjects\Data_Pipelines\venv\Lib\site-packages\sqlalchemy\sql\elements.py", line 515, in _execute_on_connection
+    return connection._execute_clauseelement(
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\nickk\PycharmProjects\Data_Pipelines\venv\Lib\site-packages\sqlalchemy\engine\base.py", line 1640, in _execute_clauseelement
+    ret = self._execute_context(
+          ^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\nickk\PycharmProjects\Data_Pipelines\venv\Lib\site-packages\sqlalchemy\engine\base.py", line 1846, in _execute_context
+    return self._exec_single_context(
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\nickk\PycharmProjects\Data_Pipelines\venv\Lib\site-packages\sqlalchemy\engine\base.py", line 1986, in _exec_single_context
+    self._handle_dbapi_exception(
+  File "C:\Users\nickk\PycharmProjects\Data_Pipelines\venv\Lib\site-packages\sqlalchemy\engine\base.py", line 2355, in _handle_dbapi_exception
+    raise sqlalchemy_exception.with_traceback(exc_info[2]) from e
+  File "C:\Users\nickk\PycharmProjects\Data_Pipelines\venv\Lib\site-packages\sqlalchemy\engine\base.py", line 1967, in _exec_single_context
+    self.dialect.do_execute(
+  File "C:\Users\nickk\PycharmProjects\Data_Pipelines\venv\Lib\site-packages\sqlalchemy\engine\default.py", line 941, in do_execute
+    cursor.execute(statement, parameters)
+  File "src\\pymssql\\_pymssql.pyx", line 462, in pymssql._pymssql.Cursor.execute
+sqlalchemy.exc.ProgrammingError: (pymssql.exceptions.ProgrammingError) (208, b"Invalid object name 'DataMining.dbo.REALTOR_MNTHLY_HOT_ZIP'.DB-Lib error message 20018, severity 16:\nGeneral SQL Server error: Check messages from the SQL Server\n")
+[SQL: 
+    SELECT MAX(month_date_yyyymm) FROM [DataMining].[dbo].[REALTOR_MNTHLY_HOT_ZIP]
+    ]
+(Background on this error at: https://sqlalche.me/e/20/f405)
+
+2025-03-20 17:38:31,936 - INFO - Main Function took 0 minutes and 0.35 seconds to run.
+2025-03-20 17:38:31,937 - INFO - ******************************************
+2025-03-20 17:39:05,292 - INFO - ******************************************
+2025-03-20 17:39:05,659 - INFO - Get Latest Yearmonth called, results for max date is None for table REALTOR_MNTHLY_HOT_ZIP
+2025-03-20 17:40:22,861 - INFO - Successfully requested and received data from: https://econdata.s3-us-west-2.amazonaws.com/Reports/Hotness/RDC_Inventory_Hotness_Metrics_Zip_History.csv
+2025-03-20 17:40:25,560 - INFO - DataFrame head:
+   month_date_yyyymm zip_code        zip_name  household_count_rank  hotness_rank  hotness_score  supply_score  demand_score  median_days_on_market  page_view_count_per_property_mm  page_view_count_per_property_yy  page_view_count_per_property_vs_us  median_listing_price  quality_flag  hotness_rank_lm  hotness_rank_ly  median_days_on_market_ly  median_days_on_market_lm  median_days_on_market_us  median_listing_price_lm  median_listing_price_ly  median_listing_price_us          Update_Date
+0             202501    79065       pampa, tx                  6669          9801        25.8134       32.7140         18.91                   83.0                           0.2835                          -0.4523                              0.5896                156225             0            19602             5119                     59.50                     83.50                      73.0                   162475                   147675                   112385  2025-03-20 17:40:23
+1             202010    31750  fitzgerald, ga                  6533          8764        32.1210       50.2807         13.96                   47.5                          -0.0103                           0.5152                              0.5221                112400             0            17528            12316                     78.00                     80.75                      51.0                    99100                    99090                    85018  2025-03-20 17:40:23
+2             202210    45750    marietta, oh                  4319          5445        52.2554       19.3532         85.16                   67.0                          -0.0829                          -0.1871                              1.6908                224900             0            10890             4857                     52.00                     54.25                      50.0                   212000                   184500                   147072  2025-03-20 17:40:23
+3             202101    75460       paris, tx                  5261          2254        69.3928       69.4544         69.33                   52.5                           0.5099                           1.6442                              1.2638                141200             0             4508             8627                     87.25                     40.50                      66.0                   147500                   110425                    99332  2025-03-20 17:40:23
+4             202101    75462       paris, tx                  8550          4457        53.2570       63.0433         43.47                   56.5                           0.3012                           0.6393                              0.8950                309450             0             8914             8572                     94.00                     49.25                      66.0                   287400                   255000                   160859  2025-03-20 17:40:23
+2025-03-20 17:40:25,561 - INFO - Writing historical data to REALTOR_MNTHLY_HOT_ZIP.
+2025-03-20 18:13:09,041 - INFO - Main Function took 34 minutes and 3.75 seconds to run.
+2025-03-20 18:13:09,041 - INFO - ******************************************
+2025-03-20 18:31:22,904 - INFO - ******************************************
+2025-03-20 18:31:23,921 - INFO - Get Latest Yearmonth called, results for max date is 202501 for table REALTOR_MNTHLY_HOT_ZIP
+2025-03-20 18:32:33,655 - INFO - Successfully requested and received data from: https://econdata.s3-us-west-2.amazonaws.com/Reports/Hotness/RDC_Inventory_Hotness_Metrics_Zip_History.csv
+2025-03-20 18:32:33,795 - INFO - DataFrame head:
+      month_date_yyyymm zip_code          zip_name  household_count_rank  hotness_rank  hotness_score  supply_score  demand_score  median_days_on_market  page_view_count_per_property_mm  page_view_count_per_property_yy  page_view_count_per_property_vs_us  median_listing_price  quality_flag  hotness_rank_lm  hotness_rank_ly  median_days_on_market_ly  median_days_on_market_lm  median_days_on_market_us  median_listing_price_lm  median_listing_price_ly  median_listing_price_us          Update_Date
+1060             202502    89005  boulder city, nv                  7186          1108        82.1214       89.9003         74.34                  33.25                          -0.0623                          -0.2288                              1.4644                477694             0             2216             2538                     51.25                     81.75                      66.0                   450000                   499749                   221210  2025-03-20 18:32:33
+1061             202502    89135     las vegas, nv                  2428          2419        69.8513       79.3880         60.31                  42.00                           0.0646                          -0.3044                              1.1568                814950             1             4838             2886                     49.50                     66.50                      66.0                   837450                   906500                   273653  2025-03-20 18:32:33
+1062             202502    89002     henderson, nv                  2840          2449        69.6235       83.5224         55.72                  38.50                          -0.0542                          -0.1041                              1.0760                489975             0             4898             2888                     35.25                     48.75                      66.0                   489925                   516724                   223808  2025-03-20 18:32:33
+1063             202502    89034      mesquite, nv                 12606          3280        63.6282       78.6144         48.64                  42.75                           0.0301                          -0.2940                              0.9764                535475             0             6560             3745                     49.25                     69.50                      66.0                   536250                   454999                   232845  2025-03-20 18:32:33
+1064             202502    89129     las vegas, nv                   741          3438        62.5322       87.0294         38.04                  35.50                           0.0179                          -0.3207                              0.8372                485000             0             6876             4049                     46.00                     67.50                      66.0                   485000                   532474                   222764  2025-03-20 18:32:33
+2025-03-20 18:32:54,594 - INFO - Main Function took 1 minutes and 31.69 seconds to run.
+2025-03-20 18:32:54,594 - INFO - ******************************************

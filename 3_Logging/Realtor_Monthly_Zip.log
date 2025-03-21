@@ -22,3 +22,132 @@ NameError: name 'zip_historical_month_url' is not defined. Did you mean: 'zip_hi
 3             202502    99126    wa                330500                   3.0                   98.0                0.0                    0.0                  0.0                    2.0                                 255.0              1289.0               346708.0                  4.0         0.6667           0.0                 275004.0                      6.0                      61.0                   0.0                       0.0                     0.0                       1.0                                    222.0                 1200.0                  724876.0                     7.0               0.0                 219005.0                      4.0                     154.0                   0.0                       0.0                     0.0                       0.0                                    180.0                 1185.0                  243253.0                     3.0          0.000000  2025-03-17 22:37:27
 4             202502    66943    ks                301200                   2.0                   36.0                2.0                    0.0                  0.0                    1.0                                 198.0              1716.0               299317.0                  2.0         0.6667           0.0                      0.0                      0.0                       0.0                   0.0                       0.0                     0.0                       0.0                                      0.0                    0.0                       0.0                     0.0               0.0                 237896.0                      1.0                     108.0                   0.0                       0.0                     0.0                       0.0                                    184.0                 1296.0                  237893.0                     1.0          0.000000  2025-03-17 22:37:27
 2025-03-17 22:37:27,973 - INFO - Writing historical data to REALTOR_MNTHLY_ZIP.
+2025-03-18 00:45:00,192 - ERROR - An error occurred: Not connected to any MS SQL server
+Traceback (most recent call last):
+  File "src\\pymssql\\_pymssql.pyx", line 447, in pymssql._pymssql.Cursor.execute
+  File "src\\pymssql\\_mssql.pyx", line 1125, in pymssql._mssql.MSSQLConnection.execute_query
+  File "src\\pymssql\\_mssql.pyx", line 1156, in pymssql._mssql.MSSQLConnection.execute_query
+  File "src\\pymssql\\_mssql.pyx", line 1289, in pymssql._mssql.MSSQLConnection.format_and_run_query
+  File "src\\pymssql\\_mssql.pyx", line 1855, in pymssql._mssql.check_cancel_and_raise
+  File "src\\pymssql\\_mssql.pyx", line 1901, in pymssql._mssql.raise_MSSQLDatabaseException
+pymssql._mssql.MSSQLDatabaseException: (20004, b'DB-Lib error message 20004, severity 9:\nRead from the server failed\nNet-Lib error during Unknown error (10054)\n')
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "C:\Users\nickk\PycharmProjects\Data_Pipelines\venv\Lib\site-packages\sqlalchemy\engine\base.py", line 2118, in _exec_insertmany_context
+    dialect.do_execute(
+  File "C:\Users\nickk\PycharmProjects\Data_Pipelines\venv\Lib\site-packages\sqlalchemy\engine\default.py", line 941, in do_execute
+    cursor.execute(statement, parameters)
+  File "src\\pymssql\\_pymssql.pyx", line 465, in pymssql._pymssql.Cursor.execute
+pymssql.exceptions.OperationalError: (20004, b'DB-Lib error message 20004, severity 9:\nRead from the server failed\nNet-Lib error during Unknown error (10054)\n')
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "C:\Users\nickk\PycharmProjects\Data_Pipelines\Realtor_Monthly_Inventory_Zip_V2.py", line 253, in main_run
+  File "C:\Users\nickk\PycharmProjects\Data_Pipelines\venv\Lib\site-packages\pandas\util\_decorators.py", line 333, in wrapper
+    return func(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\nickk\PycharmProjects\Data_Pipelines\venv\Lib\site-packages\pandas\core\generic.py", line 3087, in to_sql
+    return sql.to_sql(
+           ^^^^^^^^^^^
+  File "C:\Users\nickk\PycharmProjects\Data_Pipelines\venv\Lib\site-packages\pandas\io\sql.py", line 842, in to_sql
+    return pandas_sql.to_sql(
+           ^^^^^^^^^^^^^^^^^^
+  File "C:\Users\nickk\PycharmProjects\Data_Pipelines\venv\Lib\site-packages\pandas\io\sql.py", line 2018, in to_sql
+    total_inserted = sql_engine.insert_records(
+                     ^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\nickk\PycharmProjects\Data_Pipelines\venv\Lib\site-packages\pandas\io\sql.py", line 1567, in insert_records
+    raise err
+  File "C:\Users\nickk\PycharmProjects\Data_Pipelines\venv\Lib\site-packages\pandas\io\sql.py", line 1558, in insert_records
+    return table.insert(chunksize=chunksize, method=method)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\nickk\PycharmProjects\Data_Pipelines\venv\Lib\site-packages\pandas\io\sql.py", line 1119, in insert
+    num_inserted = exec_insert(conn, keys, chunk_iter)
+                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\nickk\PycharmProjects\Data_Pipelines\venv\Lib\site-packages\pandas\io\sql.py", line 1010, in _execute_insert
+    result = conn.execute(self.table.insert(), data)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\nickk\PycharmProjects\Data_Pipelines\venv\Lib\site-packages\sqlalchemy\engine\base.py", line 1418, in execute
+    return meth(
+           ^^^^^
+  File "C:\Users\nickk\PycharmProjects\Data_Pipelines\venv\Lib\site-packages\sqlalchemy\sql\elements.py", line 515, in _execute_on_connection
+    return connection._execute_clauseelement(
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\nickk\PycharmProjects\Data_Pipelines\venv\Lib\site-packages\sqlalchemy\engine\base.py", line 1640, in _execute_clauseelement
+    ret = self._execute_context(
+          ^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\nickk\PycharmProjects\Data_Pipelines\venv\Lib\site-packages\sqlalchemy\engine\base.py", line 1844, in _execute_context
+    return self._exec_insertmany_context(dialect, context)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\nickk\PycharmProjects\Data_Pipelines\venv\Lib\site-packages\sqlalchemy\engine\base.py", line 2126, in _exec_insertmany_context
+    self._handle_dbapi_exception(
+  File "C:\Users\nickk\PycharmProjects\Data_Pipelines\venv\Lib\site-packages\sqlalchemy\engine\base.py", line 2355, in _handle_dbapi_exception
+    raise sqlalchemy_exception.with_traceback(exc_info[2]) from e
+  File "C:\Users\nickk\PycharmProjects\Data_Pipelines\venv\Lib\site-packages\sqlalchemy\engine\base.py", line 2118, in _exec_insertmany_context
+    dialect.do_execute(
+  File "C:\Users\nickk\PycharmProjects\Data_Pipelines\venv\Lib\site-packages\sqlalchemy\engine\default.py", line 941, in do_execute
+    cursor.execute(statement, parameters)
+  File "src\\pymssql\\_pymssql.pyx", line 465, in pymssql._pymssql.Cursor.execute
+sqlalchemy.exc.OperationalError: (pymssql.exceptions.OperationalError) (20004, b'DB-Lib error message 20004, severity 9:\nRead from the server failed\nNet-Lib error during Unknown error (10054)\n')
+[SQL: INSERT INTO [REALTOR_MNTHLY_ZIP] (month_date_yyyymm, zip_code, state, median_listing_price, active_listing_count, median_days_on_market, new_listing_count, price_increased_count, price_reduced_count, pending_listing_count, median_listing_price_per_sq ... 65251 characters truncated ... sting_price_lm__50)s, %(total_listing_count_lm__50)s, %(pending_ratio_lm__50)s, %(Update_Date__50)s)]
+[parameters: {'median_listing_price_per_square_foot_ly__0': 85.0, 'average_listing_price_ly__0': 169892.0, 'pending_ratio_lm__0': 0.0, 'pending_listing_count__0': 1.0, 'price_increased_count_ly__0': 0.0, 'median_listing_price_ly__0': 169892.0, 'median_listing_price_per_square_foot_lm__0': 65.0, 'pending_listing_count_lm__0': 0.0, 'average_listing_price_lm__0': 119904.0, 'price_reduced_count__0': 0.0, 'pending_ratio__0': 0.5, 'Update_Date__0': '2025-03-17 22:37:27', 'quality_flag__0': 1.0, 'median_listing_price_lm__0': 119904.0, 'median_days_on_market_lm__0': 22.0, 'median_square_feet__0': 1850.0, 'total_listing_count__0': 3.0, 'total_listing_count_lm__0': 2.0, 'zip_code__0': '72457', 'new_listing_count__0': 0.0, 'month_date_yyyymm__0': 202405, 'average_listing_price__0': 115000.0, 'new_listing_count_lm__0': 0.0, 'pending_ratio_ly__0': 0.0, 'median_square_feet_lm__0': 1850.0, 'active_listing_count_ly__0': 1.0, 'new_listing_count_ly__0': 0.0, 'pending_listing_count_ly__0': 0.0, 'median_square_feet_ly__0': 1987.0, 'median_listing_price_per_square_foot__0': 62.0, 'active_listing_count__0': 2.0, 'total_listing_count_ly__0': 1.0, 'price_increased_count__0': 0.0, 'price_increased_count_lm__0': 0.0, 'median_days_on_market__0': 50.0, 'median_listing_price__0': 115000, 'median_days_on_market_ly__0': 4.0, 'price_reduced_count_ly__0': 0.0, 'state__0': 'ar', 'active_listing_count_lm__0': 2.0, 'price_reduced_count_lm__0': 0.0, 'median_listing_price_per_square_foot_ly__1': 237.0, 'average_listing_price_ly__1': 597529.0, 'pending_ratio_lm__1': 0.9122807017543859, 'pending_listing_count__1': 7.0, 'price_increased_count_ly__1': 0.0, 'median_listing_price_ly__1': 561725.0, 'median_listing_price_per_square_foot_lm__1': 302.0, 'pending_listing_count_lm__1': 4.0, 'average_listing_price_lm__1': 1056524.0 ... 1991 parameters truncated ... 'price_increased_count__49': 0.0, 'price_increased_count_lm__49': 0.0, 'median_days_on_market__49': 51.0, 'median_listing_price__49': 505000, 'median_days_on_market_ly__49': 106.0, 'price_reduced_count_ly__49': 0.0, 'state__49': 'or', 'active_listing_count_lm__49': 1.0, 'price_reduced_count_lm__49': 0.0, 'median_listing_price_per_square_foot_ly__50': 329.0, 'average_listing_price_ly__50': 510080.0, 'pending_ratio_lm__50': 0.595698500394633, 'pending_listing_count__50': 16.0, 'price_increased_count_ly__50': 0.0, 'median_listing_price_ly__50': 494451.0, 'median_listing_price_per_square_foot_lm__50': 315.0, 'pending_listing_count_lm__50': 18.0, 'average_listing_price_lm__50': 439959.0, 'price_reduced_count__50': 18.0, 'pending_ratio__50': 0.6038, 'Update_Date__50': '2025-03-17 22:37:27', 'quality_flag__50': 0.0, 'median_listing_price_lm__50': 418987.0, 'median_days_on_market_lm__50': 40.0, 'median_square_feet__50': 1405.0, 'total_listing_count__50': 45.0, 'total_listing_count_lm__50': 47.0, 'zip_code__50': '97218', 'new_listing_count__50': 14.0, 'month_date_yyyymm__50': 202405, 'average_listing_price__50': 466621.0, 'new_listing_count_lm__50': 26.0, 'pending_ratio_ly__50': 1.0, 'median_square_feet_lm__50': 1366.0, 'active_listing_count_ly__50': 28.0, 'new_listing_count_ly__50': 26.0, 'pending_listing_count_ly__50': 23.0, 'median_square_feet_ly__50': 1534.0, 'median_listing_price_per_square_foot__50': 304.0, 'active_listing_count__50': 27.0, 'total_listing_count_ly__50': 50.0, 'price_increased_count__50': 0.0, 'price_increased_count_lm__50': 0.0, 'median_days_on_market__50': 44.0, 'median_listing_price__50': 449950, 'median_days_on_market_ly__50': 31.0, 'price_reduced_count_ly__50': 10.0, 'state__50': 'or', 'active_listing_count_lm__50': 31.0, 'price_reduced_count_lm__50': 10.0}]
+(Background on this error at: https://sqlalche.me/e/20/e3q8)
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "C:\Users\nickk\PycharmProjects\Data_Pipelines\Realtor_Monthly_Inventory_Zip_V2.py", line 262, in <module>
+  File "C:\Users\nickk\PycharmProjects\Data_Pipelines\Realtor_Monthly_Inventory_Zip_V2.py", line 249, in main_run
+  File "C:\Users\nickk\PycharmProjects\Data_Pipelines\venv\Lib\site-packages\sqlalchemy\engine\base.py", line 235, in __exit__
+    self.close()
+  File "C:\Users\nickk\PycharmProjects\Data_Pipelines\venv\Lib\site-packages\sqlalchemy\engine\base.py", line 1242, in close
+    self._transaction.close()
+  File "C:\Users\nickk\PycharmProjects\Data_Pipelines\venv\Lib\site-packages\sqlalchemy\engine\base.py", line 2588, in close
+    self._do_close()
+  File "C:\Users\nickk\PycharmProjects\Data_Pipelines\venv\Lib\site-packages\sqlalchemy\engine\base.py", line 2726, in _do_close
+    self._close_impl()
+  File "C:\Users\nickk\PycharmProjects\Data_Pipelines\venv\Lib\site-packages\sqlalchemy\engine\base.py", line 2712, in _close_impl
+    self._connection_rollback_impl()
+  File "C:\Users\nickk\PycharmProjects\Data_Pipelines\venv\Lib\site-packages\sqlalchemy\engine\base.py", line 2704, in _connection_rollback_impl
+    self.connection._rollback_impl()
+  File "C:\Users\nickk\PycharmProjects\Data_Pipelines\venv\Lib\site-packages\sqlalchemy\engine\base.py", line 1129, in _rollback_impl
+    self._handle_dbapi_exception(e, None, None, None, None)
+  File "C:\Users\nickk\PycharmProjects\Data_Pipelines\venv\Lib\site-packages\sqlalchemy\engine\base.py", line 2358, in _handle_dbapi_exception
+    raise exc_info[1].with_traceback(exc_info[2])
+  File "C:\Users\nickk\PycharmProjects\Data_Pipelines\venv\Lib\site-packages\sqlalchemy\engine\base.py", line 1127, in _rollback_impl
+    self.engine.dialect.do_rollback(self.connection)
+  File "C:\Users\nickk\PycharmProjects\Data_Pipelines\venv\Lib\site-packages\sqlalchemy\dialects\mssql\base.py", line 3121, in do_rollback
+    super().do_rollback(dbapi_connection)
+  File "C:\Users\nickk\PycharmProjects\Data_Pipelines\venv\Lib\site-packages\sqlalchemy\engine\default.py", line 699, in do_rollback
+    dbapi_connection.rollback()
+  File "src\\pymssql\\_pymssql.pyx", line 292, in pymssql._pymssql.Connection.rollback
+  File "src\\pymssql\\_pymssql.pyx", line 276, in pymssql._pymssql.Connection.rollback
+  File "src\\pymssql\\_mssql.pyx", line 1094, in pymssql._mssql.MSSQLConnection.execute_non_query
+  File "src\\pymssql\\_mssql.pyx", line 1115, in pymssql._mssql.MSSQLConnection.execute_non_query
+  File "src\\pymssql\\_mssql.pyx", line 1270, in pymssql._mssql.MSSQLConnection.format_and_run_query
+  File "src\\pymssql\\_mssql.pyx", line 792, in pymssql._mssql.MSSQLConnection.cancel
+  File "src\\pymssql\\_mssql.pyx", line 1906, in pymssql._mssql.assert_connected
+pymssql._mssql.MSSQLDriverException: Not connected to any MS SQL server
+
+2025-03-18 00:45:00,192 - INFO - Main Function took 130 minutes and 8.33 seconds to run.
+2025-03-18 00:45:00,193 - INFO - ******************************************
+2025-03-18 00:45:02,973 - ERROR - Exception during reset or similar
+Traceback (most recent call last):
+  File "C:\Users\nickk\PycharmProjects\Data_Pipelines\venv\Lib\site-packages\sqlalchemy\pool\base.py", line 986, in _finalize_fairy
+    fairy._reset(
+  File "C:\Users\nickk\PycharmProjects\Data_Pipelines\venv\Lib\site-packages\sqlalchemy\pool\base.py", line 1432, in _reset
+    pool._dialect.do_rollback(self)
+  File "C:\Users\nickk\PycharmProjects\Data_Pipelines\venv\Lib\site-packages\sqlalchemy\dialects\mssql\base.py", line 3121, in do_rollback
+    super().do_rollback(dbapi_connection)
+  File "C:\Users\nickk\PycharmProjects\Data_Pipelines\venv\Lib\site-packages\sqlalchemy\engine\default.py", line 699, in do_rollback
+    dbapi_connection.rollback()
+  File "src\\pymssql\\_pymssql.pyx", line 292, in pymssql._pymssql.Connection.rollback
+  File "src\\pymssql\\_pymssql.pyx", line 276, in pymssql._pymssql.Connection.rollback
+  File "src\\pymssql\\_mssql.pyx", line 1094, in pymssql._mssql.MSSQLConnection.execute_non_query
+  File "src\\pymssql\\_mssql.pyx", line 1115, in pymssql._mssql.MSSQLConnection.execute_non_query
+  File "src\\pymssql\\_mssql.pyx", line 1270, in pymssql._mssql.MSSQLConnection.format_and_run_query
+  File "src\\pymssql\\_mssql.pyx", line 792, in pymssql._mssql.MSSQLConnection.cancel
+  File "src\\pymssql\\_mssql.pyx", line 1906, in pymssql._mssql.assert_connected
+pymssql._mssql.MSSQLDriverException: Not connected to any MS SQL server

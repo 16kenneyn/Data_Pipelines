@@ -1,0 +1,162 @@
+2025-03-20 19:21:59,877 - INFO - ******************************************
+2025-03-20 19:22:01,508 - INFO - Read Excel file from 7_Manual_Data_Uploads/Redfin/investor_purchases_by_metro_032025.xlsx with 3996 rows.
+2025-03-20 19:22:01,515 - ERROR - Error parsing quarter nan: 'float' object has no attribute 'split'
+2025-03-20 19:22:01,615 - ERROR - An error occurred: 'float' object has no attribute 'split'
+Traceback (most recent call last):
+  File "C:\Users\nickk\PycharmProjects\Data_Pipelines\RedFin_Investor_by_Quarter.py", line 108, in <module>
+    main_run()
+  File "C:\Users\nickk\PycharmProjects\Data_Pipelines\RedFin_Investor_by_Quarter.py", line 92, in main_run
+    df = dataframe_etl(df)
+         ^^^^^^^^^^^^^^^^^
+  File "C:\Users\nickk\PycharmProjects\Data_Pipelines\RedFin_Investor_by_Quarter.py", line 41, in dataframe_etl
+    df['start_quarter_date'] = df['Quarter'].apply(quarter_to_date)
+                               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\nickk\PycharmProjects\Data_Pipelines\venv\Lib\site-packages\pandas\core\series.py", line 4924, in apply
+    ).apply()
+      ^^^^^^^
+  File "C:\Users\nickk\PycharmProjects\Data_Pipelines\venv\Lib\site-packages\pandas\core\apply.py", line 1427, in apply
+    return self.apply_standard()
+           ^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\nickk\PycharmProjects\Data_Pipelines\venv\Lib\site-packages\pandas\core\apply.py", line 1507, in apply_standard
+    mapped = obj._map_values(
+             ^^^^^^^^^^^^^^^^
+  File "C:\Users\nickk\PycharmProjects\Data_Pipelines\venv\Lib\site-packages\pandas\core\base.py", line 921, in _map_values
+    return algorithms.map_array(arr, mapper, na_action=na_action, convert=convert)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\nickk\PycharmProjects\Data_Pipelines\venv\Lib\site-packages\pandas\core\algorithms.py", line 1743, in map_array
+    return lib.map_infer(values, mapper, convert=convert)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "lib.pyx", line 2972, in pandas._libs.lib.map_infer
+  File "C:\Users\nickk\PycharmProjects\Data_Pipelines\RedFin_Investor_by_Quarter.py", line 15, in quarter_to_date
+    year, q = quarter_str.split()
+              ^^^^^^^^^^^^^^^^^
+AttributeError: 'float' object has no attribute 'split'
+
+2025-03-20 19:22:01,616 - INFO - Main Function took 0 minutes and 1.74 seconds to run.
+2025-03-20 19:22:01,616 - INFO - ******************************************
+2025-03-20 19:23:17,070 - INFO - ******************************************
+2025-03-20 19:23:17,439 - INFO - Read Excel file from 7_Manual_Data_Uploads/Redfin/investor_purchases_by_metro_032025.xlsx with 3996 rows.
+2025-03-20 19:23:17,444 - ERROR - Error parsing quarter nan: 'float' object has no attribute 'split'
+2025-03-20 19:23:17,447 - ERROR - An error occurred: 'float' object has no attribute 'split'
+Traceback (most recent call last):
+  File "C:\Users\nickk\PycharmProjects\Data_Pipelines\RedFin_Investor_by_Quarter.py", line 109, in <module>
+    main_run()
+  File "C:\Users\nickk\PycharmProjects\Data_Pipelines\RedFin_Investor_by_Quarter.py", line 93, in main_run
+    df = dataframe_etl(df)
+         ^^^^^^^^^^^^^^^^^
+  File "C:\Users\nickk\PycharmProjects\Data_Pipelines\RedFin_Investor_by_Quarter.py", line 42, in dataframe_etl
+    df['start_quarter_date'] = df['Quarter'].apply(quarter_to_date)
+                               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\nickk\PycharmProjects\Data_Pipelines\venv\Lib\site-packages\pandas\core\series.py", line 4924, in apply
+    ).apply()
+      ^^^^^^^
+  File "C:\Users\nickk\PycharmProjects\Data_Pipelines\venv\Lib\site-packages\pandas\core\apply.py", line 1427, in apply
+    return self.apply_standard()
+           ^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\nickk\PycharmProjects\Data_Pipelines\venv\Lib\site-packages\pandas\core\apply.py", line 1507, in apply_standard
+    mapped = obj._map_values(
+             ^^^^^^^^^^^^^^^^
+  File "C:\Users\nickk\PycharmProjects\Data_Pipelines\venv\Lib\site-packages\pandas\core\base.py", line 921, in _map_values
+    return algorithms.map_array(arr, mapper, na_action=na_action, convert=convert)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\nickk\PycharmProjects\Data_Pipelines\venv\Lib\site-packages\pandas\core\algorithms.py", line 1743, in map_array
+    return lib.map_infer(values, mapper, convert=convert)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "lib.pyx", line 2972, in pandas._libs.lib.map_infer
+  File "C:\Users\nickk\PycharmProjects\Data_Pipelines\RedFin_Investor_by_Quarter.py", line 15, in quarter_to_date
+    year, q = quarter_str.split()
+              ^^^^^^^^^^^^^^^^^
+AttributeError: 'float' object has no attribute 'split'
+
+2025-03-20 19:23:17,448 - INFO - Main Function took 0 minutes and 0.38 seconds to run.
+2025-03-20 19:23:17,448 - INFO - ******************************************
+2025-03-20 19:24:59,964 - INFO - ******************************************
+2025-03-20 19:25:00,322 - INFO - Read Excel file from 7_Manual_Data_Uploads/Redfin/investor_purchases_by_metro_032025.xlsx with 3996 rows.
+2025-03-20 19:25:00,329 - INFO - Dropped 3896 rows with missing 'Quarter'.
+2025-03-20 19:25:00,380 - INFO - DataFrame head:
+     Quarter start_quarter_date Redfin Metro  Investor Market Share  Investor Purchases  Investor Purchases YoY  total_purchases  non_investor_purchases  Investor_Purchases_LY          Update_Date
+0    2024 Q4         2024-10-01     National               0.170665             47004.0               -0.038989         275417.0                228413.0                48911.0  2025-03-20 19:25:00
+40   2024 Q3         2024-07-01     National               0.160132             50150.0               -0.025911         313180.0                263030.0                51484.0  2025-03-20 19:25:00
+80   2024 Q2         2024-04-01     National               0.169324             54985.0                0.031265         324733.0                269748.0                53318.0  2025-03-20 19:25:00
+120  2024 Q1         2024-01-01     National               0.189905             45537.0                0.015884         239788.0                194251.0                44825.0  2025-03-20 19:25:00
+160  2023 Q4         2023-10-01     National               0.190053             48911.0               -0.079080         257355.0                208444.0                53111.0  2025-03-20 19:25:00
+2025-03-20 19:25:00,957 - INFO - Overwrote REDFIN_INVESTOR_BY_QUARTER with 100 rows.
+2025-03-20 19:25:00,957 - INFO - Main Function took 0 minutes and 0.99 seconds to run.
+2025-03-20 19:25:00,958 - INFO - ******************************************
+2025-03-20 19:29:42,833 - INFO - ******************************************
+2025-03-20 19:29:43,163 - INFO - Read Excel file from 7_Manual_Data_Uploads/Redfin/investor_purchases_by_metro_032025.xlsx with 3996 rows.
+2025-03-20 19:29:43,165 - INFO - Dropped 3896 rows with missing 'Quarter'.
+2025-03-20 19:29:43,200 - INFO - DataFrame head:
+     Quarter start_quarter_date Redfin Metro  Investor Market Share  Investor Purchases  Investor Purchases YoY  total_purchases  non_investor_purchases  Investor_Purchases_LY          Update_Date
+0    2024 Q4         2024-10-01     National                 0.1707             47004.0                 -0.0390         275417.0                228413.0                48911.0  2025-03-20 19:29:43
+40   2024 Q3         2024-07-01     National                 0.1601             50150.0                 -0.0259         313180.0                263030.0                51484.0  2025-03-20 19:29:43
+80   2024 Q2         2024-04-01     National                 0.1693             54985.0                  0.0313         324733.0                269748.0                53318.0  2025-03-20 19:29:43
+120  2024 Q1         2024-01-01     National                 0.1899             45537.0                  0.0159         239788.0                194251.0                44825.0  2025-03-20 19:29:43
+160  2023 Q4         2023-10-01     National                 0.1901             48911.0                 -0.0791         257355.0                208444.0                53111.0  2025-03-20 19:29:43
+2025-03-20 19:29:46,173 - INFO - Overwrote REDFIN_INVESTOR_BY_QUARTER with 100 rows.
+2025-03-20 19:29:46,174 - INFO - Main Function took 0 minutes and 3.34 seconds to run.
+2025-03-20 19:29:46,174 - INFO - ******************************************
+2025-03-20 19:30:31,064 - INFO - ******************************************
+2025-03-20 19:30:31,440 - INFO - Read Excel file from 7_Manual_Data_Uploads/Redfin/investor_purchases_by_metro_032025.xlsx with 3996 rows.
+2025-03-20 19:30:31,442 - INFO - Dropped 3896 rows with missing 'Quarter'.
+2025-03-20 19:30:31,482 - INFO - DataFrame head:
+     Quarter start_quarter_date Redfin Metro  Investor Market Share  Investor Purchases  Investor Purchases YoY  total_purchases  non_investor_purchases  Investor_Purchases_LY          Update_Date
+0    2024 Q4         2024-10-01     National                 0.1707             47004.0                 -0.0390         275417.0                228413.0                48911.0  2025-03-20 19:30:31
+40   2024 Q3         2024-07-01     National                 0.1601             50150.0                 -0.0259         313180.0                263030.0                51484.0  2025-03-20 19:30:31
+80   2024 Q2         2024-04-01     National                 0.1693             54985.0                  0.0313         324733.0                269748.0                53318.0  2025-03-20 19:30:31
+120  2024 Q1         2024-01-01     National                 0.1899             45537.0                  0.0159         239788.0                194251.0                44825.0  2025-03-20 19:30:31
+160  2023 Q4         2023-10-01     National                 0.1901             48911.0                 -0.0791         257355.0                208444.0                53111.0  2025-03-20 19:30:31
+2025-03-20 19:30:32,167 - INFO - Overwrote REDFIN_INVESTOR_BY_QUARTER with 100 rows.
+2025-03-20 19:30:32,167 - INFO - Main Function took 0 minutes and 1.10 seconds to run.
+2025-03-20 19:30:32,167 - INFO - ******************************************
+2025-03-20 19:33:52,227 - INFO - ******************************************
+2025-03-20 19:33:52,663 - INFO - Read Excel file from 7_Manual_Data_Uploads/Redfin/dowload_investor_purchases_by_metro.xlsx with 3996 rows.
+2025-03-20 19:33:52,665 - INFO - Dropped 3896 rows with missing 'Quarter'.
+2025-03-20 19:33:52,711 - INFO - DataFrame head:
+     Quarter start_quarter_date Redfin Metro  Investor Market Share  Investor Purchases  Investor Purchases YoY  total_purchases  non_investor_purchases  Investor_Purchases_LY          Update_Date
+0    2024 Q4         2024-10-01     National                 0.1707             47004.0                 -0.0390         275417.0                228413.0                48911.0  2025-03-20 19:33:52
+40   2024 Q3         2024-07-01     National                 0.1601             50150.0                 -0.0259         313180.0                263030.0                51484.0  2025-03-20 19:33:52
+80   2024 Q2         2024-04-01     National                 0.1693             54985.0                  0.0313         324733.0                269748.0                53318.0  2025-03-20 19:33:52
+120  2024 Q1         2024-01-01     National                 0.1899             45537.0                  0.0159         239788.0                194251.0                44825.0  2025-03-20 19:33:52
+160  2023 Q4         2023-10-01     National                 0.1901             48911.0                 -0.0791         257355.0                208444.0                53111.0  2025-03-20 19:33:52
+2025-03-20 19:33:53,463 - INFO - Overwrote REDFIN_INVESTOR_BY_QUARTER with 100 rows.
+2025-03-20 19:33:53,464 - INFO - Main Function took 0 minutes and 1.24 seconds to run.
+2025-03-20 19:33:53,464 - INFO - ******************************************
+2025-03-20 19:35:11,137 - INFO - ******************************************
+2025-03-20 19:35:11,510 - INFO - Read Excel file from 7_Manual_Data_Uploads/Redfin/dowload_investor_purchases_by_metro.xlsx with 3996 rows.
+2025-03-20 19:35:11,513 - INFO - Dropped 3896 rows with missing 'Quarter'.
+2025-03-20 19:35:11,555 - INFO - DataFrame head:
+     Quarter start_quarter_date Redfin Metro  Investor Market Share  Investor Purchases  Investor Purchases YoY  total_purchases  non_investor_purchases  Investor_Purchases_LY          Update_Date
+0    2024 Q4         2024-10-01     National                 0.1707             47004.0                 -0.0390         275417.0                228413.0                48911.0  2025-03-20 19:35:11
+40   2024 Q3         2024-07-01     National                 0.1601             50150.0                 -0.0259         313180.0                263030.0                51484.0  2025-03-20 19:35:11
+80   2024 Q2         2024-04-01     National                 0.1693             54985.0                  0.0313         324733.0                269748.0                53318.0  2025-03-20 19:35:11
+120  2024 Q1         2024-01-01     National                 0.1899             45537.0                  0.0159         239788.0                194251.0                44825.0  2025-03-20 19:35:11
+160  2023 Q4         2023-10-01     National                 0.1901             48911.0                 -0.0791         257355.0                208444.0                53111.0  2025-03-20 19:35:11
+2025-03-20 19:35:12,250 - INFO - Overwrote REDFIN_INVESTOR_BY_QUARTER with 100 rows.
+2025-03-20 19:35:12,250 - INFO - Main Function took 0 minutes and 1.11 seconds to run.
+2025-03-20 19:35:12,250 - INFO - ******************************************
+2025-03-20 19:46:50,935 - INFO - ******************************************
+2025-03-20 19:46:51,398 - INFO - Read Excel file from 7_Manual_Data_Uploads/Redfin/dowload_investor_purchases_by_metro.xlsx with 3996 rows.
+2025-03-20 19:46:51,404 - INFO - Dropped 3896 rows with missing 'Quarter'.
+2025-03-20 19:46:51,448 - INFO - DataFrame head:
+     Quarter start_quarter_date Redfin Metro  Investor Market Share  Investor Purchases  Investor Purchases YoY  total_purchases  non_investor_purchases  Investor_Purchases_LY          Update_Date
+0    2024 Q4         2024-10-01     National                 0.1707             47004.0                 -0.0390         275417.0                228413.0                48911.0  2025-03-20 19:46:51
+40   2024 Q3         2024-07-01     National                 0.1601             50150.0                 -0.0259         313180.0                263030.0                51484.0  2025-03-20 19:46:51
+80   2024 Q2         2024-04-01     National                 0.1693             54985.0                  0.0313         324733.0                269748.0                53318.0  2025-03-20 19:46:51
+120  2024 Q1         2024-01-01     National                 0.1899             45537.0                  0.0159         239788.0                194251.0                44825.0  2025-03-20 19:46:51
+160  2023 Q4         2023-10-01     National                 0.1901             48911.0                 -0.0791         257355.0                208444.0                53111.0  2025-03-20 19:46:51
+2025-03-20 19:46:52,254 - INFO - Overwrote REDFIN_INVESTOR_BY_QUARTER with 100 rows.
+2025-03-20 19:46:52,254 - INFO - Main Function took 0 minutes and 1.32 seconds to run.
+2025-03-20 19:46:52,254 - INFO - ******************************************
+2025-03-20 19:52:57,017 - INFO - ******************************************
+2025-03-20 19:52:57,391 - INFO - Read Excel file from 7_Manual_Data_Uploads/Redfin/dowload_investor_purchases_by_metro.xlsx with 3996 rows.
+2025-03-20 19:52:58,370 - INFO - DataFrame head:
+   Quarter start_quarter_date   Redfin Metro  Investor Market Share  Investor Purchases  Investor Purchases YoY  total_purchases  non_investor_purchases  Investor_Purchases_LY          Update_Date
+0  2024 Q4         2024-10-01       National                 0.1707             47004.0                 -0.0390         275417.0                228413.0                48911.0  2025-03-20 19:52:58
+1  2024 Q4         2024-10-01    Anaheim, CA                 0.2416              1209.0                  0.0931           5005.0                  3796.0                 1106.0  2025-03-20 19:52:58
+2  2024 Q4         2024-10-01    Atlanta, GA                 0.1843              2950.0                 -0.1835          16009.0                 13059.0                 3613.0  2025-03-20 19:52:58
+3  2024 Q4         2024-10-01  Baltimore, MD                 0.1715              1396.0                 -0.0064           8141.0                  6745.0                 1405.0  2025-03-20 19:52:58
+4  2024 Q4         2024-10-01  Charlotte, NC                 0.1904              1358.0                 -0.0904           7131.0                  5773.0                 1493.0  2025-03-20 19:52:58
+2025-03-20 19:53:02,249 - INFO - Overwrote REDFIN_INVESTOR_BY_QUARTER with 3996 rows.
+2025-03-20 19:53:02,250 - INFO - Main Function took 0 minutes and 5.23 seconds to run.
+2025-03-20 19:53:02,250 - INFO - ******************************************
