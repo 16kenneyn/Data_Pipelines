@@ -1,0 +1,151 @@
+2025-03-25 07:59:32,013 - INFO - ******************************************
+2025-03-25 07:59:32,013 - INFO - Starting main function.
+2025-03-25 07:59:32,367 - INFO - get_latest_start_date, results for max date is None for table REDFIN_MNTHLY_HOUSING_STATE
+2025-03-25 07:59:36,572 - INFO - Data successfully fetched from https://redfin-public-data.s3.us-west-2.amazonaws.com/redfin_market_tracker/state_market_tracker.tsv000.gz
+2025-03-25 07:59:36,622 - ERROR - An error occurred during the RDM transformation: Binder Error: No function matches the given name and argument types 'trim(DOUBLE)'. You might need to add explicit type casts.
+	Candidate functions:
+	trim(VARCHAR) -> VARCHAR
+	trim(VARCHAR, VARCHAR) -> VARCHAR
+
+
+LINE 11:     COALESCE(TRIM(city), 'NA') AS city,
+                      ^
+Traceback (most recent call last):
+  File "C:\Users\nickk\PycharmProjects\Data_Pipelines\RedFin_Monthly_Housing_State.py", line 167, in rdm_transformations
+    result_df = con.execute(query).fetchdf()
+                ^^^^^^^^^^^^^^^^^^
+duckdb.duckdb.BinderException: Binder Error: No function matches the given name and argument types 'trim(DOUBLE)'. You might need to add explicit type casts.
+	Candidate functions:
+	trim(VARCHAR) -> VARCHAR
+	trim(VARCHAR, VARCHAR) -> VARCHAR
+
+
+LINE 11:     COALESCE(TRIM(city), 'NA') AS city,
+                      ^
+
+2025-03-25 07:59:36,624 - ERROR - An error occurred: Invalid Input Error: Python Object "sdm_table" of type "NoneType" not suitable for replacement scans.
+Make sure that "sdm_table" is either a pandas.DataFrame, duckdb.DuckDBPyRelation, pyarrow Table, Dataset, RecordBatchReader, Scanner, or NumPy ndarrays with supported format
+Traceback (most recent call last):
+  File "C:\Users\nickk\PycharmProjects\Data_Pipelines\RedFin_Monthly_Housing_State.py", line 465, in <module>
+    main_run()
+  File "C:\Users\nickk\PycharmProjects\Data_Pipelines\RedFin_Monthly_Housing_State.py", line 369, in main_run
+    redfin_df_v2 = sdm_tranformations(redfin_df_v1)
+                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\nickk\PycharmProjects\Data_Pipelines\RedFin_Monthly_Housing_State.py", line 175, in sdm_tranformations
+    con.register('sdm_table', df) # Register the Pandas DataFrame as a DuckDB table
+    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+duckdb.duckdb.InvalidInputException: Invalid Input Error: Python Object "sdm_table" of type "NoneType" not suitable for replacement scans.
+Make sure that "sdm_table" is either a pandas.DataFrame, duckdb.DuckDBPyRelation, pyarrow Table, Dataset, RecordBatchReader, Scanner, or NumPy ndarrays with supported format
+
+2025-03-25 07:59:36,624 - INFO - Main Function took 0 minutes and 4.61 seconds to run.
+2025-03-25 07:59:36,624 - INFO - ******************************************
+2025-03-25 08:08:05,835 - INFO - Data successfully fetched from https://redfin-public-data.s3.us-west-2.amazonaws.com/redfin_market_tracker/state_market_tracker.tsv000.gz
+2025-03-25 12:57:32,873 - INFO - An error occurred during the request redfin monthly inventory for url https://redfin-public-data.s3.us-west-2.amazonaws.com/redfin_market_tracker/state_market_tracker.tsv000.gz.: HTTPSConnectionPool(host='redfin-public-data.s3.us-west-2.amazonaws.com', port=443): Max retries exceeded with url: /redfin_market_tracker/state_market_tracker.tsv000.gz (Caused by NameResolutionError("<urllib3.connection.HTTPSConnection object at 0x0000021FDB967620>: Failed to resolve 'redfin-public-data.s3.us-west-2.amazonaws.com' ([Errno 11001] getaddrinfo failed)"))
+Traceback (most recent call last):
+  File "C:\Users\nickk\PycharmProjects\Data_Pipelines\venv\Lib\site-packages\urllib3\connection.py", line 199, in _new_conn
+    sock = connection.create_connection(
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\nickk\PycharmProjects\Data_Pipelines\venv\Lib\site-packages\urllib3\util\connection.py", line 60, in create_connection
+    for res in socket.getaddrinfo(host, port, family, socket.SOCK_STREAM):
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Program Files\WindowsApps\PythonSoftwareFoundation.Python.3.12_3.12.2544.0_x64__qbz5n2kfra8p0\Lib\socket.py", line 978, in getaddrinfo
+    for res in _socket.getaddrinfo(host, port, family, type, proto, flags):
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+socket.gaierror: [Errno 11001] getaddrinfo failed
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "C:\Users\nickk\PycharmProjects\Data_Pipelines\venv\Lib\site-packages\urllib3\connectionpool.py", line 789, in urlopen
+    response = self._make_request(
+               ^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\nickk\PycharmProjects\Data_Pipelines\venv\Lib\site-packages\urllib3\connectionpool.py", line 490, in _make_request
+    raise new_e
+  File "C:\Users\nickk\PycharmProjects\Data_Pipelines\venv\Lib\site-packages\urllib3\connectionpool.py", line 466, in _make_request
+    self._validate_conn(conn)
+  File "C:\Users\nickk\PycharmProjects\Data_Pipelines\venv\Lib\site-packages\urllib3\connectionpool.py", line 1095, in _validate_conn
+    conn.connect()
+  File "C:\Users\nickk\PycharmProjects\Data_Pipelines\venv\Lib\site-packages\urllib3\connection.py", line 693, in connect
+    self.sock = sock = self._new_conn()
+                       ^^^^^^^^^^^^^^^^
+  File "C:\Users\nickk\PycharmProjects\Data_Pipelines\venv\Lib\site-packages\urllib3\connection.py", line 206, in _new_conn
+    raise NameResolutionError(self.host, self, e) from e
+urllib3.exceptions.NameResolutionError: <urllib3.connection.HTTPSConnection object at 0x0000021FDB967620>: Failed to resolve 'redfin-public-data.s3.us-west-2.amazonaws.com' ([Errno 11001] getaddrinfo failed)
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "C:\Users\nickk\PycharmProjects\Data_Pipelines\venv\Lib\site-packages\requests\adapters.py", line 667, in send
+    resp = conn.urlopen(
+           ^^^^^^^^^^^^^
+  File "C:\Users\nickk\PycharmProjects\Data_Pipelines\venv\Lib\site-packages\urllib3\connectionpool.py", line 843, in urlopen
+    retries = retries.increment(
+              ^^^^^^^^^^^^^^^^^^
+  File "C:\Users\nickk\PycharmProjects\Data_Pipelines\venv\Lib\site-packages\urllib3\util\retry.py", line 519, in increment
+    raise MaxRetryError(_pool, url, reason) from reason  # type: ignore[arg-type]
+    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+urllib3.exceptions.MaxRetryError: HTTPSConnectionPool(host='redfin-public-data.s3.us-west-2.amazonaws.com', port=443): Max retries exceeded with url: /redfin_market_tracker/state_market_tracker.tsv000.gz (Caused by NameResolutionError("<urllib3.connection.HTTPSConnection object at 0x0000021FDB967620>: Failed to resolve 'redfin-public-data.s3.us-west-2.amazonaws.com' ([Errno 11001] getaddrinfo failed)"))
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "C:\Users\nickk\PycharmProjects\Data_Pipelines\RedFin_Monthly_Housing_State.py", line 36, in get_url
+    response = requests.get(url)
+               ^^^^^^^^^^^^^^^^^
+  File "C:\Users\nickk\PycharmProjects\Data_Pipelines\venv\Lib\site-packages\requests\api.py", line 73, in get
+    return request("get", url, params=params, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\nickk\PycharmProjects\Data_Pipelines\venv\Lib\site-packages\requests\api.py", line 59, in request
+    return session.request(method=method, url=url, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\nickk\PycharmProjects\Data_Pipelines\venv\Lib\site-packages\requests\sessions.py", line 589, in request
+    resp = self.send(prep, **send_kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\nickk\PycharmProjects\Data_Pipelines\venv\Lib\site-packages\requests\sessions.py", line 703, in send
+    r = adapter.send(request, **kwargs)
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\nickk\PycharmProjects\Data_Pipelines\venv\Lib\site-packages\requests\adapters.py", line 700, in send
+    raise ConnectionError(e, request=request)
+requests.exceptions.ConnectionError: HTTPSConnectionPool(host='redfin-public-data.s3.us-west-2.amazonaws.com', port=443): Max retries exceeded with url: /redfin_market_tracker/state_market_tracker.tsv000.gz (Caused by NameResolutionError("<urllib3.connection.HTTPSConnection object at 0x0000021FDB967620>: Failed to resolve 'redfin-public-data.s3.us-west-2.amazonaws.com' ([Errno 11001] getaddrinfo failed)"))
+
+2025-03-25 13:00:33,534 - INFO - ******************************************
+2025-03-25 13:00:33,534 - INFO - Starting main function.
+2025-03-25 13:00:49,236 - INFO - get_latest_start_date, results for max date is None for table REDFIN_MNTHLY_HOUSING_STATE
+2025-03-25 13:00:55,206 - INFO - Data successfully fetched from https://redfin-public-data.s3.us-west-2.amazonaws.com/redfin_market_tracker/state_market_tracker.tsv000.gz
+2025-03-25 13:00:55,241 - ERROR - An error occurred during the RDM transformation: Binder Error: No function matches the given name and argument types 'trim(DOUBLE)'. You might need to add explicit type casts.
+	Candidate functions:
+	trim(VARCHAR) -> VARCHAR
+	trim(VARCHAR, VARCHAR) -> VARCHAR
+
+
+LINE 11:     COALESCE(TRIM(city), 'NA') AS city,
+                      ^
+Traceback (most recent call last):
+  File "C:\Users\nickk\PycharmProjects\Data_Pipelines\RedFin_Monthly_Housing_State.py", line 167, in rdm_transformations
+    result_df = con.execute(query).fetchdf()
+                ^^^^^^^^^^^^^^^^^^
+duckdb.duckdb.BinderException: Binder Error: No function matches the given name and argument types 'trim(DOUBLE)'. You might need to add explicit type casts.
+	Candidate functions:
+	trim(VARCHAR) -> VARCHAR
+	trim(VARCHAR, VARCHAR) -> VARCHAR
+
+
+LINE 11:     COALESCE(TRIM(city), 'NA') AS city,
+                      ^
+
+2025-03-25 13:00:55,242 - ERROR - An error occurred: Invalid Input Error: Python Object "sdm_table" of type "NoneType" not suitable for replacement scans.
+Make sure that "sdm_table" is either a pandas.DataFrame, duckdb.DuckDBPyRelation, pyarrow Table, Dataset, RecordBatchReader, Scanner, or NumPy ndarrays with supported format
+Traceback (most recent call last):
+  File "C:\Users\nickk\PycharmProjects\Data_Pipelines\RedFin_Monthly_Housing_State.py", line 465, in <module>
+    main_run()
+  File "C:\Users\nickk\PycharmProjects\Data_Pipelines\RedFin_Monthly_Housing_State.py", line 369, in main_run
+    redfin_df_v2 = sdm_tranformations(redfin_df_v1)
+                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\nickk\PycharmProjects\Data_Pipelines\RedFin_Monthly_Housing_State.py", line 175, in sdm_tranformations
+    con.register('sdm_table', df) # Register the Pandas DataFrame as a DuckDB table
+    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+duckdb.duckdb.InvalidInputException: Invalid Input Error: Python Object "sdm_table" of type "NoneType" not suitable for replacement scans.
+Make sure that "sdm_table" is either a pandas.DataFrame, duckdb.DuckDBPyRelation, pyarrow Table, Dataset, RecordBatchReader, Scanner, or NumPy ndarrays with supported format
+
+2025-03-25 13:00:55,242 - INFO - Main Function took 0 minutes and 21.71 seconds to run.
+2025-03-25 13:00:55,242 - INFO - ******************************************
