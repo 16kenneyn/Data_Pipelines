@@ -20,10 +20,10 @@ zip_url = 'https://redfin-public-data.s3.us-west-2.amazonaws.com/redfin_market_t
 neighborhood_url = 'https://redfin-public-data.s3.us-west-2.amazonaws.com/redfin_market_tracker/neighborhood_market_tracker.tsv000.gz'
 
 """ ****** INITIALIZE GLOBAL VARIABLES ****** """
-logger = DataPipelineLogger("Redfin_Monthly_Housing_US")
+logger = DataPipelineLogger("Redfin_Monthly_Housing_State")
 con = duckdb.connect()  # Create a DuckDB connection (in-memory)
-universal_url_string = national_url
-sql_table_name = 'REDFIN_MNTHLY_HOUSING_US'  # SQL table name
+universal_url_string = state_url
+sql_table_name = 'REDFIN_MNTHLY_HOUSING_STATE'  # SQL table name
 
 def get_url(url: str):
     """
@@ -474,6 +474,10 @@ if __name__ == '__main__':
         logger.write_to_log(f"Main Function took {minutes:.0f} minutes and {seconds:.2f} seconds to run.")
         logger.write_to_log('******************************************')
         print(f"Main Function took {minutes:.0f} minutes and {seconds:.2f} seconds to run.")
+
+    # redfin_df = get_url(universal_url_string)
+    # redfin_df.to_excel('C:\\Users\\nickk\\PycharmProjects\\Data_Pipelines\\2_Test\\Data_Files\\RedFin\\state_monthly_redfin_housing.xlsx', index=False)
+
 
     # test_df = get_url(national_url)
     # test_df_v2 = rdm_transformations(test_df)

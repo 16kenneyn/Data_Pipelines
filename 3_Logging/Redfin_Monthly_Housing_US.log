@@ -1,0 +1,261 @@
+2025-03-24 18:49:51,166 - INFO - get_latest_start_date, results for max date is None for table REDFIN_MNTHLY_HOUSING_US
+2025-03-24 18:59:42,124 - INFO - Data successfully fetched from https://redfin-public-data.s3.us-west-2.amazonaws.com/redfin_market_tracker/us_national_market_tracker.tsv000.gz
+2025-03-24 19:13:01,622 - INFO - ******************************************
+2025-03-24 19:13:01,622 - INFO - Starting main function.
+2025-03-24 19:13:02,047 - ERROR - An error occurred: (pymssql.exceptions.ProgrammingError) (207, b"Invalid column name 'period_begin'.DB-Lib error message 20018, severity 16:\nGeneral SQL Server error: Check messages from the SQL Server\n")
+[SQL: 
+    SELECT MAX(period_begin) FROM [DataMining].[dbo].[REALTOR_MNTHLY_HOT_ZIP]
+    ]
+(Background on this error at: https://sqlalche.me/e/20/f405)
+Traceback (most recent call last):
+  File "src\\pymssql\\_pymssql.pyx", line 447, in pymssql._pymssql.Cursor.execute
+  File "src\\pymssql\\_mssql.pyx", line 1125, in pymssql._mssql.MSSQLConnection.execute_query
+  File "src\\pymssql\\_mssql.pyx", line 1156, in pymssql._mssql.MSSQLConnection.execute_query
+  File "src\\pymssql\\_mssql.pyx", line 1289, in pymssql._mssql.MSSQLConnection.format_and_run_query
+  File "src\\pymssql\\_mssql.pyx", line 1855, in pymssql._mssql.check_cancel_and_raise
+  File "src\\pymssql\\_mssql.pyx", line 1901, in pymssql._mssql.raise_MSSQLDatabaseException
+pymssql._mssql.MSSQLDatabaseException: (207, b"Invalid column name 'period_begin'.DB-Lib error message 20018, severity 16:\nGeneral SQL Server error: Check messages from the SQL Server\n")
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "C:\Users\nickk\PycharmProjects\Data_Pipelines\venv\Lib\site-packages\sqlalchemy\engine\base.py", line 1967, in _exec_single_context
+    self.dialect.do_execute(
+  File "C:\Users\nickk\PycharmProjects\Data_Pipelines\venv\Lib\site-packages\sqlalchemy\engine\default.py", line 941, in do_execute
+    cursor.execute(statement, parameters)
+  File "src\\pymssql\\_pymssql.pyx", line 462, in pymssql._pymssql.Cursor.execute
+pymssql.exceptions.ProgrammingError: (207, b"Invalid column name 'period_begin'.DB-Lib error message 20018, severity 16:\nGeneral SQL Server error: Check messages from the SQL Server\n")
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "C:\Users\nickk\PycharmProjects\Data_Pipelines\RedFin_Monthly_Housing_US.py", line 393, in <module>
+    main_run()
+  File "C:\Users\nickk\PycharmProjects\Data_Pipelines\RedFin_Monthly_Housing_US.py", line 337, in main_run
+    sql_table_max_date = get_latest_start_date(sql_table_name)
+                         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\nickk\PycharmProjects\Data_Pipelines\RedFin_Monthly_Housing_US.py", line 86, in get_latest_start_date
+    result = connection.execute(get_max_date)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\nickk\PycharmProjects\Data_Pipelines\venv\Lib\site-packages\sqlalchemy\engine\base.py", line 1418, in execute
+    return meth(
+           ^^^^^
+  File "C:\Users\nickk\PycharmProjects\Data_Pipelines\venv\Lib\site-packages\sqlalchemy\sql\elements.py", line 515, in _execute_on_connection
+    return connection._execute_clauseelement(
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\nickk\PycharmProjects\Data_Pipelines\venv\Lib\site-packages\sqlalchemy\engine\base.py", line 1640, in _execute_clauseelement
+    ret = self._execute_context(
+          ^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\nickk\PycharmProjects\Data_Pipelines\venv\Lib\site-packages\sqlalchemy\engine\base.py", line 1846, in _execute_context
+    return self._exec_single_context(
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\nickk\PycharmProjects\Data_Pipelines\venv\Lib\site-packages\sqlalchemy\engine\base.py", line 1986, in _exec_single_context
+    self._handle_dbapi_exception(
+  File "C:\Users\nickk\PycharmProjects\Data_Pipelines\venv\Lib\site-packages\sqlalchemy\engine\base.py", line 2355, in _handle_dbapi_exception
+    raise sqlalchemy_exception.with_traceback(exc_info[2]) from e
+  File "C:\Users\nickk\PycharmProjects\Data_Pipelines\venv\Lib\site-packages\sqlalchemy\engine\base.py", line 1967, in _exec_single_context
+    self.dialect.do_execute(
+  File "C:\Users\nickk\PycharmProjects\Data_Pipelines\venv\Lib\site-packages\sqlalchemy\engine\default.py", line 941, in do_execute
+    cursor.execute(statement, parameters)
+  File "src\\pymssql\\_pymssql.pyx", line 462, in pymssql._pymssql.Cursor.execute
+sqlalchemy.exc.ProgrammingError: (pymssql.exceptions.ProgrammingError) (207, b"Invalid column name 'period_begin'.DB-Lib error message 20018, severity 16:\nGeneral SQL Server error: Check messages from the SQL Server\n")
+[SQL: 
+    SELECT MAX(period_begin) FROM [DataMining].[dbo].[REALTOR_MNTHLY_HOT_ZIP]
+    ]
+(Background on this error at: https://sqlalche.me/e/20/f405)
+
+2025-03-24 19:13:02,048 - INFO - Main Function took 0 minutes and 0.43 seconds to run.
+2025-03-24 19:13:02,048 - INFO - ******************************************
+2025-03-24 19:13:56,110 - INFO - ******************************************
+2025-03-24 19:13:56,110 - INFO - Starting main function.
+2025-03-24 19:13:56,469 - INFO - get_latest_start_date, results for max date is None for table REDFIN_MNTHLY_HOUSING_US
+2025-03-24 19:13:57,518 - INFO - Data successfully fetched from https://redfin-public-data.s3.us-west-2.amazonaws.com/redfin_market_tracker/us_national_market_tracker.tsv000.gz
+2025-03-24 19:13:57,558 - INFO - Data successfully transformed in the RDM layer query.
+2025-03-24 19:13:57,590 - INFO - Data successfully transformed in the SDM layer query.
+2025-03-24 19:13:57,622 - INFO - Data successfully transformed in the CDM layer query.
+2025-03-24 19:13:57,639 - INFO - DataFrame head:
+  period_begin period_end  period_duration region_type  region_type_id  table_id is_seasonally_adjusted    region      city state state_code              property_type  property_type_id  median_sale_price  median_list_price  median_ppsf  median_list_ppsf  homes_sold  pending_sales  new_listings  inventory  months_of_supply  median_dom  avg_sale_to_list  sold_above_list  sold_price_drops  sold_off_market_in_two_weeks  median_sqft_off_sale_price  median_sqft_off_list_price  median_sale_price_lm  median_list_price_lm  median_ppsf_lm  median_list_ppsf_lm  homes_sold_lm  pending_sales_lm  new_listings_lm  inventory_lm  months_of_supply_lm  median_dom_lm  avg_sale_to_list_lm  sold_above_list_lm  sold_price_drops_lm  sold_off_market_in_two_weeks_lm  median_sqft_off_sale_price_lm  median_sqft_off_list_price_lm  median_sale_price_ly  median_list_price_ly  median_ppsf_ly  median_list_ppsf_ly  homes_sold_ly  pending_sales_ly  new_listings_ly  inventory_ly  months_of_supply_ly  median_dom_ly  avg_sale_to_list_ly  sold_above_list_ly  sold_price_drops_ly  sold_off_market_in_two_weeks_ly  median_sqft_off_sale_price_ly  median_sqft_off_list_price_ly parent_metro_region parent_metro_region_metro_code        last_updated    nk_update_date
+0   2012-12-01 2012-12-31               30    national              11      1400                      t  National  National    US         US  Single Family Residential                 6           198703.0           209422.0        104.0             106.0    336048.0       402524.0      432859.0  1469184.0            4.5565        71.0            0.9748          78251.0           21208.0                       56029.0                      1913.0                      1974.0              196722.0              206357.0           102.0                105.0       332507.0          395923.0         408073.0     1463884.0               4.5755           70.0               0.9735             73590.0              16463.0                          51143.0                         1920.0                         1962.0              198703.0              209422.0           104.0                106.0       336048.0          402524.0         432859.0     1469184.0               4.5565           71.0               0.9748             78251.0              21208.0                          56029.0                         1913.0                         1974.0                  NA                             NA 2025-03-10 00:00:00  2025-03-24 19:13
+1   2024-02-01 2024-02-29               30    national              11      1400                      f  National  National    US         US            All Residential                 1           412140.0           433352.0        228.0             241.0    344157.0       466077.0      500200.0  1018162.0            2.9584        48.0            0.9873          89887.0           49021.0                      137095.0                      1808.0                      1798.0              402288.0              427789.0           224.0                240.0       291173.0          424261.0         435005.0      972130.0               3.3387           47.0               0.9839             69937.0              43989.0                          94621.0                         1795.0                         1785.0              386956.0              416658.0           214.0                229.0       333597.0          459736.0         413809.0      920265.0               2.7586           44.0               0.9821             78159.0              43584.0                         130235.0                         1805.0                         1819.0                  NA                             NA 2025-03-10 14:10:05  2025-03-24 19:13
+2   2017-06-01 2017-06-30               30    national              11      1400                      f  National  National    US         US    Multi-Family (2-4 Unit)                 4           289816.0           288820.0        135.0             136.0     12259.0        15245.0       16335.0    41814.0            3.4108        37.0            0.9709           3566.0            1145.0                        4223.0                      2147.0                      2124.0              274440.0              292192.0           133.0                139.0        11265.0           15375.0          17225.0       40963.0               3.6361           36.0               0.9710              3281.0               1033.0                           4148.0                         2067.0                         2099.0              261097.0              269962.0           122.0                123.0        11290.0           14813.0          16311.0       48380.0               4.2849           30.0               0.9691              2966.0               1172.0                           3235.0                         2134.0                         2190.0                  NA                             NA 2025-03-10 14:10:05  2025-03-24 19:13
+3   2019-07-01 2019-07-31               30    national              11      1400                      f  National  National    US         US            All Residential                 1           298912.0           300284.0        159.0             161.0    637729.0       700338.0      715938.0  1713888.0            2.6875        37.0            0.9854         161855.0          104002.0                      230466.0                      1880.0                      1865.0              301860.0              308104.0           160.0                163.0       625071.0          705492.0         747351.0     1729243.0               2.7665           38.0               0.9864            164542.0              98578.0                         245275.0                         1890.0                         1895.0              286595.0              290625.0           155.0                157.0       615315.0          677294.0         719925.0     1674399.0               2.7212           41.0               0.9872            171796.0              97393.0                         226212.0                         1854.0                         1847.0                  NA                             NA 2025-03-10 14:10:05  2025-03-24 19:13
+4   2022-04-01 2022-04-30               30    national              11      1400                      f  National  National    US         US            All Residential                 1           425335.0           435209.0        237.0             234.0    557766.0       645585.0      723570.0   811084.0            1.4542        18.0            1.0312         325862.0           42144.0                      365364.0                      1795.0                      1860.0              412827.0              427286.0           231.0                233.0       555527.0          661907.0         693624.0      707205.0               1.2730           15.0               1.0240            299565.0              36199.0                         357546.0                         1789.0                         1831.0              368799.0              379048.0           201.0                203.0       625258.0          725499.0         766152.0      785868.0               1.2569           16.0               1.0154            306390.0              41039.0                         398295.0                         1831.0                         1871.0                  NA                             NA 2025-03-10 14:10:05  2025-03-24 19:13
+2025-03-24 19:13:57,639 - INFO - Writing historical data to REDFIN_MNTHLY_HOUSING_US.
+2025-03-24 19:14:07,214 - INFO - Main Function took 0 minutes and 11.10 seconds to run.
+2025-03-24 19:14:07,214 - INFO - ******************************************
+2025-03-24 21:23:34,236 - INFO - ******************************************
+2025-03-24 21:23:34,236 - INFO - Starting main function.
+2025-03-24 21:23:35,867 - ERROR - An error occurred: int() argument must be a string, a bytes-like object or a real number, not 'datetime.datetime'
+Traceback (most recent call last):
+  File "C:\Users\nickk\PycharmProjects\Data_Pipelines\RedFin_Monthly_Housing_US.py", line 464, in <module>
+    main_run()
+  File "C:\Users\nickk\PycharmProjects\Data_Pipelines\RedFin_Monthly_Housing_US.py", line 337, in main_run
+    sql_table_max_date = get_latest_start_date(sql_table_name)
+                         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\nickk\PycharmProjects\Data_Pipelines\RedFin_Monthly_Housing_US.py", line 90, in get_latest_start_date
+    max_date = int(max_date)
+               ^^^^^^^^^^^^^
+TypeError: int() argument must be a string, a bytes-like object or a real number, not 'datetime.datetime'
+
+2025-03-24 21:23:35,867 - INFO - Main Function took 0 minutes and 1.63 seconds to run.
+2025-03-24 21:23:35,867 - INFO - ******************************************
+2025-03-25 07:11:16,325 - INFO - ******************************************
+2025-03-25 07:11:16,325 - INFO - Starting main function.
+2025-03-25 07:11:17,026 - ERROR - An error occurred: invalid literal for int() with base 10: '2025-02-01 00:00:00'
+Traceback (most recent call last):
+  File "C:\Users\nickk\PycharmProjects\Data_Pipelines\RedFin_Monthly_Housing_US.py", line 465, in <module>
+    main_run()
+  File "C:\Users\nickk\PycharmProjects\Data_Pipelines\RedFin_Monthly_Housing_US.py", line 338, in main_run
+    sql_table_max_date = get_latest_start_date(sql_table_name)
+                         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\nickk\PycharmProjects\Data_Pipelines\RedFin_Monthly_Housing_US.py", line 91, in get_latest_start_date
+    max_date = int(str(max_date))
+               ^^^^^^^^^^^^^^^^^^
+ValueError: invalid literal for int() with base 10: '2025-02-01 00:00:00'
+
+2025-03-25 07:11:17,026 - INFO - Main Function took 0 minutes and 0.70 seconds to run.
+2025-03-25 07:11:17,026 - INFO - ******************************************
+2025-03-25 07:14:01,990 - INFO - ******************************************
+2025-03-25 07:14:01,991 - INFO - Starting main function.
+2025-03-25 07:14:02,330 - ERROR - An error occurred: invalid literal for int() with base 10: '2025-02-01 00:00:00'
+Traceback (most recent call last):
+  File "C:\Users\nickk\PycharmProjects\Data_Pipelines\RedFin_Monthly_Housing_US.py", line 466, in <module>
+    main_run()
+  File "C:\Users\nickk\PycharmProjects\Data_Pipelines\RedFin_Monthly_Housing_US.py", line 339, in main_run
+    sql_table_max_date = get_latest_start_date(sql_table_name)
+                         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\nickk\PycharmProjects\Data_Pipelines\RedFin_Monthly_Housing_US.py", line 92, in get_latest_start_date
+    max_date = int(str(max_date))
+               ^^^^^^^^^^^^^^^^^^
+ValueError: invalid literal for int() with base 10: '2025-02-01 00:00:00'
+
+2025-03-25 07:14:02,331 - INFO - Main Function took 0 minutes and 0.34 seconds to run.
+2025-03-25 07:14:02,331 - INFO - ******************************************
+2025-03-25 07:22:34,808 - INFO - ******************************************
+2025-03-25 07:22:34,808 - INFO - Starting main function.
+2025-03-25 07:22:35,123 - INFO - 
+2025-03-25 07:22:35,145 - INFO - get_latest_start_date, results for max date is 2025-02-01 00:00:00 for table REDFIN_MNTHLY_HOUSING_US
+2025-03-25 07:22:36,256 - INFO - Data successfully fetched from https://redfin-public-data.s3.us-west-2.amazonaws.com/redfin_market_tracker/us_national_market_tracker.tsv000.gz
+2025-03-25 07:22:36,258 - ERROR - An error occurred: '>' not supported between instances of 'str' and 'datetime.datetime'
+Traceback (most recent call last):
+  File "C:\Users\nickk\PycharmProjects\Data_Pipelines\RedFin_Monthly_Housing_US.py", line 467, in <module>
+    main_run()
+  File "C:\Users\nickk\PycharmProjects\Data_Pipelines\RedFin_Monthly_Housing_US.py", line 344, in main_run
+    if redfin_df_max_date > sql_table_max_date: # Determining if current extract is newer data than we already have in SQL table.
+       ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+TypeError: '>' not supported between instances of 'str' and 'datetime.datetime'
+
+2025-03-25 07:22:36,258 - INFO - Main Function took 0 minutes and 1.45 seconds to run.
+2025-03-25 07:22:36,258 - INFO - ******************************************
+2025-03-25 07:26:58,415 - INFO - ******************************************
+2025-03-25 07:26:58,415 - INFO - Starting main function.
+2025-03-25 07:26:58,739 - INFO - 
+2025-03-25 07:26:58,771 - INFO - get_latest_start_date, results for max date is 2025-02-01 00:00:00 for table REDFIN_MNTHLY_HOUSING_US
+2025-03-25 07:26:59,733 - INFO - Data successfully fetched from https://redfin-public-data.s3.us-west-2.amazonaws.com/redfin_market_tracker/us_national_market_tracker.tsv000.gz
+2025-03-25 07:26:59,738 - INFO - Current data extract period_begin is already in SQL table REDFIN_MNTHLY_HOUSING_US.
+2025-03-25 07:26:59,738 - INFO - SQL table max date = 2025-02-01 00:00:00 ---- Current data extract max date = 2025-02-01 00:00:00
+2025-03-25 07:26:59,739 - ERROR - An error occurred: cannot access local variable 'redfin_df_v3' where it is not associated with a value
+Traceback (most recent call last):
+  File "C:\Users\nickk\PycharmProjects\Data_Pipelines\RedFin_Monthly_Housing_US.py", line 467, in <module>
+    main_run()
+  File "C:\Users\nickk\PycharmProjects\Data_Pipelines\RedFin_Monthly_Housing_US.py", line 454, in main_run
+    redfin_df_v3.to_sql(sql_table_name, con=connection, if_exists='append', index=False)
+    ^^^^^^^^^^^^
+UnboundLocalError: cannot access local variable 'redfin_df_v3' where it is not associated with a value
+
+2025-03-25 07:26:59,739 - INFO - Main Function took 0 minutes and 1.32 seconds to run.
+2025-03-25 07:26:59,739 - INFO - ******************************************
+2025-03-25 07:32:31,604 - INFO - ******************************************
+2025-03-25 07:32:31,604 - INFO - Starting main function.
+2025-03-25 07:32:31,942 - INFO - 
+2025-03-25 07:32:31,966 - INFO - get_latest_start_date, results for max date is 2025-02-01 00:00:00 for table REDFIN_MNTHLY_HOUSING_US
+2025-03-25 07:32:32,945 - INFO - Data successfully fetched from https://redfin-public-data.s3.us-west-2.amazonaws.com/redfin_market_tracker/us_national_market_tracker.tsv000.gz
+2025-03-25 07:32:32,950 - INFO - Current data extract period_begin is already in SQL table REDFIN_MNTHLY_HOUSING_US.
+2025-03-25 07:32:32,950 - INFO - SQL table max date = 2025-02-01 00:00:00 ---- Current data extract max date = 2025-02-01 00:00:00
+2025-03-25 07:32:32,950 - INFO - Main Function took 0 minutes and 1.35 seconds to run.
+2025-03-25 07:32:32,950 - INFO - ******************************************
+2025-03-25 07:40:33,509 - INFO - ******************************************
+2025-03-25 07:40:33,509 - INFO - Starting main function.
+2025-03-25 07:40:33,851 - INFO - get_latest_start_date, results for max date is None for table REDFIN_MNTHLY_HOUSING_US
+2025-03-25 07:40:34,870 - INFO - Data successfully fetched from https://redfin-public-data.s3.us-west-2.amazonaws.com/redfin_market_tracker/us_national_market_tracker.tsv000.gz
+2025-03-25 07:40:34,906 - INFO - Data successfully transformed in the RDM layer query.
+2025-03-25 07:40:34,937 - INFO - Data successfully transformed in the SDM layer query.
+2025-03-25 07:40:34,969 - INFO - Data successfully transformed in the CDM layer query.
+2025-03-25 07:40:35,003 - INFO - DataFrame head:
+  period_begin period_end  period_duration region_type  region_type_id  table_id is_seasonally_adjusted    region      city state state_code              property_type  property_type_id  median_sale_price  median_list_price  median_ppsf  median_list_ppsf  homes_sold  pending_sales  new_listings  inventory  months_of_supply  median_dom  avg_sale_to_list  sold_above_list  sold_price_drops  sold_off_market_in_two_weeks  median_sqft_off_sale_price  median_sqft_off_list_price  median_sale_price_lm  median_list_price_lm  median_ppsf_lm  median_list_ppsf_lm  homes_sold_lm  pending_sales_lm  new_listings_lm  inventory_lm  months_of_supply_lm  median_dom_lm  avg_sale_to_list_lm  sold_above_list_lm  sold_price_drops_lm  sold_off_market_in_two_weeks_lm  median_sqft_off_sale_price_lm  median_sqft_off_list_price_lm  median_sale_price_ly  median_list_price_ly  median_ppsf_ly  median_list_ppsf_ly  homes_sold_ly  pending_sales_ly  new_listings_ly  inventory_ly  months_of_supply_ly  median_dom_ly  avg_sale_to_list_ly  sold_above_list_ly  sold_price_drops_ly  sold_off_market_in_two_weeks_ly  median_sqft_off_sale_price_ly  median_sqft_off_list_price_ly parent_metro_region parent_metro_region_metro_code        last_updated    nk_update_date
+0   2012-12-01 2012-12-31               30    national              11      1400                      t  National  National    US         US  Single Family Residential                 6           198703.0           209422.0        104.0             106.0    336048.0       402524.0      432859.0  1469184.0            4.5565        71.0            0.9748          78251.0           21208.0                       56029.0                      1913.0                      1974.0              196722.0              206357.0           102.0                105.0       332507.0          395923.0         408073.0     1463884.0               4.5755           70.0               0.9735             73590.0              16463.0                          51143.0                         1920.0                         1962.0              198703.0              209422.0           104.0                106.0       336048.0          402524.0         432859.0     1469184.0               4.5565           71.0               0.9748             78251.0              21208.0                          56029.0                         1913.0                         1974.0                  NA                             NA 2025-03-10 00:00:00  2025-03-25 07:40
+1   2024-02-01 2024-02-29               30    national              11      1400                      f  National  National    US         US            All Residential                 1           412140.0           433352.0        228.0             241.0    344157.0       466077.0      500200.0  1018162.0            2.9584        48.0            0.9873          89887.0           49021.0                      137095.0                      1808.0                      1798.0              402288.0              427789.0           224.0                240.0       291173.0          424261.0         435005.0      972130.0               3.3387           47.0               0.9839             69937.0              43989.0                          94621.0                         1795.0                         1785.0              386956.0              416658.0           214.0                229.0       333597.0          459736.0         413809.0      920265.0               2.7586           44.0               0.9821             78159.0              43584.0                         130235.0                         1805.0                         1819.0                  NA                             NA 2025-03-10 14:10:05  2025-03-25 07:40
+2   2017-06-01 2017-06-30               30    national              11      1400                      f  National  National    US         US    Multi-Family (2-4 Unit)                 4           289816.0           288820.0        135.0             136.0     12259.0        15245.0       16335.0    41814.0            3.4108        37.0            0.9709           3566.0            1145.0                        4223.0                      2147.0                      2124.0              274440.0              292192.0           133.0                139.0        11265.0           15375.0          17225.0       40963.0               3.6361           36.0               0.9710              3281.0               1033.0                           4148.0                         2067.0                         2099.0              261097.0              269962.0           122.0                123.0        11290.0           14813.0          16311.0       48380.0               4.2849           30.0               0.9691              2966.0               1172.0                           3235.0                         2134.0                         2190.0                  NA                             NA 2025-03-10 14:10:05  2025-03-25 07:40
+3   2019-07-01 2019-07-31               30    national              11      1400                      f  National  National    US         US            All Residential                 1           298912.0           300284.0        159.0             161.0    637729.0       700338.0      715938.0  1713888.0            2.6875        37.0            0.9854         161855.0          104002.0                      230466.0                      1880.0                      1865.0              301860.0              308104.0           160.0                163.0       625071.0          705492.0         747351.0     1729243.0               2.7665           38.0               0.9864            164542.0              98578.0                         245275.0                         1890.0                         1895.0              286595.0              290625.0           155.0                157.0       615315.0          677294.0         719925.0     1674399.0               2.7212           41.0               0.9872            171796.0              97393.0                         226212.0                         1854.0                         1847.0                  NA                             NA 2025-03-10 14:10:05  2025-03-25 07:40
+4   2022-04-01 2022-04-30               30    national              11      1400                      f  National  National    US         US            All Residential                 1           425335.0           435209.0        237.0             234.0    557766.0       645585.0      723570.0   811084.0            1.4542        18.0            1.0312         325862.0           42144.0                      365364.0                      1795.0                      1860.0              412827.0              427286.0           231.0                233.0       555527.0          661907.0         693624.0      707205.0               1.2730           15.0               1.0240            299565.0              36199.0                         357546.0                         1789.0                         1831.0              368799.0              379048.0           201.0                203.0       625258.0          725499.0         766152.0      785868.0               1.2569           16.0               1.0154            306390.0              41039.0                         398295.0                         1831.0                         1871.0                  NA                             NA 2025-03-10 14:10:05  2025-03-25 07:40
+2025-03-25 07:40:35,003 - INFO - Writing historical data to REDFIN_MNTHLY_HOUSING_US.
+2025-03-25 07:40:44,910 - INFO - Main Function took 0 minutes and 11.40 seconds to run.
+2025-03-25 07:40:44,911 - INFO - ******************************************
+2025-03-25 07:41:59,073 - INFO - ******************************************
+2025-03-25 07:41:59,074 - INFO - Starting main function.
+2025-03-25 07:41:59,422 - INFO - 
+2025-03-25 07:41:59,445 - INFO - get_latest_start_date, results for max date is 2025-01-01 for table REDFIN_MNTHLY_HOUSING_US
+2025-03-25 07:42:00,421 - INFO - Data successfully fetched from https://redfin-public-data.s3.us-west-2.amazonaws.com/redfin_market_tracker/us_national_market_tracker.tsv000.gz
+2025-03-25 07:42:00,432 - ERROR - An error occurred: Cannot compare Timestamp with datetime.date. Use ts == pd.Timestamp(date) or ts.date() == date instead.
+Traceback (most recent call last):
+  File "C:\Users\nickk\PycharmProjects\Data_Pipelines\RedFin_Monthly_Housing_US.py", line 467, in <module>
+    main_run()
+  File "C:\Users\nickk\PycharmProjects\Data_Pipelines\RedFin_Monthly_Housing_US.py", line 344, in main_run
+    if redfin_df_max_date > sql_table_max_date: # Determining if current extract is newer data than we already have in SQL table.
+       ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "timestamps.pyx", line 377, in pandas._libs.tslibs.timestamps._Timestamp.__richcmp__
+TypeError: Cannot compare Timestamp with datetime.date. Use ts == pd.Timestamp(date) or ts.date() == date instead.
+
+2025-03-25 07:42:00,432 - INFO - Main Function took 0 minutes and 1.36 seconds to run.
+2025-03-25 07:42:00,432 - INFO - ******************************************
+2025-03-25 07:42:55,839 - INFO - ******************************************
+2025-03-25 07:42:55,839 - INFO - Starting main function.
+2025-03-25 07:42:56,156 - INFO - 
+2025-03-25 07:42:56,194 - INFO - get_latest_start_date, results for max date is 2025-01-01 for table REDFIN_MNTHLY_HOUSING_US
+2025-03-25 07:42:57,282 - INFO - Data successfully fetched from https://redfin-public-data.s3.us-west-2.amazonaws.com/redfin_market_tracker/us_national_market_tracker.tsv000.gz
+2025-03-25 07:42:57,283 - ERROR - An error occurred: '>' not supported between instances of 'str' and 'datetime.date'
+Traceback (most recent call last):
+  File "C:\Users\nickk\PycharmProjects\Data_Pipelines\RedFin_Monthly_Housing_US.py", line 468, in <module>
+    main_run()
+  File "C:\Users\nickk\PycharmProjects\Data_Pipelines\RedFin_Monthly_Housing_US.py", line 345, in main_run
+    if redfin_df_max_date > sql_table_max_date: # Determining if current extract is newer data than we already have in SQL table.
+       ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+TypeError: '>' not supported between instances of 'str' and 'datetime.date'
+
+2025-03-25 07:42:57,284 - INFO - Main Function took 0 minutes and 1.45 seconds to run.
+2025-03-25 07:42:57,284 - INFO - ******************************************
+2025-03-25 07:45:24,544 - INFO - ******************************************
+2025-03-25 07:45:24,544 - INFO - Starting main function.
+2025-03-25 07:45:24,862 - INFO - 
+2025-03-25 07:45:24,886 - INFO - get_latest_start_date, results for max date is 2025-01-01 for table REDFIN_MNTHLY_HOUSING_US
+2025-03-25 07:45:25,972 - INFO - Data successfully fetched from https://redfin-public-data.s3.us-west-2.amazonaws.com/redfin_market_tracker/us_national_market_tracker.tsv000.gz
+2025-03-25 07:45:25,977 - ERROR - An error occurred: Cannot compare Timestamp with datetime.date. Use ts == pd.Timestamp(date) or ts.date() == date instead.
+Traceback (most recent call last):
+  File "C:\Users\nickk\PycharmProjects\Data_Pipelines\RedFin_Monthly_Housing_US.py", line 468, in <module>
+    main_run()
+  File "C:\Users\nickk\PycharmProjects\Data_Pipelines\RedFin_Monthly_Housing_US.py", line 345, in main_run
+    if redfin_df_max_date > sql_table_max_date: # Determining if current extract is newer data than we already have in SQL table.
+       ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "timestamps.pyx", line 377, in pandas._libs.tslibs.timestamps._Timestamp.__richcmp__
+TypeError: Cannot compare Timestamp with datetime.date. Use ts == pd.Timestamp(date) or ts.date() == date instead.
+
+2025-03-25 07:45:25,978 - INFO - Main Function took 0 minutes and 1.43 seconds to run.
+2025-03-25 07:45:25,978 - INFO - ******************************************
+2025-03-25 07:52:21,977 - INFO - ******************************************
+2025-03-25 07:52:21,978 - INFO - Starting main function.
+2025-03-25 07:52:22,286 - INFO - 
+2025-03-25 07:52:22,311 - INFO - get_latest_start_date, results for max date is 2025-01-01 for table REDFIN_MNTHLY_HOUSING_US
+2025-03-25 07:52:23,449 - INFO - Data successfully fetched from https://redfin-public-data.s3.us-west-2.amazonaws.com/redfin_market_tracker/us_national_market_tracker.tsv000.gz
+2025-03-25 07:52:23,482 - INFO - Data successfully transformed in the RDM layer query.
+2025-03-25 07:52:23,505 - INFO - Data successfully transformed in the SDM layer query.
+2025-03-25 07:52:23,532 - INFO - Data successfully transformed in the CDM layer query.
+2025-03-25 07:52:23,564 - INFO - DataFrame head:
+  period_begin period_end  period_duration region_type  region_type_id  table_id is_seasonally_adjusted    region      city state state_code            property_type  property_type_id  median_sale_price  median_list_price  median_ppsf  median_list_ppsf  homes_sold  pending_sales  new_listings  inventory  months_of_supply  median_dom  avg_sale_to_list  sold_above_list  sold_price_drops  sold_off_market_in_two_weeks  median_sqft_off_sale_price  median_sqft_off_list_price  median_sale_price_lm  median_list_price_lm  median_ppsf_lm  median_list_ppsf_lm  homes_sold_lm  pending_sales_lm  new_listings_lm  inventory_lm  months_of_supply_lm  median_dom_lm  avg_sale_to_list_lm  sold_above_list_lm  sold_price_drops_lm  sold_off_market_in_two_weeks_lm  median_sqft_off_sale_price_lm  median_sqft_off_list_price_lm  median_sale_price_ly  median_list_price_ly  median_ppsf_ly  median_list_ppsf_ly  homes_sold_ly  pending_sales_ly  new_listings_ly  inventory_ly  months_of_supply_ly  median_dom_ly  avg_sale_to_list_ly  sold_above_list_ly  sold_price_drops_ly  sold_off_market_in_two_weeks_ly  median_sqft_off_sale_price_ly  median_sqft_off_list_price_ly parent_metro_region parent_metro_region_metro_code        last_updated    nk_update_date
+0   2025-02-01 2025-02-28               30    national              11      1400                      f  National  National    US         US              Condo/Co-op                 3           365912.0           376197.0        318.0             338.0     34345.0        45812.0       61573.0   165222.0            4.8106        60.0            0.9798           7094.0            5835.0                       11616.0                      1151.0                      1113.0              362590.0              383056.0           315.0                343.0        31987.0           43010.0          62187.0      163333.0               5.1062           56.0               0.9776              5888.0               5269.0                           9238.0                         1150.0                         1118.0              349021.0              365943.0           309.0                320.0        36893.0           51444.0          62802.0      146996.0               3.9844           73.0               0.9849              8820.0               5125.0                          14724.0                         1131.0                         1145.0                  NA                             NA 2025-03-10 14:10:05  2025-03-25 07:52
+1   2025-02-01 2025-02-28               30    national              11      1400                      t  National  National    US         US              Condo/Co-op                 3           370986.0           370115.0        320.0             334.0     43845.0        48212.0       64342.0   173974.0            4.2041        50.0            0.9833          10176.0            7847.0                       14534.0                      1161.0                      1108.0              370438.0              375582.0           318.0                337.0        44470.0           48784.0          66129.0      177670.0               4.1357           51.0               0.9846             10677.0               7545.0                          14793.0                         1163.0                         1115.0              354221.0              359689.0           310.0                316.0        45256.0           51321.0          62916.0      155747.0               3.3776           61.0               0.9885             12153.0               6681.0                          17110.0                         1143.0                         1138.0                  NA                             NA 2025-03-10 00:00:00  2025-03-25 07:52
+2   2025-02-01 2025-02-28               30    national              11      1400                      f  National  National    US         US  Multi-Family (2-4 Unit)                 4           453633.0           550229.0        204.0             233.0      6414.0         9459.0       11761.0    27029.0            4.2136        51.0            0.9737           1739.0             827.0                        2455.0                      2224.0                      2361.0              452603.0              540995.0           195.0                232.0         7485.0            9255.0          11637.0       28542.0               3.8128           52.0               0.9762              2125.0                913.0                           2404.0                         2321.0                         2330.0              405352.0              491913.0           181.0                208.0         7312.0           11226.0          12563.0       28143.0               3.8485           60.0               0.9707              2133.0                753.0                           3026.0                         2240.0                         2362.0                  NA                             NA 2025-03-10 14:10:05  2025-03-25 07:52
+3   2025-02-01 2025-02-28               30    national              11      1400                      f  National  National    US         US                Townhouse                13           378174.0           391760.0        234.0             246.0     34869.0        44182.0       52324.0   110421.0            3.1667        49.0            0.9899           8619.0            5889.0                       13661.0                      1616.0                      1593.0              363531.0              392419.0           226.0                244.0        32380.0           42640.0          51082.0      110881.0               3.4243           47.0               0.9877              7392.0               5160.0                          10370.0                         1611.0                         1609.0              371186.0              376105.0           228.0                235.0        37110.0           47691.0          52271.0       93046.0               2.5073           58.0               0.9934             10369.0               4848.0                          16078.0                         1626.0                         1603.0                  NA                             NA 2025-03-10 14:10:05  2025-03-25 07:52
+4   2025-02-01 2025-02-28               30    national              11      1400                      t  National  National    US         US          All Residential                 1           438488.0           450103.0        240.0             249.0    425332.0       463054.0      532037.0  1258857.0            3.0581        43.0            0.9903         121280.0           86677.0                      151243.0                      1830.0                      1807.0              437664.0              449892.0           238.0                249.0       428113.0          468059.0         567247.0     1286654.0               3.1235           42.0               0.9911            122088.0              80791.0                         153086.0                         1839.0                         1807.0              424611.0              429061.0           232.0                237.0       433769.0          493643.0         560090.0     1154815.0               2.5207           49.0               0.9926            131413.0              70690.0                         170252.0                         1829.0                         1807.0                  NA                             NA 2025-03-10 00:00:00  2025-03-25 07:52
+2025-03-25 07:52:23,564 - INFO - Writing current month data to REDFIN_MNTHLY_HOUSING_US.
+2025-03-25 07:52:24,078 - INFO - Main Function took 0 minutes and 2.10 seconds to run.
+2025-03-25 07:52:24,079 - INFO - ******************************************
