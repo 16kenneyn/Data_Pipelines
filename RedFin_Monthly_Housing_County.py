@@ -20,10 +20,10 @@ zip_url = 'https://redfin-public-data.s3.us-west-2.amazonaws.com/redfin_market_t
 neighborhood_url = 'https://redfin-public-data.s3.us-west-2.amazonaws.com/redfin_market_tracker/neighborhood_market_tracker.tsv000.gz'
 
 """ ****** INITIALIZE GLOBAL VARIABLES ****** """
-logger = DataPipelineLogger("Redfin_Monthly_Housing_State")
+logger = DataPipelineLogger("Redfin_Monthly_Housing_County")
 con = duckdb.connect()  # Create a DuckDB connection (in-memory)
-universal_url_string = state_url
-sql_table_name = 'REDFIN_MNTHLY_HOUSING_STATE'  # SQL table name
+universal_url_string = county_url
+sql_table_name = 'REDFIN_MNTHLY_HOUSING_COUNTY'  # SQL table name
 
 def get_url(url: str):
     """
@@ -450,30 +450,31 @@ def main_run():
                 # redfin_df_v3.to_sql(sql_table_name, con=conn, if_exists='replace', index=False)
 
             conn.dispose()  # Close the connection to SQL Server
-if __name__ == '__main__':
-    logger.write_to_log('******************************************')
-    start_time = time.time()
 
-    try:
-        print("Starting main function.")
-        logger.write_to_log("Starting main function.")
-        main_run()
-    except Exception as e:
-        error_trace = traceback.format_exc()
-        logger.write_error_to_log(f"An error occurred: {e}\n{error_trace}")
-        print(f"An error occurred: {e}")
-    finally:
-        end_time = time.time()
-        elapsed_time = end_time - start_time
-        minutes, seconds = divmod(elapsed_time, 60)
-        logger.write_to_log(f"Main Function took {minutes:.0f} minutes and {seconds:.2f} seconds to run.")
-        logger.write_to_log('******************************************')
-        print(f"Main Function took {minutes:.0f} minutes and {seconds:.2f} seconds to run.")
+if __name__ == '__main__':
+    # logger.write_to_log('******************************************')
+    # start_time = time.time()
+    #
+    # try:
+    #     print("Starting main function.")
+    #     logger.write_to_log("Starting main function.")
+    #     main_run()
+    # except Exception as e:
+    #     error_trace = traceback.format_exc()
+    #     logger.write_error_to_log(f"An error occurred: {e}\n{error_trace}")
+    #     print(f"An error occurred: {e}")
+    # finally:
+    #     end_time = time.time()
+    #     elapsed_time = end_time - start_time
+    #     minutes, seconds = divmod(elapsed_time, 60)
+    #     logger.write_to_log(f"Main Function took {minutes:.0f} minutes and {seconds:.2f} seconds to run.")
+    #     logger.write_to_log('******************************************')
+    #     print(f"Main Function took {minutes:.0f} minutes and {seconds:.2f} seconds to run.")
 
     """ ******************* TESTING WITHOUT ACCESS TO SQL SERVER ******************* """
 
-    # redfin_df = get_url(universal_url_string)
-    # redfin_df.to_excel('C:\\Users\\nickk\\PycharmProjects\\Data_Pipelines\\2_Test\\Data_Files\\RedFin\\state_monthly_redfin_housing.xlsx', index=False)
+    redfin_df = get_url(universal_url_string)
+    redfin_df.head(100000).to_excel('C:\\Users\\nickk\\PycharmProjects\\Data_Pipelines\\2_Test\\Data_Files\\RedFin\\metro_monthly_redfin_housing.xlsx', index=False)
 
     # print(f"Starting test function. URL: {universal_url_string}")
     #
