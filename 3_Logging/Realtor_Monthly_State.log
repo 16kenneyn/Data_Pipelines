@@ -137,3 +137,10 @@ sqlalchemy.exc.InterfaceError: (pyodbc.InterfaceError) ('IM002', '[IM002] [Micro
 2025-03-15 12:57:06,513 - INFO - Writing historical data to REALTOR_MNTHLY_STATE.
 2025-03-15 12:57:23,207 - INFO - Main Function took 0 minutes and 18.43 seconds to run.
 2025-03-15 12:57:23,208 - INFO - ******************************************
+2025-04-05 19:19:45,191 - INFO - ******************************************
+2025-04-05 19:19:45,724 - INFO - Get Latest Yearmonth called, results for max date is 202502 for table REALTOR_MNTHLY_STATE
+2025-04-05 19:19:46,348 - INFO - Successfully requested and received data from: https://econdata.s3-us-west-2.amazonaws.com/Reports/Core/RDC_Inventory_Core_Metrics_State.csv
+2025-04-05 19:19:47,050 - INFO - Main Function took 0 minutes and 1.86 seconds to run.
+2025-04-05 19:19:47,050 - INFO - ******************************************
+2025-04-05 20:34:45,052 - INFO - ******************************************
+2025-04-05 20:34:45,374 - INFO - Get Latest Yearmonth called, results for max date is 202503 for table REALTOR_MNTHLY_STATE

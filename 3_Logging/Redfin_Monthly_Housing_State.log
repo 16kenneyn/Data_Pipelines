@@ -149,3 +149,120 @@ Make sure that "sdm_table" is either a pandas.DataFrame, duckdb.DuckDBPyRelation
 
 2025-03-25 13:00:55,242 - INFO - Main Function took 0 minutes and 21.71 seconds to run.
 2025-03-25 13:00:55,242 - INFO - ******************************************
+2025-03-26 08:19:29,753 - INFO - Data successfully fetched from https://redfin-public-data.s3.us-west-2.amazonaws.com/redfin_market_tracker/us_national_market_tracker.tsv000.gz
+2025-03-26 08:19:29,823 - ERROR - An error occurred during the RDM transformation: Parser Error: syntax error at or near "AS"
+Traceback (most recent call last):
+  File "C:\Users\nickk\PycharmProjects\Data_Pipelines\RedFin_Monthly_Housing_State.py", line 167, in rdm_transformations
+    result_df = con.execute(query).fetchdf()
+                ^^^^^^^^^^^^^^^^^^
+duckdb.duckdb.ParserException: Parser Error: syntax error at or near "AS"
+
+2025-03-26 08:20:18,394 - INFO - Data successfully fetched from https://redfin-public-data.s3.us-west-2.amazonaws.com/redfin_market_tracker/state_market_tracker.tsv000.gz
+2025-03-26 08:20:18,436 - ERROR - An error occurred during the RDM transformation: Parser Error: syntax error at or near "AS"
+Traceback (most recent call last):
+  File "C:\Users\nickk\PycharmProjects\Data_Pipelines\RedFin_Monthly_Housing_State.py", line 167, in rdm_transformations
+    result_df = con.execute(query).fetchdf()
+                ^^^^^^^^^^^^^^^^^^
+duckdb.duckdb.ParserException: Parser Error: syntax error at or near "AS"
+
+2025-03-26 08:22:30,651 - INFO - Data successfully fetched from https://redfin-public-data.s3.us-west-2.amazonaws.com/redfin_market_tracker/state_market_tracker.tsv000.gz
+2025-03-26 08:22:30,775 - ERROR - An error occurred during the RDM transformation: Parser Error: syntax error at or near "AS"
+Traceback (most recent call last):
+  File "C:\Users\nickk\PycharmProjects\Data_Pipelines\RedFin_Monthly_Housing_State.py", line 167, in rdm_transformations
+    result_df = con.execute(query).fetchdf()
+                ^^^^^^^^^^^^^^^^^^
+duckdb.duckdb.ParserException: Parser Error: syntax error at or near "AS"
+
+2025-03-26 08:26:18,024 - INFO - Data successfully fetched from https://redfin-public-data.s3.us-west-2.amazonaws.com/redfin_market_tracker/state_market_tracker.tsv000.gz
+2025-03-26 08:26:18,383 - INFO - Data successfully transformed in the RDM layer query.
+2025-03-26 08:26:18,613 - INFO - Data successfully transformed in the SDM layer query.
+2025-03-26 08:26:18,874 - INFO - Data successfully transformed in the CDM layer query.
+2025-03-26 18:55:33,301 - INFO - An error occurred during the request redfin monthly inventory for url https://redfin-public-data.s3.us-west-2.amazonaws.com/redfin_market_tracker/state_market_tracker.tsv000.gz.: HTTPSConnectionPool(host='redfin-public-data.s3.us-west-2.amazonaws.com', port=443): Max retries exceeded with url: /redfin_market_tracker/state_market_tracker.tsv000.gz (Caused by NameResolutionError("<urllib3.connection.HTTPSConnection object at 0x000001115DE15430>: Failed to resolve 'redfin-public-data.s3.us-west-2.amazonaws.com' ([Errno 11001] getaddrinfo failed)"))
+Traceback (most recent call last):
+  File "C:\Users\nickk\PycharmProjects\Data_Pipelines\venv\Lib\site-packages\urllib3\connection.py", line 199, in _new_conn
+    sock = connection.create_connection(
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\nickk\PycharmProjects\Data_Pipelines\venv\Lib\site-packages\urllib3\util\connection.py", line 60, in create_connection
+    for res in socket.getaddrinfo(host, port, family, socket.SOCK_STREAM):
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Program Files\WindowsApps\PythonSoftwareFoundation.Python.3.12_3.12.2544.0_x64__qbz5n2kfra8p0\Lib\socket.py", line 978, in getaddrinfo
+    for res in _socket.getaddrinfo(host, port, family, type, proto, flags):
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+socket.gaierror: [Errno 11001] getaddrinfo failed
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "C:\Users\nickk\PycharmProjects\Data_Pipelines\venv\Lib\site-packages\urllib3\connectionpool.py", line 789, in urlopen
+    response = self._make_request(
+               ^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\nickk\PycharmProjects\Data_Pipelines\venv\Lib\site-packages\urllib3\connectionpool.py", line 490, in _make_request
+    raise new_e
+  File "C:\Users\nickk\PycharmProjects\Data_Pipelines\venv\Lib\site-packages\urllib3\connectionpool.py", line 466, in _make_request
+    self._validate_conn(conn)
+  File "C:\Users\nickk\PycharmProjects\Data_Pipelines\venv\Lib\site-packages\urllib3\connectionpool.py", line 1095, in _validate_conn
+    conn.connect()
+  File "C:\Users\nickk\PycharmProjects\Data_Pipelines\venv\Lib\site-packages\urllib3\connection.py", line 693, in connect
+    self.sock = sock = self._new_conn()
+                       ^^^^^^^^^^^^^^^^
+  File "C:\Users\nickk\PycharmProjects\Data_Pipelines\venv\Lib\site-packages\urllib3\connection.py", line 206, in _new_conn
+    raise NameResolutionError(self.host, self, e) from e
+urllib3.exceptions.NameResolutionError: <urllib3.connection.HTTPSConnection object at 0x000001115DE15430>: Failed to resolve 'redfin-public-data.s3.us-west-2.amazonaws.com' ([Errno 11001] getaddrinfo failed)
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "C:\Users\nickk\PycharmProjects\Data_Pipelines\venv\Lib\site-packages\requests\adapters.py", line 667, in send
+    resp = conn.urlopen(
+           ^^^^^^^^^^^^^
+  File "C:\Users\nickk\PycharmProjects\Data_Pipelines\venv\Lib\site-packages\urllib3\connectionpool.py", line 843, in urlopen
+    retries = retries.increment(
+              ^^^^^^^^^^^^^^^^^^
+  File "C:\Users\nickk\PycharmProjects\Data_Pipelines\venv\Lib\site-packages\urllib3\util\retry.py", line 519, in increment
+    raise MaxRetryError(_pool, url, reason) from reason  # type: ignore[arg-type]
+    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+urllib3.exceptions.MaxRetryError: HTTPSConnectionPool(host='redfin-public-data.s3.us-west-2.amazonaws.com', port=443): Max retries exceeded with url: /redfin_market_tracker/state_market_tracker.tsv000.gz (Caused by NameResolutionError("<urllib3.connection.HTTPSConnection object at 0x000001115DE15430>: Failed to resolve 'redfin-public-data.s3.us-west-2.amazonaws.com' ([Errno 11001] getaddrinfo failed)"))
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "C:\Users\nickk\PycharmProjects\Data_Pipelines\RedFin_Monthly_Housing_State.py", line 36, in get_url
+    response = requests.get(url)
+               ^^^^^^^^^^^^^^^^^
+  File "C:\Users\nickk\PycharmProjects\Data_Pipelines\venv\Lib\site-packages\requests\api.py", line 73, in get
+    return request("get", url, params=params, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\nickk\PycharmProjects\Data_Pipelines\venv\Lib\site-packages\requests\api.py", line 59, in request
+    return session.request(method=method, url=url, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\nickk\PycharmProjects\Data_Pipelines\venv\Lib\site-packages\requests\sessions.py", line 589, in request
+    resp = self.send(prep, **send_kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\nickk\PycharmProjects\Data_Pipelines\venv\Lib\site-packages\requests\sessions.py", line 703, in send
+    r = adapter.send(request, **kwargs)
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\nickk\PycharmProjects\Data_Pipelines\venv\Lib\site-packages\requests\adapters.py", line 700, in send
+    raise ConnectionError(e, request=request)
+requests.exceptions.ConnectionError: HTTPSConnectionPool(host='redfin-public-data.s3.us-west-2.amazonaws.com', port=443): Max retries exceeded with url: /redfin_market_tracker/state_market_tracker.tsv000.gz (Caused by NameResolutionError("<urllib3.connection.HTTPSConnection object at 0x000001115DE15430>: Failed to resolve 'redfin-public-data.s3.us-west-2.amazonaws.com' ([Errno 11001] getaddrinfo failed)"))
+
+2025-04-04 23:28:45,652 - INFO - Data successfully fetched from https://redfin-public-data.s3.us-west-2.amazonaws.com/redfin_market_tracker/state_market_tracker.tsv000.gz
+2025-04-04 23:28:45,879 - INFO - Data successfully transformed in the RDM layer query.
+2025-04-04 23:28:46,000 - INFO - Data successfully transformed in the SDM layer query.
+2025-04-04 23:28:46,136 - INFO - Data successfully transformed in the CDM layer query.
+2025-04-04 23:34:11,284 - INFO - ******************************************
+2025-04-04 23:34:11,284 - INFO - Starting main function.
+2025-04-04 23:34:12,138 - INFO - get_latest_start_date, results for max date is None for table REDFIN_MNTHLY_HOUSING_STATE
+2025-04-04 23:34:16,318 - INFO - Data successfully fetched from https://redfin-public-data.s3.us-west-2.amazonaws.com/redfin_market_tracker/state_market_tracker.tsv000.gz
+2025-04-04 23:34:16,492 - INFO - Data successfully transformed in the RDM layer query.
+2025-04-04 23:34:16,632 - INFO - Data successfully transformed in the SDM layer query.
+2025-04-04 23:34:16,806 - INFO - Data successfully transformed in the CDM layer query.
+2025-04-04 23:34:16,846 - INFO - DataFrame head:
+  period_begin period_end  period_duration region_type  region_type_id  table_id is_seasonally_adjusted          region city           state state_code              property_type  property_type_id  median_sale_price  median_list_price  median_ppsf  median_list_ppsf  homes_sold  pending_sales  new_listings  inventory  months_of_supply  median_dom  avg_sale_to_list  sold_above_list  sold_price_drops  sold_off_market_in_two_weeks  median_sqft_off_sale_price  median_sqft_off_list_price  median_sale_price_lm  median_list_price_lm  median_ppsf_lm  median_list_ppsf_lm  homes_sold_lm  pending_sales_lm  new_listings_lm  inventory_lm  months_of_supply_lm  median_dom_lm  avg_sale_to_list_lm  sold_above_list_lm  sold_price_drops_lm  sold_off_market_in_two_weeks_lm  median_sqft_off_sale_price_lm  median_sqft_off_list_price_lm  median_sale_price_ly  median_list_price_ly  median_ppsf_ly  median_list_ppsf_ly  homes_sold_ly  pending_sales_ly  new_listings_ly  inventory_ly  months_of_supply_ly  median_dom_ly  avg_sale_to_list_ly  sold_above_list_ly  sold_price_drops_ly  sold_off_market_in_two_weeks_ly  median_sqft_off_sale_price_ly  median_sqft_off_list_price_ly parent_metro_region parent_metro_region_metro_code        last_updated    nk_update_date
+0   2021-05-01 2021-05-31               30       state               4        14                      f      New Mexico   NA      New Mexico         NM  Single Family Residential                 6           296300.0           276900.0        154.0             160.0      1001.0         1060.0        1173.0     3723.0               3.7        65.0            0.9699             99.0              20.0                         153.0                      1924.0                      1731.0              274232.0              278966.0           146.0                161.0          972.0            1066.0           1177.0        3644.0                  3.7           64.0               0.9776                62.0                 13.0                            160.0                         1872.0                         1732.0              226940.0              274319.0           128.0                150.0          650.0             759.0            906.0        3768.0                  5.8           45.0               0.9706                33.0                 16.0                             85.0                         1769.0                         1828.0         West Region                             NA 2025-03-10 14:20:36  2025-04-04 23:34
+1   2014-06-01 2014-06-30               30       state               4        30                      f  South Carolina   NA  South Carolina         SC  Single Family Residential                 6           211400.0           201800.0        105.0             108.0      4101.0         3595.0        4995.0    23035.0               5.6        96.0            0.9670            480.0              59.0                         202.0                      2013.0                      1869.0              198488.0              202247.0           100.0                109.0         3804.0            3339.0           5213.0       23021.0                  6.1           93.0               0.9661               462.0                 60.0                            136.0                         1976.0                         1861.0              195294.0              195947.0            99.0                105.0         3748.0            3335.0           4344.0       19866.0                  5.3           94.0               0.9635               408.0                  1.0                             44.0                         1964.0                         1860.0        South Region                             NA 2025-03-10 14:20:36  2025-04-04 23:34
+2   2015-02-01 2015-02-28               30       state               4        22                      f            Ohio   NA            Ohio         OH                Condo/Co-op                 3           103700.0           127900.0         72.0              80.0       464.0          509.0         829.0     3692.0               8.0       109.0            0.9420             28.0               8.0                          18.0                      1440.0                      1599.0               89377.0              119009.0            67.0                 77.0          477.0             492.0            804.0        3524.0                  7.4          114.0               0.9385                33.0                  8.0                             16.0                         1326.0                         1540.0               95333.0              120500.0            64.0                 78.0          443.0             439.0            832.0        4130.0                  9.3           94.0               0.9328                39.0                120.0                              7.0                         1498.0                         1548.0      Midwest Region                             NA 2025-03-10 14:20:36  2025-04-04 23:34
+3   2020-03-01 2020-03-31               30       state               4        39                      f       Louisiana   NA       Louisiana         LA  Single Family Residential                 6           206900.0           225300.0        119.0             123.0      3537.0         3722.0        3198.0    11036.0               3.1        90.0            0.9730            423.0             282.0                         445.0                      1739.0                      1832.0              199058.0              209040.0           116.0                120.0         2834.0            2970.0           2705.0       10888.0                  3.8           88.0               0.9701               318.0                206.0                            317.0                         1713.0                         1747.0              193741.0              213913.0           113.0                120.0         3134.0            3396.0           3010.0       11159.0                  3.6           79.0               0.9695               376.0                290.0                            292.0                         1722.0                         1790.0        South Region                             NA 2025-03-10 14:20:36  2025-04-04 23:34
+4   2013-12-01 2013-12-31               30       state               4        35                      f          Kansas   NA          Kansas         KS            All Residential                 1           149400.0           138900.0         74.0              75.0      2031.0         1064.0        1549.0     6024.0               3.0       101.0            0.9449            207.0               0.0                          22.0                      2019.0                      1852.0              157775.0              144966.0            74.0                 77.0         1784.0             882.0           2045.0        6560.0                  3.7          106.0               0.9625               170.0                  0.0                             15.0                         2127.0                         1887.0              154705.0              140087.0            71.0                 74.0         1713.0             801.0           1405.0        5395.0                  3.1           94.0               0.9663               192.0                  0.0                             21.0                         2186.0                         1896.0      Midwest Region                             NA 2025-03-10 14:20:36  2025-04-04 23:34
+2025-04-04 23:34:16,847 - INFO - Writing historical data to REDFIN_MNTHLY_HOUSING_STATE.
+2025-04-04 23:37:54,430 - INFO - Main Function took 3 minutes and 43.15 seconds to run.
+2025-04-04 23:37:54,430 - INFO - ******************************************
